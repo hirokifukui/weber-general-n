@@ -19,4 +19,4 @@ ledger (tags: [used] / [historical] / [unread], TRUST.md).
 | Z_3 | THM_P3 | sect 9 Thm P3 (The cyclotomic Z_3-tower) | L-relative; F-core | MO13 Lemma 1.3 [used, read verbatim in MO13] -- Horie's saturation lemma; MO13 attributes it to Ho05b, which relays Ho02 [historical sources: Ho02 not read (paywall), Ho05b a relay]; the general form with a proof is Ho05a Prop. 1 [read r17, the proved form the argument rests on]; MO16 Lemma 2.5(2) (= MO16 Lemma 2.3 + Lemma 2.4(2) = MO13 Lemma 9.1; read verbatim); MO16 Thm 2.7 = Blichfeldt 1914 Thm II | MO2016 Thm A at p = 3 (uniform in n, G(3,s,f)); MO2013 Thm 0.3 / G_1(3,r,f) | OPEN (hw 868-876) |
 | Z_3 | COR_P3N4 | sect 9 Cor P3n4 | C + M (relative to THM_P3) | none (F / C / M only) | MO2016 Thm A: G(3,4,1) = 3.7111e37, G(3,4,2) = 6.0919e18 (the paper: 1.0728e33 / 3.2753e16) | OPEN (hw 868-876) |
 
-Rows: 11 (Z_2 7, Z_3 4). Generated from docs/CLAIMS_1.0.1.yaml.
+Rows: 11 (Z_2 7, Z_3 4). Generated from docs/CLAIMS_1.0.2.yaml.

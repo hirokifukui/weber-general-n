@@ -5,7 +5,7 @@ byte-exact SHA-256 is part of the frozen evidence chain (certificates/constants/
 the public-tree sanitizer exempts that one file from the host-name rule only.
 
 Every claim of the paper carries exactly one label, or a composite of them; CORRESPONDENCE.csv
-(generated from docs/CLAIMS_1.0.1.yaml) maps claim ids to Lean declarations, certificates, logs and
+(generated from docs/CLAIMS_1.0.2.yaml) maps claim ids to Lean declarations, certificates, logs and
 literature inputs. Earlier round-specific ledgers are preserved outside the submission-facing public tree. The blueprint (blueprint/src/content.tex) carries the same labels per node.
 
 F  (Formal)      Proven in Lean 4 (toolchain v4.31.0-rc1, mathlib pin d568c8c0) with
@@ -32,14 +32,15 @@ C  (Certificate) A finite machine-checkable certificate plus a READ-ONLY checker
                  (3) tools/check_p3_containment.py = CERTIFICATE COVERAGE on a stored recomputation (step 04g).
                  Structured summaries (sage/r19_trackB/p3_readonly_summary_r19.json) carry the verifier version and
                  sha256; raw log hashes are forensic, never a mathematical gate. Family: scripts/family_verify.sage
-                 (sha256 recorded in docs/CLAIMS_1.0.1.yaml) on certificates/family/KY1000/*.txt; soundness
+                 (sha256 recorded in docs/CLAIMS_1.0.2.yaml) on certificates/family/KY1000/*.txt; soundness
                  spec theory/FAMILY_CERTIFICATE_SPEC_R10.md sect 4; n = 7 constants: rigorous digamma
                  interval certificate (certificates/constants/Cn_interval_r14.json, both endpoints to 160
                  digits) and the r6/r7 interval logs under certificates/blichfeldt/.
                  Nine planted negative controls (scripts/family_negctl.sh; ledger certificates/negctl/
                  negctl_ledger_r14.json) must all be REJECTED and the n = 2 positive control accepted; they
                  are a hard gate of the verifier. The GENERATOR is untrusted; only the verifier is trusted.
-L  (Literature)  A published, proven theorem used as an explicit hypothesis. Three tags (introduced in r20): [used] = the statement the argument actually rests on, read verbatim from the primary
+L  (Literature)  An external literature result used as an explicit hypothesis; its publication or
+                 preprint status is recorded with the citation. Three tags (introduced in r20): [used] = the statement the argument actually rests on, read verbatim from the primary
                  text on disk (paper/); [historical] = the source a used statement is attributed to by the text
                  we read, not itself read; [unread] = named for provenance only, not on disk. Used: KY Eq.(17),
                  Prop 4.1 + (23), Thm 2.3 (arXiv:2107.08587v3); MO 2016 Lemma 2.5(1),(2), Thm 2.7 (JTNB 28);
@@ -58,7 +59,7 @@ M  (Manuscript)  Proved in the paper and, verbatim (single-source proofs/*.tex),
                  Prop D, Cor A', the depth-t floor, the old/new decomposition; r15: Theorem S0 (relative to its
                  hypothesis (i)) and Lemma oddtransfer (its number-field part; the group core is F). r16: Lemma B moved M -> F (WeberLemmaB); Theorem SH, Cor A-hat,
                  Cor order, Theorem P3, Cor P3n4 are M relative to their L inputs with F cores (WeberSH, WeberHatC, WeberP3) and, for
-                 P3, a C covolume (certificates/p3/D3_cert_r16.json). r17: Theorem P3 is restated with (Rank) PROVED (Theorem rank3, F-core + L for Washington / Dirichlet) and the MO2016 relative-norm-one floor (Lemma mo25 [L], applicable by Lemma normone [F]); the certificate certificates/p3/D3_cert_r19.json (C; format v3, containment-gated read-only replay step 04f) enters only Cor P3n4 and the table; Theorem SH is stated in the carrier form proved in Lean and its module form is Cor SH-mod (M; F-core). r20: Theorem P3 is stated for ODD primes l != 3 only (the r19 wording admitted l = 2, ERRATA_R20 E20-1); the oddness is consumed at the M/F bridge -- Lemma normone (iv), where Nr(eps)^l = 1 with Nr(eps) real gives Nr(eps) = 1 through the F lemma WeberP3Rel.eq_one_of_odd_pow_eq_one (hypothesis Odd l), and in the hypothesis of Theorem SH; the Lean core WeberP3.theoremP3_core is the generic carrier (0 < l) and does NOT carry the odd-prime condition, which is therefore recorded here and in the claims (docs/CLAIMS_1.0.1.yaml THM_P3.conditions, checked against both statement texts by tools/check_statement_sync.py, step 13c). The shared proof of Theorem rank3 writes a == 4^{N/3} (mod q) as a congruence (E20-2; F: WeberP3Rel.four_pow_modEq). A reader checks M by reading;
+                 P3, a C covolume (certificates/p3/D3_cert_r16.json). r17: Theorem P3 is restated with (Rank) PROVED (Theorem rank3, F-core + L for Washington / Dirichlet) and the MO2016 relative-norm-one floor (Lemma mo25 [L], applicable by Lemma normone [F]); the certificate certificates/p3/D3_cert_r19.json (C; format v3, containment-gated read-only replay step 04f) enters only Cor P3n4 and the table; Theorem SH is stated in the carrier form proved in Lean and its module form is Cor SH-mod (M; F-core). r20: Theorem P3 is stated for ODD primes l != 3 only (the r19 wording admitted l = 2, ERRATA_R20 E20-1); the oddness is consumed at the M/F bridge -- Lemma normone (iv), where Nr(eps)^l = 1 with Nr(eps) real gives Nr(eps) = 1 through the F lemma WeberP3Rel.eq_one_of_odd_pow_eq_one (hypothesis Odd l), and in the hypothesis of Theorem SH; the Lean core WeberP3.theoremP3_core is the generic carrier (0 < l) and does NOT carry the odd-prime condition, which is therefore recorded here and in the claims (docs/CLAIMS_1.0.2.yaml THM_P3.conditions, checked against both statement texts by tools/check_statement_sync.py, step 13c). The shared proof of Theorem rank3 writes a == 4^{N/3} (mod q) as a congruence (E20-2; F: WeberP3Rel.four_pow_modEq). A reader checks M by reading;
                  the Blueprint's evidence-presence gate only checks that a proof body is PRESENT (check_graph.py --report flags short F/M proofs as warnings).
 E  (Experiment)  Computation whose OUTPUT is reported but on which no theorem depends (class-1 scans,
                  escalation statistics, SVP minima, failure-class tables, C_n for n >= 8 beyond the

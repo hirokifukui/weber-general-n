@@ -4,7 +4,7 @@ Asserts that the T-route threshold is the SAME piecewise function of n in every 
   verifier  scripts/family_verify.sage   `BAR = 33*2**n if n >= 3 else 17*2**n`
   Lean      lean/WeberCertFloor.lean     `def barT (n : N) : N := if n = 2 then 17 * 2 ^ n else 33 * 2 ^ n`
   Blueprint blueprint/src/content.tex    lem:ky23 (n>=3: 33·2^n ; n=2: 17·2^n) and def:verifier (\\bar T_n piecewise)
-  paper     paper/draft/main_1.0.1.tex     definition of \\barT (17·2^n for n=2, 33·2^n for n>=3)
+  paper     paper/draft/main_1.0.2.tex     definition of \\barT (17·2^n for n=2, 33·2^n for n>=3)
   proof     proofs/thm_cert.tex          the same two constants
 and that no remaining prose site states the uniform 33·2^n as the certificate threshold without an n >= 3 qualifier.
 Exit 0 iff all pass. Pure python, no Sage.
@@ -29,11 +29,11 @@ need('lean/WeberCertFloor.lean', r'theorem barT_seven : barT 7 = 4224', 'barT 7 
 need('blueprint/src/content.tex', r'label\{lem:ky23\}.*?n\\ge3.*?33\\cdot2\^n.*?n=2.*?17\\cdot2\^n', 'lem:ky23 piecewise')
 need('blueprint/src/content.tex', r'label\{def:verifier\}.*?\\bar T_n=17\\cdot2\^n\$ for \$n=2\$ and \$33\\cdot2\^n\$ for \$n\\ge3\$', 'def:verifier piecewise')
 # 4 paper
-need('paper/draft/main_1.0.1.tex', r'\\barT:=17\\cdot2\^n\$ for \$n=2\$ and \$\\barT:=33\\cdot2\^n\$ for \$n\\ge3\$', 'paper \\barT definition')
+need('paper/draft/main_1.0.2.tex', r'\\barT:=17\\cdot2\^n\$ for \$n=2\$ and \$\\barT:=33\\cdot2\^n\$ for \$n\\ge3\$', 'paper \\barT definition')
 # 5 proof text
 need('proofs/thm_cert.tex', r'\\bar T_n=33\\cdot2\^n\$ for \$n\\ge3\$ and \$\\bar T_n=17\\cdot2\^n\$ for \$n=2\$', 'thm_cert piecewise')
 # 6 no uniform threshold left in the current prose: every "33\cdot2^n" must sit on a line that also says n\ge3 or 17\cdot2^n
-for p in ('paper/draft/main_1.0.1.tex', 'proofs/thm_cert.tex', 'blueprint/src/content.tex', 'theory/STATEMENT_FREEZE_1.0.1.md', 'README.md', 'TRUST.md', 'lean/README_lean.md'):
+for p in ('paper/draft/main_1.0.2.tex', 'proofs/thm_cert.tex', 'blueprint/src/content.tex', 'theory/STATEMENT_FREEZE_1.0.2.md', 'README.md', 'TRUST.md', 'lean/README_lean.md'):
     if not os.path.exists(p): continue
     for i, line in enumerate(open(p, encoding='utf-8'), 1):
         if re.search(r'33\s*(\\cdot|\*|·)\s*2\^n', line) and not re.search(r'n\s*(\\ge|>=|≥)\s*3|17\s*(\\cdot|\*|·)\s*2\^n', line):

@@ -59,6 +59,19 @@ the pre-seal r11 copy that was shipped is archived at docs/archive/HANDOFF_R11_p
     the zip SHA-256 is recorded in the vault HANDOFF (never inside the tree). Any change afterwards = a new staging tree, steps 1a-2 again.
 3-6. Unchanged (one push / CI / tag / release / Zenodo at the end, decision (b)).
 
+## 1.0.2 candidate (the pre-submission repair round; written BEFORE the final verifier run; not edited after it)
+- Opened 2026-08-29 on the GPT audit of the v1.0.1 submission package (conditional GO; six items). All non-mathematical:
+  'published input' -> 'external literature input' throughout paper/abstract/resume/TRUST (the load-bearing Kashio-Yoshizaki
+  input is a preprint, arXiv:2107.08587v3 -- the old wording was a factual error); the CI paragraph rewritten in mechanism form
+  (every push replays from a clean checkout; each tagged release archives its own attestation; latest executed run 33233680283 at
+  commit 18408083 named as of writing); bibliography alphabetized (keys unchanged) and Morisawa Acta Arith 2012 cited in Section 1;
+  French resume polished (eight expressions per the review); README version line and CITATION preferred-citation filename fixed
+  (the two stale v1.0.0 strings the v1.0.1 bump missed); the cover letter shortened (verification pitch compressed, 'published in a
+  journal', the defer-to-Board sentence removed -- JTNB uses author-selected handling editors).
+- NO statement change, no new mathematics, no Lean or certificate touched.
+- Release plan: seal -> push -> CI -> tag v1.0.2 -> Release -> Zenodo new versions; the JTNB cover letter cites the v1.0.2 paper DOI;
+  the handling editor is selected in the submission portal (first choice Greither per the review, verified against the live list).
+
 ## 1.0.1 candidate (the post-publication repair round; written BEFORE the final verifier run; not edited after it)
 - Opened 2026-08-29 after the GPT audit of the PUBLISHED v1.0.0 (verdict: the public state is GO, kept frozen; JTNB submission is GO after this round).
 - Content, all non-mathematical: the paper CI paragraph brought up to the executed green run 33227660844 at commit b23ddc7a (the v1.0.0 text,
