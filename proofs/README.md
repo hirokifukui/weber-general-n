@@ -1,6 +1,6 @@
 # proofs/ — single source of every natural-language proof (r13; GPT r11 hw 185-186, r12 hw 37-50)
 
-Each file is ONE proof body (no \begin{proof}), \input by BOTH paper/draft/main_1.0.0.tex and
+Each file is ONE proof body (no \begin{proof}), \input by BOTH paper/draft/main_1.0.1.tex and
 blueprint/src/content.tex via \input{\proofsdir/<name>}, where \proofsdir = ../../proofs from either
 build directory. Editing a proof here edits it in the paper and in the Blueprint at once; neither
 document carries its own copy. bibliography.tex is the shared \bibitem list.

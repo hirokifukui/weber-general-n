@@ -13,15 +13,15 @@ run() {  # run <name> <expect-regex> <forbid-regex> <env...>
 }
 FAKE_SAGE=$T/sage; printf '#!/bin/sh\necho SageMath 10.8\n' > "$FAKE_SAGE"; chmod +x "$FAKE_SAGE"; LW=$T/ws; mkdir -p "$LW"
 # full profile: any missing prerequisite must FAIL before any step, and print the FULL FAIL line
-run full_skip_sage   'VERIFY_ALL_PORTABLE 1.0.0 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SKIP_SAGE=1 SAGE_BIN="$FAKE_SAGE" LEAN_WORKSPACE="$LW" SKIP_PAPER=0
-run full_no_lean     'VERIFY_ALL_PORTABLE 1.0.0 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SAGE_BIN="$FAKE_SAGE" SKIP_PAPER=0
-run full_no_sage_bin 'VERIFY_ALL_PORTABLE 1.0.0 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SAGE_BIN=/nonexistent/sage LEAN_WORKSPACE="$LW" SKIP_PAPER=0
-run full_skip_paper  'VERIFY_ALL_PORTABLE 1.0.0 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SAGE_BIN="$FAKE_SAGE" LEAN_WORKSPACE="$LW" SKIP_PAPER=1
+run full_skip_sage   'VERIFY_ALL_PORTABLE 1.0.1 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SKIP_SAGE=1 SAGE_BIN="$FAKE_SAGE" LEAN_WORKSPACE="$LW" SKIP_PAPER=0
+run full_no_lean     'VERIFY_ALL_PORTABLE 1.0.1 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SAGE_BIN="$FAKE_SAGE" SKIP_PAPER=0
+run full_no_sage_bin 'VERIFY_ALL_PORTABLE 1.0.1 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SAGE_BIN=/nonexistent/sage LEAN_WORKSPACE="$LW" SKIP_PAPER=0
+run full_skip_paper  'VERIFY_ALL_PORTABLE 1.0.1 FULL: FAIL' 'FULL: PASS' VERIFY_PROFILE=full SAGE_BIN="$FAKE_SAGE" LEAN_WORKSPACE="$LW" SKIP_PAPER=1
 # partial profiles: their own prerequisite is required; the other side may be absent; the FULL line must never be printed
-run sage_skip_sage   'SAGE_PROFILE: FAIL' 'VERIFY_ALL_PORTABLE 1.0.0 FULL' VERIFY_PROFILE=sage SKIP_SAGE=1 SAGE_BIN="$FAKE_SAGE"
-run sage_no_lean_ok  'SAGE_PROFILE: PASS' 'VERIFY_ALL_PORTABLE 1.0.0 FULL' VERIFY_PROFILE=sage SAGE_BIN="$FAKE_SAGE" SKIP_PAPER=1
-run lean_no_ws       'LEAN_PROFILE: FAIL' 'VERIFY_ALL_PORTABLE 1.0.0 FULL' VERIFY_PROFILE=lean SKIP_SAGE=1
-run lean_skip_sage_ok 'LEAN_PROFILE: PASS' 'VERIFY_ALL_PORTABLE 1.0.0 FULL' VERIFY_PROFILE=lean SKIP_SAGE=1 LEAN_WORKSPACE="$LW" SKIP_PAPER=1
+run sage_skip_sage   'SAGE_PROFILE: FAIL' 'VERIFY_ALL_PORTABLE 1.0.1 FULL' VERIFY_PROFILE=sage SKIP_SAGE=1 SAGE_BIN="$FAKE_SAGE"
+run sage_no_lean_ok  'SAGE_PROFILE: PASS' 'VERIFY_ALL_PORTABLE 1.0.1 FULL' VERIFY_PROFILE=sage SAGE_BIN="$FAKE_SAGE" SKIP_PAPER=1
+run lean_no_ws       'LEAN_PROFILE: FAIL' 'VERIFY_ALL_PORTABLE 1.0.1 FULL' VERIFY_PROFILE=lean SKIP_SAGE=1
+run lean_skip_sage_ok 'LEAN_PROFILE: PASS' 'VERIFY_ALL_PORTABLE 1.0.1 FULL' VERIFY_PROFILE=lean SKIP_SAGE=1 LEAN_WORKSPACE="$LW" SKIP_PAPER=1
 run bad_profile      'must be full' 'PASS' VERIFY_PROFILE=nonsense
 # the structured summary must record the profile and the skip decision
 if python3 -c "import json,sys; d=json.load(open('$T/out/SUMMARY.json')); sys.exit(0 if d['profile']=='lean' and d['status']=='PASS' and d['full_line_printed'] is False else 1)"; then ok=$((ok+1)); echo "PT$((n+1)) summary_json :: OK (profile lean, PASS, full_line_printed false)"; else echo "PT$((n+1)) summary_json :: WRONG"; fi; n=$((n+1))

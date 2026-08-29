@@ -1,8 +1,8 @@
-# REVIEWER_GUIDE_1.0.0 — where a reviewer looks first (weber_general_n 1.0.0, 2026-08-27; GPT r14 hw 616-619; updated r19)
+# REVIEWER_GUIDE_1.0.1 — where a reviewer looks first (weber_general_n 1.0.0, 2026-08-27; GPT r14 hw 616-619; updated r19)
 r20 additions to look at first (two mathematical-text repairs, no new mathematics, no new Lean, certificate unchanged): (1) Theorem P3 is
 stated for ODD primes l != 3 (paper sect 9 = Blueprint thm:P3, byte-identical, tools/check_statement_sync.py step 13c; the r19 wording
 "l != 3 a prime" admitted l = 2, which the proof never covered -- Lemma normone (iv) and Theorem SH assume l odd; ERRATA_R20 E20-1;
-STATEMENT_FREEZE_1.0.0 N11; proofs/thm_P3.tex opens by naming where oddness is used; docs/CLAIMS_1.0.0.yaml THM_P3 carries machine-readable
+STATEMENT_FREEZE_1.0.1 N11; proofs/thm_P3.tex opens by naming where oddness is used; docs/CLAIMS_1.0.1.yaml THM_P3 carries machine-readable
 conditions; Cor P3n4 and every number unchanged); (2) the shared proof proofs/thm_rank3.tex Step 2 writes a == 4^{N/3} (mod q) as a
 congruence (Lemma normone (ii), WeberP3Rel.four_pow_modEq) where r17-r19 wrote a false integer equality (E20-2/E20-3; the false forms are
 forbidden by tools/check_release_metadata.py, step 00e); (3) the trust ledgers cite Washington at chapter level like the body, with the
@@ -31,12 +31,12 @@ The active root holds only what the current theorems need. Everything explored a
 current claim); if a statement is found only there, it is superseded.
 
 Read in this order (30 minutes):
-1. paper/draft/main_1.0.0.pdf — Theorem A (sect 1.2), Cor 7 (n = 7), Theorem S0 / Cor S1, Certificate Soundness, Family theorem;
+1. paper/draft/main_1.0.1.pdf — Theorem A (sect 1.2), Cor 7 (n = 7), Theorem S0 / Cor S1, Certificate Soundness, Family theorem;
    Section 8 = trust labels F / C / L / M / E; Appendix F = artifact index (every path once).
 2. TRUST.md — what each label guarantees and how to check it yourself.
-3. CORRESPONDENCE.csv (generated from docs/CLAIMS_1.0.0.yaml, 37 claims) — claim -> Lean declaration / certificate / log / literature input.
-4. blueprint/blueprint_1.0.0.pdf — every F and M node with a complete prose proof (single-source proofs/*.tex, shared with the paper);
-   docs/BLUEPRINT_PROOF_REPORT_1.0.0.md (proof lengths), docs/BLUEPRINT_HUMAN_REVIEW_1.0.0.md (human sign-off ledger; all UNSIGNED at r20).
+3. CORRESPONDENCE.csv (generated from docs/CLAIMS_1.0.1.yaml, 37 claims) — claim -> Lean declaration / certificate / log / literature input.
+4. blueprint/blueprint_1.0.1.pdf — every F and M node with a complete prose proof (single-source proofs/*.tex, shared with the paper);
+   docs/BLUEPRINT_PROOF_REPORT_1.0.1.md (proof lengths), docs/BLUEPRINT_HUMAN_REVIEW_1.0.1.md (human sign-off ledger; all UNSIGNED at r20).
 5. lean/README_lean.md — twelve load-bearing Lean files, all std-3 (63 declarations) (#print axioms in lean/compile*.log); replay: scripts/verify_all_portable.sh.
 6. docs/ERRATA_R15.md — what changed since r14 and why (E15-1 the S0 proof gap; E15-2; E15-3 release protocol).
 7. RELEASE_STATUS.md — the release protocol (no post-verification edits; CI attestation as an asset) and the r17 candidate block.

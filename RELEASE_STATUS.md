@@ -59,6 +59,19 @@ the pre-seal r11 copy that was shipped is archived at docs/archive/HANDOFF_R11_p
     the zip SHA-256 is recorded in the vault HANDOFF (never inside the tree). Any change afterwards = a new staging tree, steps 1a-2 again.
 3-6. Unchanged (one push / CI / tag / release / Zenodo at the end, decision (b)).
 
+## 1.0.1 candidate (the post-publication repair round; written BEFORE the final verifier run; not edited after it)
+- Opened 2026-08-29 after the GPT audit of the PUBLISHED v1.0.0 (verdict: the public state is GO, kept frozen; JTNB submission is GO after this round).
+- Content, all non-mathematical: the paper CI paragraph brought up to the executed green run 33227660844 at commit b23ddc7a (the v1.0.0 text,
+  honest when written, was overtaken by the release); author block completed (two addresses, ORCID 0009-0008-7122-522X, email); a French resume;
+  TRUST and claims prose cleaned of internal tracker tokens (status/notes fields only; statements, conditions, evidence and shas untouched);
+  the <LOCAL_HOST> host-name exemption documented in TRUST; the README verifier sentence made precise; CI actions re-pinned to Node-24-era commits
+  (checkout v7.0.1, upload-artifact v7.0.1, download-artifact v8.0.1, all by full SHA); ORCID and affiliations written into .zenodo.json and
+  CITATION.cff; Zenodo API snapshots of both v1.0.0 records stored under docs/zenodo_snapshots/. The .gitignore global *.out pattern is
+  narrowed to paper/draft and blueprint/src (it had silently untracked nine ky1000 evidence .out files at v1.0.0; they were force-added there).
+- NO statement change, no new mathematics, no Lean or certificate touched; the twelve load-bearing Lean files remain byte-identical.
+- Release plan (per the audit): v1.0.0 stays frozen; v1.0.1 = new tag + new GitHub Release + NEW Zenodo versions of both records (concept DOIs
+  unchanged); the JTNB cover letter cites the v1.0.1 paper version DOI.
+
 ## 1.0.0 candidate (the PUBLIC release; written BEFORE the final verifier run; not edited after it)
 - Opened 2026-08-28 after the GPT audit of the sealed r23 zip. That audit: mathematics / paper / Blueprint / Lean / certificates /
   manifest all GO; the r23 zip as a PUBLIC tree NO-GO on four release blockers -- (1) third-party paper PDFs and full-text extractions

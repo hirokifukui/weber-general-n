@@ -5,8 +5,10 @@ title: "weber_general_n: componentwise saturation-height bounds for relative cla
 authors:
   - family-names: Fukui
     given-names: Hiroki
-version: 1.0.0
-date-released: "2026-08-28"
+    orcid: "https://orcid.org/0009-0008-7122-522X"
+    affiliation: "Research Institute of Criminal Psychiatry / Sex Offender Medical Center, Tokyo, Japan; Department of Neuropsychiatry, Kyoto University, Kyoto, Japan"
+version: 1.0.1
+date-released: "2026-08-29"
 license: MIT
 repository-code: "https://github.com/hirokifukui/weber-general-n"
 # prose documents (paper, proofs, Blueprint text, Markdown docs) are CC-BY-4.0; see LICENSE-CC-BY-4.0.txt
@@ -27,6 +29,7 @@ preferred-citation:
   authors:
     - family-names: Fukui
       given-names: Hiroki
+      orcid: "https://orcid.org/0009-0008-7122-522X"
   year: 2026
   status: in-preparation
   notes: "paper/draft/main_1.0.0.pdf in this package; MSC primary 11R18, 11R29; secondary 11H06, 11Y40; journal / DOI to be added on acceptance"

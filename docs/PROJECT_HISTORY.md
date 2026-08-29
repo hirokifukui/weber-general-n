@@ -14,9 +14,9 @@ Honest wreckage is kept, not hidden:
   with what was wrong and how it was repaired (artifact defects, scope errata, prose errata).
 - Review homework ledger: docs/GPT_HOMEWORK_R11_TRACKER.md — every review item, numbered,
   with its disposition (DONE / OPEN / DEFERRED); nothing closed from memory.
-- Statement freezes: theory/STATEMENT_FREEZE_1.0.0.md — the frozen wording of every shared
+- Statement freezes: theory/STATEMENT_FREEZE_1.0.1.md — the frozen wording of every shared
   statement, with the numbered changes (N-blocks) and their reasons, all rounds appended.
-- Author sign-off: docs/BLUEPRINT_HUMAN_REVIEW_1.0.0.md — all 31 F/M Blueprint nodes read by
+- Author sign-off: docs/BLUEPRINT_HUMAN_REVIEW_1.0.1.md — all 31 F/M Blueprint nodes read by
   the author against the single-source statements and proofs, signed row by row; a signature
   is invalidated automatically when the statement file changes.
 - Round-by-round candidate records: RELEASE_STATUS.md.

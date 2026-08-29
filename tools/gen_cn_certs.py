@@ -13,7 +13,7 @@ The old certificates/constants/Cn_digamma_r12.json is SUPERSEDED (its 25-38-digi
 of the endpoints, both ends printed equal; ERRATA_R14 E14-1) and is not read here."""
 import re, sys, json, hashlib, os
 from decimal import Decimal, getcontext
-CERT = os.environ.get('CN_CERT', 'certificates/constants/Cn_interval_r14.json'); TEX = os.environ.get('CN_TEX', 'paper/draft/main_1.0.0.tex')   # env overrides exist ONLY for the negative-control harness (tools/negctl_tools_r14.py)
+CERT = os.environ.get('CN_CERT', 'certificates/constants/Cn_interval_r14.json'); TEX = os.environ.get('CN_TEX', 'paper/draft/main_1.0.1.tex')   # env overrides exist ONLY for the negative-control harness (tools/negctl_tools_r14.py)
 WIDTH_BOUND_N7 = Decimal('5e-115')
 getcontext().prec = 400
 cert = json.load(open(CERT)); rows = {r['n']: r for r in cert['rows']}

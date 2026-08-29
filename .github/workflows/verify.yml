@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: checkout must be clean before anything runs (r13 hw 20-21)
         run: test -z "$(git status --porcelain)" || { echo "checkout mutated before setup:"; git status --porcelain; exit 1; }
       - name: build image (base pinned by digest in the Dockerfile; digest echoed for the log)
@@ -55,7 +55,7 @@ jobs:
           python3 -c "import json,sys; d=json.load(open('$RUNNER_TEMP/ci_out/SUMMARY.json')); print(d); sys.exit(0 if d['profile']=='sage' and d['status']=='PASS' else 1)"
       - name: checkout must still be clean after the run (r13 hw 21, 32)
         run: test -z "$(git status --porcelain)" || { echo "checkout mutated by the run:"; git status --porcelain; exit 1; }
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
           name: verify_out_sage
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: checkout must be clean before setup (r13 hw 20)
         run: test -z "$(git status --porcelain)" || { echo "checkout mutated before setup:"; git status --porcelain; exit 1; }
       - name: install elan v4.2.4 OUTSIDE the checkout (pinned, sha256-checked; hw 154; r13 hw 17-19)
@@ -105,7 +105,7 @@ jobs:
         run: for f in verify_out/09_lean_*.log; do echo "== $f"; grep -E "depends on axioms|does not depend|AXIOM GATE" "$f"; done
       - name: checkout must still be clean after the run apart from verify_out/ (r13 hw 21, 32)
         run: test -z "$(git status --porcelain | grep -v 'verify_out/')" || { echo "checkout mutated by the run:"; git status --porcelain; exit 1; }
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with: { name: verify_out_lean, path: verify_out }
   full:
@@ -113,10 +113,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [sage, lean]
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4  (r21: the package round is read from CITATION.cff of THIS commit)
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1  (r21: the package round is read from CITATION.cff of THIS commit)
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with: { name: verify_out_sage, path: agg/sage }
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with: { name: verify_out_lean, path: agg/lean }
       - name: aggregate the two profile summaries into one attestation (hw 60-62, 74-77)
         env:
@@ -145,6 +145,6 @@ jobs:
           print('FULL VERIFICATION: %s (commit %s, run %s)' % (att['full_verification'], att['commit_sha'], att['run_id']))
           sys.exit(0 if ok else 1)
           PY
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with: { name: ci_attestation, path: ci_attestation.json }

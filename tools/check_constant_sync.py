@@ -7,9 +7,9 @@ checked against it; stale forms are forbidden. Sources:
   KY1000 counts  sage/family_ky1000_r11_clean/VERIFY_LEDGER.txt (# SUMMARY line: primes, T certs, RHO certs, T-only, max T, margin, median)
 Media checked (active tree only; archive/, *.bak, HANDOFF.md, superseded round files and the ERRATA/LETTER/TRACKER history
 are NOT checked - they legitimately quote the old forms):
-  paper/draft/main_1.0.0.tex, blueprint/src/content.tex, proofs/*.tex, README.md, TRUST.md, blueprint/README.md, lean/README_lean.md,
-  proofs/README.md, theory/STATEMENT_FREEZE_1.0.0.md, docs/CLAIMS_1.0.0.yaml, CORRESPONDENCE.csv, RELEASE_STATUS.md (text from the
-  "## 1.0.0" block on only; earlier Sealed blocks are history), docs/BLUEPRINT_MAP_1.0.0.md if present.
+  paper/draft/main_1.0.1.tex, blueprint/src/content.tex, proofs/*.tex, README.md, TRUST.md, blueprint/README.md, lean/README_lean.md,
+  proofs/README.md, theory/STATEMENT_FREEZE_1.0.1.md, docs/CLAIMS_1.0.1.yaml, CORRESPONDENCE.csv, RELEASE_STATUS.md (text from the
+  "## 1.0.1" block on only; earlier Sealed blocks are history), docs/BLUEPRINT_MAP_1.0.1.md if present.
 Prints one line per check and "CONSTANT SYNC: PASS" / "CONSTANT SYNC: FAIL (k)"; exit 1 on FAIL.
 Lean declaration names (e.g. WeberCert.barT_seven) are exempt from the word checks."""
 import re, sys, json, os, glob
@@ -38,11 +38,11 @@ def rd(p):
     return expand_statements(open(p, encoding='utf-8', errors='replace').read()) if os.path.exists(p) else None
 def release_status_active():
     s = rd('RELEASE_STATUS.md') or ''
-    i = s.find('## 1.0.0')
+    i = s.find('## 1.0.1')
     if i < 0: return ''
     j = s.find('\n## Previous', i)      # r19: the CURRENT candidate block only; superseded candidates are history (they quote their own, older counts)
     return s[i:] if j < 0 else s[i:j]
-media = {p: rd(p) for p in ['paper/draft/main_1.0.0.tex', 'blueprint/src/content.tex', 'README.md', 'TRUST.md', 'blueprint/README.md', 'lean/README_lean.md', 'proofs/README.md', 'theory/STATEMENT_FREEZE_1.0.0.md', 'docs/CLAIMS_1.0.0.yaml', 'CORRESPONDENCE.csv', 'docs/BLUEPRINT_MAP_1.0.0.md'] + sorted(glob.glob('proofs/*.tex'))}
+media = {p: rd(p) for p in ['paper/draft/main_1.0.1.tex', 'blueprint/src/content.tex', 'README.md', 'TRUST.md', 'blueprint/README.md', 'lean/README_lean.md', 'proofs/README.md', 'theory/STATEMENT_FREEZE_1.0.1.md', 'docs/CLAIMS_1.0.1.yaml', 'CORRESPONDENCE.csv', 'docs/BLUEPRINT_MAP_1.0.1.md'] + sorted(glob.glob('proofs/*.tex'))}
 media['RELEASE_STATUS.md (r20 block on)'] = release_status_active()
 media = {k: v for k, v in media.items() if v is not None}
 def forbid(pattern, why, flags=0, exempt=None, media=None, bad=None):
@@ -61,11 +61,11 @@ def run(media):
     F = lambda *a, **k: forbid(*a, media=media, bad=bad, **k)
     R = lambda *a, **k: require(*a, media=media, bad=bad, **k)
     # ---- C_7 ----
-    R(re.escape(disp_tex), ['paper/draft/main_1.0.0.tex', 'blueprint/src/content.tex'], 'C_7 display (LaTeX) from the certificate')
-    R(re.escape(disp_plain), ['docs/CLAIMS_1.0.0.yaml', 'CORRESPONDENCE.csv'], 'C_7 display (plain) from the certificate')
-    R(re.escape(disp_md), ['theory/STATEMENT_FREEZE_1.0.0.md'], 'C_7 display (markdown) from the certificate')
-    R(r'first \$?%d\$? digits' % prefix_digits, ['paper/draft/main_1.0.0.tex', 'blueprint/src/content.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'certified prefix count %d' % prefix_digits)
-    R(r'\$?%d\$? digits' % disp_digits, ['paper/draft/main_1.0.0.tex', 'blueprint/src/content.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'display digit count %d' % disp_digits)
+    R(re.escape(disp_tex), ['paper/draft/main_1.0.1.tex', 'blueprint/src/content.tex'], 'C_7 display (LaTeX) from the certificate')
+    R(re.escape(disp_plain), ['docs/CLAIMS_1.0.1.yaml', 'CORRESPONDENCE.csv'], 'C_7 display (plain) from the certificate')
+    R(re.escape(disp_md), ['theory/STATEMENT_FREEZE_1.0.1.md'], 'C_7 display (markdown) from the certificate')
+    R(r'first \$?%d\$? digits' % prefix_digits, ['paper/draft/main_1.0.1.tex', 'blueprint/src/content.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'certified prefix count %d' % prefix_digits)
+    R(r'\$?%d\$? digits' % disp_digits, ['paper/draft/main_1.0.1.tex', 'blueprint/src/content.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'display digit count %d' % disp_digits)
     F(r'1\.7273421630363529579743237623519834(?!054)', 'truncated 35-digit C_7 without the certified continuation')
     F(r'\\pm\s*2\.2\\times10\^\{-115\}', 'ball radius attached to a display value (E14-1)')
     F(r'up to an error of at most \$2\.2', 'ball radius attached to a display value (E14-1)')
@@ -73,9 +73,9 @@ def run(media):
     F(r'error at most 2\.2 x 10\^\{-115\}', 'ball radius attached to a display value (E14-1)')
     F(r'inside ball', 'r11 "inside ball" wording withdrawn (E14-3)', re.I)
     # ---- negative controls ----
-    R(r'\b%d/%d\b|\b%s\b|\b%d (negative|planted)' % (NEG, NEG, words[NEG], NEG), ['paper/draft/main_1.0.0.tex', 'blueprint/src/content.tex', 'README.md', 'TRUST.md', 'theory/STATEMENT_FREEZE_1.0.0.md', 'RELEASE_STATUS.md (r20 block on)'], 'negative-control count %d from the ledger' % NEG, re.I)
+    R(r'\b%d/%d\b|\b%s\b|\b%d (negative|planted)' % (NEG, NEG, words[NEG], NEG), ['paper/draft/main_1.0.1.tex', 'blueprint/src/content.tex', 'README.md', 'TRUST.md', 'theory/STATEMENT_FREEZE_1.0.1.md', 'RELEASE_STATUS.md (r20 block on)'], 'negative-control count %d from the ledger' % NEG, re.I)
     # r18: the p = 3 read-only replay's planted-certificate count is a second ledger (single source: its log); the media must quote it as k/k
-    R(r'\b%d/%d\b(?=[^\n]{0,80}(planted|reject))|\b%s planted certificates' % (NEG_P3, NEG_P3, words[NEG_P3]), ['blueprint/src/content.tex', 'docs/CLAIMS_1.0.0.yaml', 'TRUST.md', 'README.md'], 'p3 read-only negative-control count %d from sage/r19_trackB/p3_negctl_ledger_r19.json' % NEG_P3, re.I)
+    R(r'\b%d/%d\b(?=[^\n]{0,80}(planted|reject))|\b%s planted certificates' % (NEG_P3, NEG_P3, words[NEG_P3]), ['blueprint/src/content.tex', 'docs/CLAIMS_1.0.1.yaml', 'TRUST.md', 'README.md'], 'p3 read-only negative-control count %d from sage/r19_trackB/p3_negctl_ledger_r19.json' % NEG_P3, re.I)
     for k in range(1, 13):
         if k == NEG: continue
         # the KY1000 TARGET-LIST verifier (step 03b/03c) has its own 5 planted corruptions - a different control set, exempt by context;
@@ -87,12 +87,12 @@ def run(media):
         F(r'\b%d (planted |negative )' % k, 'negative-control count %d != ledger %d' % (k, NEG), re.I, exempt=tl)
     # ---- KY1000 ----
     if primes is not None:
-        R(r'\b%d/%d\b' % (excl[0], excl[1]) if excl else r'1000/1000', ['paper/draft/main_1.0.0.tex', 'blueprint/src/content.tex', 'README.md', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'EXCLUDED %s' % (excl,))
-        R(r'\b%d\b' % tcert, ['paper/draft/main_1.0.0.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'T certificate count %d' % tcert)
-        R(r'\b%d\b' % rcert, ['paper/draft/main_1.0.0.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'RHO certificate count %d' % rcert)
-        R(r'%.4f' % maxT, ['paper/draft/main_1.0.0.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'max T %.4f' % maxT)
-        R(r'%.4f' % margin, ['paper/draft/main_1.0.0.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'margin %.4f' % margin)
-        R(r'%.4f' % median, ['paper/draft/main_1.0.0.tex', 'theory/STATEMENT_FREEZE_1.0.0.md'], 'median T %.4f' % median)
+        R(r'\b%d/%d\b' % (excl[0], excl[1]) if excl else r'1000/1000', ['paper/draft/main_1.0.1.tex', 'blueprint/src/content.tex', 'README.md', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'EXCLUDED %s' % (excl,))
+        R(r'\b%d\b' % tcert, ['paper/draft/main_1.0.1.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'T certificate count %d' % tcert)
+        R(r'\b%d\b' % rcert, ['paper/draft/main_1.0.1.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'RHO certificate count %d' % rcert)
+        R(r'%.4f' % maxT, ['paper/draft/main_1.0.1.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'max T %.4f' % maxT)
+        R(r'%.4f' % margin, ['paper/draft/main_1.0.1.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'margin %.4f' % margin)
+        R(r'%.4f' % median, ['paper/draft/main_1.0.1.tex', 'theory/STATEMENT_FREEZE_1.0.1.md'], 'median T %.4f' % median)
         def four_dec_variants(x):   # any 4-decimal rendering of int(x).xxxx other than the ledger's own rounding
             ip, fp = ('%.4f' % x).split('.'); return r'\b%s\.(?!%s\b)\d{4}\b' % (ip, fp)
         for wrong in (r'\b3200[1-9]\b', r'\b3198[0-6]\b', r'\b3198[89]\b', four_dec_variants(maxT), four_dec_variants(margin), four_dec_variants(median)):
@@ -102,10 +102,10 @@ def run(media):
 bad += run(media)
 if '--selftest' in sys.argv:
     # negative controls of the gate itself: each planted stale form must be caught
-    plants = [('paper/draft/main_1.0.0.tex', ' seven planted corruptions '), ('blueprint/src/content.tex', ' negative controls 7/7 rejected '),
-              ('TRUST.md', ' Seven planted negative controls '), ('paper/draft/main_1.0.0.tex', r' $C_7=1.7273421630363529579743237623519834\\times10^{30}$ up to an error of at most $2.2\\times10^{-115}$ '),
-              ('docs/CLAIMS_1.0.0.yaml', ' C_7 = 1.7273421630363529579743237623519834e30 +- 2.2e-115 '), ('paper/draft/main_1.0.0.tex', ' $32001$ / $31987$ '),
-              ('theory/STATEMENT_FREEZE_1.0.0.md', ' max T 4164.4898 '), ('paper/draft/main_1.0.0.tex', ' Magma 40-digit value inside ball ')]
+    plants = [('paper/draft/main_1.0.1.tex', ' seven planted corruptions '), ('blueprint/src/content.tex', ' negative controls 7/7 rejected '),
+              ('TRUST.md', ' Seven planted negative controls '), ('paper/draft/main_1.0.1.tex', r' $C_7=1.7273421630363529579743237623519834\\times10^{30}$ up to an error of at most $2.2\\times10^{-115}$ '),
+              ('docs/CLAIMS_1.0.1.yaml', ' C_7 = 1.7273421630363529579743237623519834e30 +- 2.2e-115 '), ('paper/draft/main_1.0.1.tex', ' $32001$ / $31987$ '),
+              ('theory/STATEMENT_FREEZE_1.0.1.md', ' max T 4164.4898 '), ('paper/draft/main_1.0.1.tex', ' Magma 40-digit value inside ball ')]
     caught = 0
     for f, txt in plants:
         m2 = dict(media); m2[f] = m2[f] + '\n' + txt

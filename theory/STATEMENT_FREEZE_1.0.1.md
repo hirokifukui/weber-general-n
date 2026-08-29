@@ -1,3 +1,8 @@
+# STATEMENT_FREEZE_1.0.1 — frozen statements (2026-08-29, the post-publication repair round; opened after the GPT audit of the PUBLISHED v1.0.0)
+
+Status: FROZEN. NO statement change in 1.0.1: the 38 single-source files proofs/statements/*.tex are byte-identical to the r21..v1.0.0 seals (md5 list digest 9c7b3f5775341416eb756c5dd4e6472f unchanged). The 1.0.1 content: the paper CI paragraph updated to the executed green run (run 33227660844, commit b23ddc7a), the author block completed (addresses, ORCID, email), a French resume added, TRUST / claims-ledger prose cleaned of internal tracker tokens (status and notes fields only), the README verifier sentence made precise, the CI actions re-pinned to Node-24-era commits, and the creator metadata (ORCID, affiliations) written into .zenodo.json and CITATION.cff. The v1.0.0 file follows below.
+
+---- v1.0.0 file (history) ----
 # STATEMENT_FREEZE_1.0.0 — frozen statements (2026-08-28, node <LOCAL_HOST>; the PUBLIC release round, opened after the GPT audit of the sealed r23 zip)
 
 Status: FROZEN. NO statement change in 1.0.0 (no N-block): the 38 single-source files proofs/statements/*.tex are byte-identical to the r21, r22 and r23 seals (md5 list digest 9c7b3f5775341416eb756c5dd4e6472f unchanged). The 1.0.0 content is release engineering only: the completed author sign-off (docs/human_review_1.0.0.json, 31/31 SIGNED, KEY 11/11 — the r23 ledger generator had dropped prop:F), the licenses and repository metadata, the literature index, the public README, and the package-round rename r23 -> 1.0.0. The R23 file follows in full below (its header kept as history).

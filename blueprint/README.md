@@ -10,14 +10,14 @@ What is machine-checked here, and what is not:
 - `check_graph.py` (verifier step 10) is an **evidence-presence gate**: no dangling `\uses`, no `\leanok` without `\lean`,
   every non-definition node carries a proof body / a citation / a certificate path / a log path, no `\label` is defined twice (r19), and every F/M node carries
   a real proof body (the r13 human-proof gate: a bare "kernel-checked as stated" note fails).
-- `check_graph.py --report` writes `docs/BLUEPRINT_PROOF_REPORT_1.0.0.md`: every non-definition node with its label, proof source
+- `check_graph.py --report` writes `docs/BLUEPRINT_PROOF_REPORT_1.0.1.md`: every non-definition node with its label, proof source
   and prose length; F/M nodes under 800 characters are flagged SHORT as a WARNING for the human review, never as a gate failure.
 - Neither tool checks that a prose proof is complete or correct. The Lean kernel checks the F declarations; the prose is for
   a reader who does not run code. Human review of Theorem A, Proposition D and Certificate Soundness without code is an
   open item (GPT r13 hw 98-100 / tracker 484-486).
 
 Builds:
-- Printable PDF: `cd blueprint/src && pdflatex print.tex` (twice); shipped as `blueprint/blueprint_1.0.0.pdf`; verifier step 10b
+- Printable PDF: `cd blueprint/src && pdflatex print.tex` (twice); shipped as `blueprint/blueprint_1.0.1.pdf`; verifier step 10b
   rebuilds it (no LaTeX errors, no undefined references, >= 10 pages). `print.tex` carries the trust legend and the package round.
 - Web Blueprint (leanblueprint / plasTeX): `web.tex` + `plastex.cfg` are present; the toolchain is not installed on any author
   machine and the web build has never been run (hw 54 / tracker 491 OPEN). Nothing web-related is claimed.
@@ -26,5 +26,5 @@ Builds:
 History: r10-r11 scaffold; r12 statements + \lean tags; r13 prose proofs for the five kernel-note nodes, evidence-presence
 rename, human-proof gate; r14 --report, lem:A / lem:Sgroup prose expanded, C_7 node restated from the interval certificate;
 r20: thm:P3 restricted to odd primes l != 3 (statement byte-identical with the paper, tools/check_statement_sync.py; ERRATA_R20 E20-1); the shared proof thm_rank3.tex writes a == 4^{N/3} (mod q) as a congruence and names WeberP3Rel.four_pow_modEq (E20-2); the p = 3 certificate node lem:D3cert unchanged (r19 certificate). r19: the duplicated label lem:mo25 split into lem:mo25-z2 (Z_2 floor) / lem:mo25-z3 (Z_3 relative-norm-one floor), check_graph fails on duplicate labels (65 nodes; previously the two lemmas were merged into one node), lem:D3cert restated on the format-v3 certificate; r17 new nodes lem:normone [F], thm:rank3 [F-core; L], lem:mo25 [L] (now lem:mo25-z3), cor:SHmod [M; F-core]; thm:SH restated in the carrier form; thm:P3 / cor:P3n4 / lem:D3cert / def:p3 restated; lem:mo22 kept as an orphan for the r16 record. r16 new node lem:oddtransfer (E15-1), thm:S0 restated with hypothesis (i) only and its proof written for both branches, four SHORT
-nodes expanded (cor:T, thm:Acore, lem:oldnew, thm:family), human sign-off ledger docs/BLUEPRINT_HUMAN_REVIEW_1.0.0.md (renamed each round) (reviewer
+nodes expanded (cor:T, thm:Acore, lem:oldnew, thm:family), human sign-off ledger docs/BLUEPRINT_HUMAN_REVIEW_1.0.1.md (renamed each round) (reviewer
 initials / date per F/M node; "proof body present" is the gate, "proof complete" is a human signature, GPT r14 hw 577-580).

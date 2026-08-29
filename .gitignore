@@ -23,7 +23,8 @@ external_review/
 # LaTeX by-products
 *.aux
 *.toc
-*.out
+paper/draft/*.out
+blueprint/src/*.out
 *.fls
 *.fdb_latexmk
 *.synctex.gz

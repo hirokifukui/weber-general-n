@@ -1,11 +1,13 @@
 {
   "title": "weber_general_n: componentwise saturation-height bounds for relative class-number growth in the cyclotomic Z2- and Z3-towers (paper, Blueprint, Lean, certificates, verifier)",
   "upload_type": "software",
-  "version": "1.0.0",
-  "publication_date": "2026-08-28",
+  "version": "1.0.1",
+  "publication_date": "2026-08-29",
   "creators": [
     {
-      "name": "Fukui, Hiroki"
+      "name": "Fukui, Hiroki",
+      "orcid": "0009-0008-7122-522X",
+      "affiliation": "Research Institute of Criminal Psychiatry / Sex Offender Medical Center, Tokyo, Japan; Department of Neuropsychiatry, Kyoto University, Kyoto, Japan"
     }
   ],
   "keywords": [
