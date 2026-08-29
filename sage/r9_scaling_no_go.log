@@ -1,0 +1,28 @@
+L_t = sqrt(128)*arcsinh(2^t) cross-check vs r8 form:
+  t=1: L_t = 16.332870944966409676  |diff old-form| < 1.5e-75
+  t=2: L_t = 23.698967148877938283  |diff old-form| < 2.2e-75
+  t=3: L_t = 31.412198039619526160  |diff old-form| < 3.0e-75
+  t=4: L_t = 39.221358132840690139  |diff old-form| < 3.0e-75
+RATIOS 2^{t-1} L_1 / L_t (all must be > 1 for the no-go):
+  t=2: ratio in [1.378361, 1.378361]  > 1: True
+  t=3: ratio in [2.079813, 2.079813]  > 1: True
+  t=4: ratio in [3.331424, 3.331424]  > 1: True
+  t=5: ratio in [5.553609, 5.553609]  > 1: True
+  t=6: ratio in [9.520912, 9.520912]  > 1: True
+  t=7: ratio in [16.661760, 16.661760]  > 1: True
+  t=8: ratio in [29.620970, 29.620970]  > 1: True
+ALGEBRAIC FORM (2+sqrt5)^{2^{t-1}} vs 2^t + sqrt(4^t+1):
+  t=2: lhs = 17.9443  rhs = 8.1231  lhs > rhs: True
+  t=3: lhs = 321.9969  rhs = 16.0623  lhs > rhs: True
+  t=4: lhs = 103682.0000  rhs = 32.0312  lhs > rhs: True
+MONOTONE DIVERGENCE (kill test hw 34-35): ratio_{t+1}/ratio_t =
+  t=2->3: 1.5089 (>1: True)
+  t=3->4: 1.6018 (>1: True)
+  t=4->5: 1.6670 (>1: True)
+  t=5->6: 1.7144 (>1: True)
+  t=6->7: 1.7500 (>1: True)
+  t=7->8: 1.7778 (>1: True)
+VERDICT: all ratios certified > 1 and increasing - J_5, J_6, ... need no exact computation.
+SCALING NO-GO CERTIFIED: True
+R9 SCALING NO GO DONE
+EXIT=0

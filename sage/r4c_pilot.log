@@ -1,0 +1,4 @@
+comp 3   rho=1.0037295    T=5095.4264    chk1=True chk2=True  OPEN      2s
+comp 23  rho=1.0294313    T=4949.7817    chk1=True chk2=True  OPEN      1s
+comp 8   rho=1.0408261    T=4699.79      chk1=True chk2=True  OPEN      1s
+R4C PILOT DONE

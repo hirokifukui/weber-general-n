@@ -1,0 +1,4 @@
+harvested 80640 scalars with centered T < 1e6
+OPTIMAL-LIFT (local search): min T = 122871.90543990063 at b = 153056018
+count optimal T < 4224 = 0 ; < 32640 = 0 (of 80640 tail scalars)
+R9 TOPT DONE

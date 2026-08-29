@@ -1,0 +1,18 @@
+% macros/common.tex — shared by print.tex (pdf) and web.tex (plasTeX). Mirrors the paper preamble
+% (paper/draft/main_R12.tex) so that the single-source proofs in ../../proofs compile in both documents.
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\R}{\mathbb{R}}\newcommand{\F}{\mathbb{F}}
+\newcommand{\RE}{RE^{+}_n}\newcommand{\ord}{\operatorname{ord}}\newcommand{\hgt}{\operatorname{ht}}
+\newcommand{\Nr}{\operatorname{N}_{n/n-1}}\newcommand{\covol}{\operatorname{covol}}
+\newcommand{\lbl}[1]{\textbf{[#1]}}
+\providecommand{\proofsdir}{../../proofs}
+\providecommand{\refConst}{the paper's Section ``Evaluation of the constant''}\providecommand{\refCert}{Chapter~\ref{ch:cert}}\providecommand{\refAppF}{the paper's Appendix~F (artifact index; the paths are in \path{MANIFEST_SHA256.txt})}\providecommand{\refDefH}{Definition~\ref{def:setting}} % r21: medium-specific cross-references used inside the single-source statements proofs/statements/*.tex (the paper defines the same four macros)
+% artifact identifiers of the shared proofs (hw 940-941): the paper prints short IDs, the Blueprint prints the full paths
+\providecommand{\artPcert}{\texttt{certificates/\allowbreak p3/\allowbreak D3\_cert\_r19.json}}\providecommand{\artPgen}{\texttt{tools/\allowbreak gen\_p3\_cert\_r19.py}}
+\providecommand{\artPreplay}{\texttt{scripts/\allowbreak verify\_p3\_readonly.sage}}\providecommand{\artPcover}{\texttt{tools/\allowbreak check\_p3\_containment.py}}\providecommand{\artNovelty}{\texttt{docs/\allowbreak NOVELTY\_MATRIX.md}}\providecommand{\artPcheck}{\texttt{tools/\allowbreak check\_p3\_cert.py}}
+

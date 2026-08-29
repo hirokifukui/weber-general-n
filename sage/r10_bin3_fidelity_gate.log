@@ -1,0 +1,49 @@
+[S1] D_n two routes and C_n
+n=2 m=2 lnD gram=2.405301482510644598078474 char=2.405301482510644598078474 |diff|=1.96e-90  lnC=0.52624246148097514451  C_n=1.6925605
+n=3 m=4 lnD gram=5.999524248196830867704531 char=5.999524248196830867704531 |diff|=7.85e-90  lnC=1.2605769531257657237  C_n=3.5274561
+n=4 m=8 lnD gram=14.33192844545562227324644 char=14.33192844545562227324644 |diff|=2.46e-87  lnC=3.2854179373996467402  C_n=26.720149
+n=5 m=16 lnD gram=33.98753449375644895286149 char=33.98753449375644895286149 |diff|=4.92e-82  lnC=9.5761800276823130342  C_n=14417.241
+n=6 m=32 lnD gram=78.00788459855979050254520 char=78.00788459855979050254520 |diff|=1.73e-71  lnC=25.996239267426343376  C_n=1.9499491e11
+n=7 m=64 lnD gram=177.7838170179114859595894 char=177.7838170179114859595894 |diff|=1.58e-43  lnC=69.624136695034081451  C_n=1.7273422e30
+n=7 thresholds: deg-1 C_7 = 1.7273421630363529580e30 (cert 1.7273421630363529579743e30); deg-2 sqrt(C_7) = 1.314283897427170e15 (cert 1.314283897427172e15)
+ord_128 table: 1->1, 63->2, 65->2, 127->2, 3->32, 5->32, 31->4, 33->4, 97->4
+[S2] Blichfeldt orientation and covolume identity on actual saturation lattices
+n=3 l=3 f=x^2 + x + 2 d=2  |lncov-(lnD-d ln l)|=4.69e-88  min|v|^2=8.364119569  Blichfeldt bound=10.43793603  min<=bound:True ratio=0.80132
+n=3 l=3 f=x^2 + 2*x + 2 d=2  |lncov-(lnD-d ln l)|=4.69e-88  min|v|^2=8.364119569  Blichfeldt bound=10.43793603  min<=bound:True ratio=0.80132
+n=3 l=5 f=x^2 + 2 d=2  |lncov-(lnD-d ln l)|=4.54e-88  min|v|^2=5.018471741  Blichfeldt bound=6.262761619  min<=bound:True ratio=0.80132
+n=3 l=5 f=x^2 + 3 d=2  |lncov-(lnD-d ln l)|=1.53e-87  min|v|^2=5.018471741  Blichfeldt bound=6.262761619  min<=bound:True ratio=0.80132
+n=3 l=7 f=x^2 + 3*x + 1 d=2  |lncov-(lnD-d ln l)|=9.61e-87  min|v|^2=2.871771434  Blichfeldt bound=4.473401156  min<=bound:True ratio=0.64197
+n=3 l=7 f=x^2 + 4*x + 1 d=2  |lncov-(lnD-d ln l)|=9.39e-87  min|v|^2=3.027434769  Blichfeldt bound=4.473401156  min<=bound:True ratio=0.67676
+n=3 l=17 f=x + 2 d=1  |lncov-(lnD-d ln l)|=2.85e-88  min|v|^2=5.325416640  Blichfeldt bound=7.594714018  min<=bound:True ratio=0.70120
+n=3 l=17 f=x + 8 d=1  |lncov-(lnD-d ln l)|=3.03e-87  min|v|^2=4.876739971  Blichfeldt bound=7.594714018  min<=bound:True ratio=0.64212
+n=3 l=97 f=x + 33 d=1  |lncov-(lnD-d ln l)|=5.90e-86  min|v|^2=2.125324994  Blichfeldt bound=3.179435496  min<=bound:True ratio=0.66846
+n=3 l=97 f=x + 47 d=1  |lncov-(lnD-d ln l)|=6.01e-86  min|v|^2=2.046690939  Blichfeldt bound=3.179435496  min<=bound:True ratio=0.64373
+n=4 l=3 f=x^4 + x^2 + 2 d=4  |lncov-(lnD-d ln l)|=4.35e-84  min|v|^2=16.98996826  Blichfeldt bound=25.27106469  min<=bound:True ratio=0.67231
+n=4 l=3 f=x^4 + 2*x^2 + 2 d=4  |lncov-(lnD-d ln l)|=3.67e-82  min|v|^2=16.98996826  Blichfeldt bound=25.27106469  min<=bound:True ratio=0.67231
+n=4 l=5 f=x^4 + 2 d=4  |lncov-(lnD-d ln l)|=2.22e-82  min|v|^2=10.19398096  Blichfeldt bound=15.16263881  min<=bound:True ratio=0.67231
+n=4 l=5 f=x^4 + 3 d=4  |lncov-(lnD-d ln l)|=5.29e-82  min|v|^2=10.19398096  Blichfeldt bound=15.16263881  min<=bound:True ratio=0.67231
+n=4 l=7 f=x^2 + x + 6 d=2  |lncov-(lnD-d ln l)|=1.44e-83  min|v|^2=18.13191168  Blichfeldt bound=28.65469394  min<=bound:True ratio=0.63277
+n=4 l=7 f=x^2 + 3*x + 6 d=2  |lncov-(lnD-d ln l)|=2.58e-84  min|v|^2=19.78841063  Blichfeldt bound=28.65469394  min<=bound:True ratio=0.69058
+n=4 l=17 f=x + 3 d=1  |lncov-(lnD-d ln l)|=7.89e-86  min|v|^2=18.05430319  Blichfeldt bound=37.33641059  min<=bound:True ratio=0.48356
+n=4 l=17 f=x + 5 d=1  |lncov-(lnD-d ln l)|=1.49e-85  min|v|^2=21.99095986  Blichfeldt bound=37.33641059  min<=bound:True ratio=0.58900
+n=4 l=97 f=x + 8 d=1  |lncov-(lnD-d ln l)|=9.89e-84  min|v|^2=16.91676408  Blichfeldt bound=24.15749290  min<=bound:True ratio=0.70027
+n=4 l=97 f=x + 12 d=1  |lncov-(lnD-d ln l)|=9.89e-84  min|v|^2=14.69512965  Blichfeldt bound=24.15749290  min<=bound:True ratio=0.60831
+n=4 l=257 f=x + 2 d=1  |lncov-(lnD-d ln l)|=1.71e-81  min|v|^2=12.02308817  Blichfeldt bound=18.93483449  min<=bound:True ratio=0.63497
+n=4 l=257 f=x + 8 d=1  |lncov-(lnD-d ln l)|=4.88e-83  min|v|^2=12.27701383  Blichfeldt bound=18.93483449  min<=bound:True ratio=0.64838
+[S3] planted negative controls
+  control 'index m-d instead of d': |lncov - wrong| = 5.666 (must be >> 0) -> REJECTED
+  control 'no 1/l^d': |lncov - wrong| = 2.833 (must be >> 0) -> REJECTED
+  control 'dropped 2^{m/2}': |lncov - wrong| = 1.386 (must be >> 0) -> REJECTED
+[S4a] eps_n = (1-z^3)^2 (1-z^2) / ((1-z)^2 (1-z^6)), z = zeta_{2^{n+2}} : numeric check
+  n=2 |lhs-rhs| = 4.06e-90
+  n=3 |lhs-rhs| = 2.95e-90
+  n=4 |lhs-rhs| = 2.78e-90
+  n=5 |lhs-rhs| = 1.34e-89
+  n=6 |lhs-rhs| = 4.81e-89
+  n=7 |lhs-rhs| = 1.42e-89
+[S4] bin-4 preliminary: D_n = 2^{m(n+1)/2+1} prod_{chi cond=2^{n+2}, even} |L(1,chi)| ?
+n=2 #chi=2  lnD gram=2.405301482510644598078474  closed form=2.405301482510644511029702  diff=8.705e-17
+n=3 #chi=4  lnD gram=5.999524248196830867704531  closed form=5.999524248196830929722630  diff=-6.202e-17
+n=4 #chi=8  lnD gram=14.33192844545562227324644  closed form=14.33192844545562218819720  diff=8.505e-17
+n=5 #chi=16  lnD gram=33.98753449375644895286149  closed form=33.98753449375644855576431  diff=3.971e-16
+R10 BIN3 FIDELITY GATE DONE

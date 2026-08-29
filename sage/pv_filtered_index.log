@@ -1,0 +1,10 @@
+C_7 (check) = 1.727342e+30
+ t | L_t (15d)          | index-ignored      | I_t      | index-included
+ 2 | 23.6989671488779 | 7.7749e+19 | 2^64 | 1.4342e+39
+ 3 | 31.4121980396195 | 1.1457e+12 | 2^128 | 3.8988e+50
+ 4 | 39.2213581328407 | 7.7256e+05 | 2^192 | 4.8494e+63
+GATES: class-1 closure to 1e9 at t=4 requires I_4 < 1294.4 (actual 2^192 = 6.277e+57)
+       deg-2 closure to 1e9 at t=3 requires I_3 < 8.728e+05 (l^2 form: sqrt gives l-gate 9.342e+02; actual 2^128 = 3.403e+38)
+VERDICT: naive filtered-sublattice route WORSE than plain 1.727e30 at every t. FENCED.
+R8 FILTERED INDEX DONE
+EXIT=0

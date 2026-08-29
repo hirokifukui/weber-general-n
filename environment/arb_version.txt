@@ -1,0 +1,5 @@
+Arb: merged into FLINT since FLINT 3; RealBallField backend = FLINT/arb
+FLINT exact version: 3.3.1
+probe: #define __FLINT_VERSION 3 / _MINOR 3 / _PATCHLEVEL 1
+  (local/include/flint/flint.h of the SageMath 10.8 bundle; dylib soname libflint.21)
+recorded 2026-08-24 on node <LOCAL_HOST> (r7; replaces the r6 prose placeholder)

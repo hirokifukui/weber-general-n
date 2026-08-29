@@ -1,0 +1,24 @@
+HW21 step1: gcd(z^2+z+1, z^256+1) over F_2 = 1  (unit iff 1)
+HW21 step2: Newton-lifted inverse verified: (z^2-z+1)*inv = 1 in Z[z]/(z^256+1,16)
+CROSSCHECK: (eps-1) = 2*z*inv(z^2-z+1) exactly in Z/16 ring: PASS
+RANK fam1_eps_minus1_over2 = 64  (pivots saved, 64 listed)
+RANK fam2_eps2_minus1_over4 = 64  (pivots saved, 64 listed)
+RANK fam3_eps4_minus1_over8 = 64  (pivots saved, 64 listed)
+HW23-26 RESULT: ranks = [64, 64, 64]  all-64: True
+HW28 consequence (numeric side): rank 64 at each graded level =>
+  u_a = 1 mod 4 iff a in 2Z^64 ; mod 8 iff 4Z^64 ; mod 16 iff 8Z^64 ;
+  [R:J_2] = 2^64, [R:J_3] = 2^128, [R:J_4] = 2^192  (natural-language proof:
+  theory/FILTERED_SATURATION_THEOREM.md sect 1-2).
+HW32: entire computation is exact integer/F_2 arithmetic - no floating point
+  of any precision is involved anywhere above.
+HW34-35: L_t = sqrt(128) * log((2^{t+1} + sqrt(4^{t+1}+4))/2), 40 digits:
+  L_1 = 16.33287094496640967554835356439011441238
+       GPT: 16.3328709449664 ; r7 old table: 16.333
+  L_2 = 23.69896714887793828338137042161793962921
+       GPT: 23.6989671488779 ; r7 old table: 23.695
+  L_3 = 31.41219803961952616031602336375513839350
+       GPT: 31.4121980396195 ; r7 old table: 31.417
+  L_4 = 39.22135813284069013869068557795646748249
+       GPT: 39.2213581328407 ; r7 old table: 39.212
+elapsed 0.8s
+R8 TWOADIC DEPTH EXACT DONE

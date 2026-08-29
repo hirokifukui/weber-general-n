@@ -1,0 +1,16 @@
+stratum law test: v_big(u_b' - 1) should be in {254+4i, 256+4i}, i = 1+v_P(b)
+b = e0 (v_P = 0, predict i = 1)
+  v_big(u_b-1) = 256 ; v_big(u_b+1) = 258 ; deep element -u_b, v = 258 -> stratum i = 1 (exact lower window)
+b = e0 - e1 = (1-s)e0 (v_P = 1, i = 2)
+  v_big(u_b-1) = 262 ; v_big(u_b+1) = 256 ; deep element +u_b, v = 262 -> stratum i = 2 (exact lower window)
+b = e0 + e1 (v_P(1+s) = 1, i = 2)
+  v_big(u_b-1) = 262 ; v_big(u_b+1) = 256 ; deep element +u_b, v = 262 -> stratum i = 2 (exact lower window)
+b = e0 - 2e1 + e2 = (1-s)^2 e0 (v_P=2,i=3)
+  v_big(u_b-1) = 266 ; v_big(u_b+1) = 256 ; deep element +u_b, v = 266 -> stratum i = 3 (exact lower window)
+b = (1-s)^3 e0 (v_P = 3, i = 4)
+  v_big(u_b-1) = 270 ; v_big(u_b+1) = 256 ; deep element +u_b, v = 270 -> stratum i = 4 (exact lower window)
+b = 2 e0 (v_P(2) = 64, predict i = 65)
+  v_big(u_b-1) = 514 ; v_big(u_b+1) = 256 ; deep element +u_b, v = 514 -> stratum i = 65 (exact lower window)
+LAW i(+-u_b) = 1 + v_P(b): ALL EXACT MATCHES: True
+R9 STRATUM LAW PILOT DONE
+EXIT=0

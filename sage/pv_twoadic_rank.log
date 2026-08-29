@@ -1,0 +1,5 @@
+fam1_eps_minus1_over2: recomputed rank = 64 (claimed 64), pivots match = True -> PASS
+fam2_eps2_minus1_over4: recomputed rank = 64 (claimed 64), pivots match = True -> PASS
+fam3_eps4_minus1_over8: recomputed rank = 64 (claimed 64), pivots match = True -> PASS
+VERIFY_TWOADIC_RANK: PASS
+EXIT=0

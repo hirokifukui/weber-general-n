@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""gen_human_review.py (r21; GPT r20 P3 items 37-40 = hw 1096-1099, Claude-found hw 1123) -- regenerates the author's sign-off ledger
+docs/BLUEPRINT_HUMAN_REVIEW_R<NN>.md (table + footer; the prose header above the table is kept verbatim) and its machine-readable twin
+docs/human_review_r<nn>.json from the CURRENT node list of blueprint/src/content.tex. Defect repaired: the r15-generated table (13 rows)
+was never regenerated, so thm:P3 / thm:rank3 / lem:normone / thm:SH / cor:P3n4 / cor:SHmod / prop:D / thm:cert / thm:A had no row.
+Rows = every theorem-like node whose trust tag names F or M (kernel-backed or manuscript step), plus the six nodes the GPT r20 review
+names as sign-off targets (always KEY): thm:A, prop:D, thm:cert, thm:rank3 (spectral rank + exact covolume), thm:P3, and thm:Acore /
+thm:family / lem:oldnew / lem:oddtransfer / thm:S0 / prop:F kept KEY from r15. Each row carries the sha256 of the node's single-source
+statement file (proofs/statements/<label>.tex); a SIGNED row whose statement sha256 differs from the one recorded at signing is
+rewritten as INVALIDATED (GPT item 39). The reviewer / date / status / note fields of existing rows are preserved.
+Usage: python3 tools/gen_human_review.py [--check]   (from the package root; the round is read from CITATION.cff)"""
+import re,sys,os,json,hashlib
+def cffver():
+    m=re.search(r'^version: "?([A-Za-z0-9.]+)"?$',open('CITATION.cff',encoding='utf-8').read(),re.M); return m.group(1)
+VER=cffver(); R=VER.upper(); MD='docs/BLUEPRINT_HUMAN_REVIEW_%s.md'%R; JS='docs/human_review_%s.json'%VER
+GPT_KEY=['thm:A','prop:D','thm:cert','thm:rank3','thm:P3']; R15_KEY=['prop:F','lem:oldnew','thm:Acore','lem:oddtransfer','thm:S0','thm:family']
+ENVS=('theorem','lemma','corollary','proposition')
+def skip_balanced(s,i):
+    d=0; j=i
+    while j<len(s):
+        if s[j] in '[{': d+=1
+        elif s[j] in ']}': d-=1
+        if d==0: return j+1
+        j+=1
+    raise ValueError
+def nodes():
+    s=re.sub(r'(?m)(?<!\\)%.*$','',open('blueprint/src/content.tex',encoding='utf-8').read()); out=[]
+    for m in re.finditer(r'\\begin\{(%s)\}'%'|'.join(ENVS),s):
+        env=m.group(1); i=m.end(); title=''
+        while s[i] in ' \t\n': i+=1
+        if s[i]=='[': j=skip_balanced(s,i); title=s[i+1:j-1]; i=j
+        body=s[i:s.find('\\end{%s}'%env,i)]; lm=re.search(r'\\label\{([^}]+)\}',body)
+        if not lm: continue
+        tag=re.search(r'\{\[(.*?)\]\}',title); tag=tag.group(1) if tag else ''
+        out.append(dict(label=lm.group(1),env=env,title=title,tag=tag))
+    return out
+def statement_sha(label):
+    f='proofs/statements/%s.tex'%label.replace(':','_')
+    return hashlib.sha256(open(f,'rb').read()).hexdigest()[:16] if os.path.exists(f) else 'n/a (Blueprint-only node)'
+def build():
+    old={}
+    if os.path.exists(JS):
+        for r in json.load(open(JS,encoding='utf-8'))['rows']: old[r['label']]=r
+    else:   # first run: harvest the hand-edited fields of the existing markdown table
+        for line in open(MD,encoding='utf-8'):
+            m=re.match(r'^\| ([a-z]+:[A-Za-z0-9-]+) \| (\w+) \| (KEY)? *\| ([^|]*) \| ([^|]*) \| ([^|]*) \| ([^|]*) \|$',line)
+            if m: old[m.group(1)]=dict(label=m.group(1),reviewer=m.group(4).strip(),date=m.group(5).strip(),status=m.group(6).strip() or 'UNSIGNED',note=m.group(7).strip(),signed_sha='')
+    rows=[]
+    for n in nodes():
+        fm='F' if re.search(r'\bF\b',n['tag']) else ('M' if re.search(r'\bM\b',n['tag']) else '')
+        if re.search(r'\bF\b',n['tag']) and re.search(r'\bM\b',n['tag']): fm='F/M'
+        KEY=set(GPT_KEY)|set(R15_KEY)
+        if not fm and n['label'] not in KEY: continue
+        if not fm: fm='L-relative'
+        o=old.get(n['label'],{}); key=n['label'] in KEY
+        sha=statement_sha(n['label']); status=o.get('status','UNSIGNED') or 'UNSIGNED'
+        if status.startswith('SIGNED') and o.get('signed_sha') and o['signed_sha']!=sha: status='INVALIDATED (statement changed since signing)'
+        rows.append(dict(label=n['label'],env=n['env'],trust=fm,tag=n['tag'],key=key,reviewer=o.get('reviewer',''),date=o.get('date',''),status=status,note=o.get('note',''),
+                         statement_file=('proofs/statements/%s.tex'%n['label'].replace(':','_')) if not sha.startswith('n/a') else '',statement_sha256_16=sha,signed_sha=o.get('signed_sha','')))
+    return rows
+def render(rows):
+    head=open(MD,encoding='utf-8').read().split('\n| node |')[0].rstrip('\n') if os.path.exists(MD) else '# BLUEPRINT_HUMAN_REVIEW_%s'%R
+    out=[head,'','| node | label | key | reviewer | date | status | GPT round / note |','|---|---|---|---|---|---|---|']
+    for r in rows: out.append('| %s | %s | %s | %s | %s | %s | %s |'%(r['label'],r['trust'],'KEY' if r['key'] else '',r['reviewer'],r['date'],r['status'],r['note']))
+    nk=sum(1 for r in rows if r['key']); ns=sum(1 for r in rows if r['status'].startswith('SIGNED'))
+    out+=['','F/M nodes listed: %d (KEY %d; SIGNED %d). Generated by tools/gen_human_review.py from the current node list of blueprint/src/content.tex; the machine-readable twin is %s (each row carries the sha256 prefix of its single-source statement file; a signature is INVALIDATED when that sha256 changes -- GPT r20 item 39). Only reviewer / date / status / note are edited by hand (in the JSON, then regenerate).'%(len(rows),nk,ns,JS),'']
+    return '\n'.join(out)
+rows=build(); md=render(rows); js=json.dumps(dict(round=VER,generated_from='blueprint/src/content.tex',rows=rows),indent=1,ensure_ascii=False)+'\n'
+if '--check' in sys.argv:
+    ok=os.path.exists(MD) and open(MD,encoding='utf-8').read()==md and os.path.exists(JS) and open(JS,encoding='utf-8').read()==js
+    print('HUMAN REVIEW LEDGER CHECK: %s (rows %d)'%('PASS' if ok else 'FAIL (regenerate: python3 tools/gen_human_review.py)',len(rows))); sys.exit(0 if ok else 1)
+open(MD,'w',encoding='utf-8').write(md); open(JS,'w',encoding='utf-8').write(js); print('wrote',MD,JS,'rows',len(rows))

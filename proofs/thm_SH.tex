@@ -1,0 +1,7 @@
+\emph{Covolume.} Put $\Lambda:=\ell^{-1}h(L)=\{\ell^{-1}h(a):a\in L\}$. By (Rank) $h$ is an injective $\Z$-linear map $R\to\R^N$, so $h(L)$ is a sublattice of $h(R)$ of index $[R:L]=\ell^{m-d}$ (Index) and has covolume $\ell^{m-d}D$ in the common $m$-dimensional $\R$-span; the map $v\mapsto\ell^{-1}v$ on that span multiplies $m$-dimensional volumes by $\ell^{-m}$, so $\covol\Lambda=\ell^{m-d}D/\ell^m=D/\ell^{d}$.
+
+\emph{Short vector.} By (Bl) there is $a\in L$ with $v:=\ell^{-1}h(a)\ne0$ and $|v|^m\le K_m\covol\Lambda=K_mD/\ell^{d}$.
+
+\emph{Carrier and floor.} By (Car) there is $u\in U$ with $\ell H(u)=h(a)$, i.e.\ $H(u)=v\ne0$, and (Floor) gives $|v|=\hgt(u)\ge L_0$ (\path{WeberSH.short_vector_ge_floor}).
+
+Hence $L_0^m\le|v|^m\le K_mD/\ell^{d}$, i.e.\ $\ell^{d}\le K_mD/L_0^{m}$ (\path{WeberSH.theoremSH}; contrapositive \path{WeberSH.theoremSH_contra}). The covolume computation is the natural-language part of this proof; the short-vector, carrier and floor steps are the Lean theorem verbatim, with $h(a)=H(\iota(a))$ for the map $\iota:\Z^m\to U$ of the Lean statement. Nothing about $R$ beyond additivity of $h$, nothing about $U$ beyond (Car) and (Floor), and no group action is used: these enter only through how $L$, $d$ and (Car) are produced in applications (Corollary~\ref{cor:SHmod} for the $\Z_2$-tower; Lemma~\ref{lem:normone} for the $\Z_3$-tower).

@@ -1,0 +1,9 @@
+# FAMILY WITNESS FILE (generator family_gen.sage r10). n = 2 ; l = 17 ; m = 2 ; deg = 1 ; ncomp = 2 ; bar_T = 68 ; L_n = 2.88727095035762068498655348055
+# line: f = c0,...,c_deg (monic, over F_l) | route RHO|T | claimed (rho or T, float) | coeffs a_0..a_{m-1}
+f = 4,1 | route RHO | claimed 0.27963567635593205127 | coeffs 1,4
+f = 4,1 | route T | claimed 5.4281842235530719064 | coeffs 1,4
+# status f = 4,1 : PASS_RHO (rho 0.27964, T 5.4, 0s)
+f = 13,1 | route RHO | claimed 0.27963567635593205127 | coeffs 4,1
+f = 13,1 | route T | claimed 5.3761168681463579688 | coeffs -1,4
+# status f = 13,1 : PASS_RHO (rho 0.27964, T 5.4, 0s)
+# summary n = 2 l = 17 : EXCLUSION_CANDIDATE ; PASS 2 / 2 ; OPEN_NEAR 0 ; OPEN_FAR 0 ; 0s

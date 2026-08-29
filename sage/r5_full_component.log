@@ -1,0 +1,2 @@
+P0 GATE: 32/32 components PASS  (bug-demo det=l^63 confirmed; reference det=l^62; rank=deg f; optimized==reference)
+R5 P0 GATE DONE

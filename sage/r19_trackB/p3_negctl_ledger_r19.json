@@ -1,0 +1,105 @@
+{
+ "format_version": "p3_negctl_ledger_r19",
+ "verifier_sha256": "f3d2e1767603cffd7c576afaf7fe206f3469208a35ffa1e82a886451d0f3af36",
+ "cert_sha256": "7520a93fb1df0ed5d387a62bed9c8fc5f26f2fb0745def0a291c9bbb73a15751",
+ "planted": 12,
+ "rejected": 12,
+ "controls": [
+  {
+   "id": 1,
+   "description": "one route missing (route_dft.D deleted)",
+   "rejected": true,
+   "first_reason": "D_dft missing at (5, 5)",
+   "containment_failed": 0,
+   "containment_checked": 119
+  },
+  {
+   "id": 2,
+   "description": "wrong discriminant exponent (D_dft scaled by sqrt(3)^2)",
+   "rejected": true,
+   "first_reason": "disc_exp mismatch at (5, 5): shipped 730, recomputed 729",
+   "containment_failed": 1,
+   "containment_checked": 120
+  },
+  {
+   "id": 3,
+   "description": "weak (Schinzel) floor substituted, header string kept (numeric gate must fire)",
+   "rejected": true,
+   "first_reason": "Lrel_3n: shipped [8.334833302061794549917856461711648852295E-1,8.334833302061794549917856461711648852296E-1] does NOT CONTAIN recomputed [1.160277947134662447262969827105922550685E+0,1.160277947134662",
+   "containment_failed": 15,
+   "containment_checked": 120
+  },
+  {
+   "id": 4,
+   "description": "comparison with MO2013 only, header string kept (numeric gate must fire)",
+   "rejected": true,
+   "first_reason": "MO16_G_f1: shipped [2.699999999999999999999999999999999999999E+1,2.700000000000000000000000000000000000001E+1] does NOT CONTAIN recomputed [3.985547757678882944396602983359102856182E+0,3.9855477576788",
+   "containment_failed": 30,
+   "containment_checked": 120
+  },
+  {
+   "id": 5,
+   "description": "malformed JSON (truncated)",
+   "rejected": true,
+   "first_reason": "malformed JSON: Unterminated string starting at: line 1 column 1998 (char 1997)",
+   "containment_failed": 0,
+   "containment_checked": 0
+  },
+  {
+   "id": 6,
+   "description": "shifted narrow intervals on the last row: every field MEETS the recomputed interval but does not CONTAIN it (overlap-era gate would accept)",
+   "rejected": true,
+   "first_reason": "Lrel_3n: shipped [1.218893768932933942351991619990653494357E+1,1.218893768932933942351991619990653494358E+1] does NOT CONTAIN recomputed [1.218893768932933942351991619990653494357E+1,1.218893768932933",
+   "containment_failed": 8,
+   "containment_checked": 120
+  },
+  {
+   "id": 7,
+   "description": "shipped LOWER endpoints moved inward only (last row, all fields)",
+   "rejected": true,
+   "first_reason": "Lrel_3n: shipped [1.218893768932933942351991619990653494357E+1,1.218893768932933942351991619990653494358E+1] does NOT CONTAIN recomputed [1.218893768932933942351991619990653494357E+1,1.218893768932933",
+   "containment_failed": 8,
+   "containment_checked": 120
+  },
+  {
+   "id": 8,
+   "description": "shipped UPPER endpoints moved inward only (last row, all fields)",
+   "rejected": true,
+   "first_reason": "Lrel_3n: shipped [1.218893768932933942351991619990653494357E+1,1.218893768932933942351991619990653494358E+1] does NOT CONTAIN recomputed [1.218893768932933942351991619990653494357E+1,1.218893768932933",
+   "containment_failed": 8,
+   "containment_checked": 120
+  },
+  {
+   "id": 9,
+   "description": "Gram route alone under-covers (all rows; other fields untouched)",
+   "rejected": true,
+   "first_reason": "D_gram: shipped [1.471009014749850787066961312157283159666E+0,1.471009014749850787066961312157283159667E+0] does NOT CONTAIN recomputed [1.471009014749850787066961312157283159666E+0,1.4710090147498507",
+   "containment_failed": 15,
+   "containment_checked": 120
+  },
+  {
+   "id": 10,
+   "description": "spectral (DFT) route alone under-covers (all rows; other fields untouched)",
+   "rejected": true,
+   "first_reason": "D_dft: shipped [1.471009014749850787066961312157283159666E+0,1.471009014749850787066961312157283159667E+0] does NOT CONTAIN recomputed [1.471009014749850787066961312157283159666E+0,1.47100901474985078",
+   "containment_failed": 15,
+   "containment_checked": 120
+  },
+  {
+   "id": 11,
+   "description": "C alone under-covers (all rows; other fields untouched)",
+   "rejected": true,
+   "first_reason": "C3rel: shipped [1.391237825985132701080715927972233156877E+0,1.391237825985132701080715927972233156878E+0] does NOT CONTAIN recomputed [1.391237825985132701080715927972233156877E+0,1.39123782598513270",
+   "containment_failed": 15,
+   "containment_checked": 120
+  },
+  {
+   "id": 12,
+   "description": "sqrt C alone under-covers (all rows; other fields untouched)",
+   "rejected": true,
+   "first_reason": "C3rel_sqrt: shipped [1.179507450584833186402801471094641761433E+0,1.179507450584833186402801471094641761434E+0] does NOT CONTAIN recomputed [1.179507450584833186402801471094641761433E+0,1.179507450584",
+   "containment_failed": 15,
+   "containment_checked": 120
+  }
+ ]
+}

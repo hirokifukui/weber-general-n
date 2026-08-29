@@ -1,0 +1,150 @@
+# .github/workflows/verify.yml — clean-checkout replay of the weber_general_n package (package round = the `version:` line of CITATION.cff; no round literal here).
+# r21 (GPT r20 review sect 4, P0 items 1-9 = hw 1060-1068): the `full` aggregator carried S["round"] == "r15" / L["round"] == "r15" and
+#   round='r15' in the attestation since r15 while the verifier wrote round "r20" -- the clean run would have FAILED at the aggregator.
+#   Now: the `full` job checks out the same commit, reads PACKAGE_ROUND from CITATION.cff, asserts sage round == lean round == PACKAGE_ROUND,
+#   and takes the attestation round from the summaries. tools/check_ci_round_sync.py (verifier step 00f) audits this statically + --negctl.
+# r15 (GPT r14 review sect 7, E15-3; hw 551-569): the attestation is a RELEASE ASSET, never committed. The source tree is frozen
+#   before the run and is not edited afterwards; run id / URL / commit SHA / Docker image id / runner facts live in ci_attestation.json
+#   (artifact of the `full` job, attached to the GitHub Release and the Zenodo record by hand) and in the release metadata, never in
+#   RELEASE_STATUS.md or in any tracked file. The sage job records the built image id and the runner image for the attestation.
+# r14 (GPT r13 review sect 5-6, E14-4; hw 435-472): THREE jobs.
+#   sage       : Docker image (sagemath/sagemath:10.8 pinned by digest + texlive) runs scripts/verify_all_portable.sh with
+#                VERIFY_PROFILE=sage (ENV in the Dockerfile). Its last line is "SAGE_PROFILE: PASS|FAIL"; it can never print the
+#                FULL line. verify_out/SUMMARY.json (profile, status, fails, skips, steps) is uploaded as an artifact.
+#   lean       : elan (pinned version + sha256) + lake workspace pinned to mathlib d568c8c0 / v4.31.0-rc1 OUTSIDE the checkout,
+#                then VERIFY_PROFILE=lean SKIP_SAGE=1 SKIP_PAPER=1. Last line "LEAN_PROFILE: PASS|FAIL". SUMMARY.json uploaded.
+#   full       : needs [sage, lean]; downloads both SUMMARY.json, requires profile==sage/status==PASS and profile==lean/status==PASS,
+#                both from THIS run (same commit ${{ github.sha }}), and ONLY THEN prints "FULL VERIFICATION: PASS" and writes
+#                ci_attestation.json (run id, run URL, commit SHA, both summaries, runner OS) as an artifact. No other job and no
+#                local run may print that line. Its content is the release asset ci_attestation.json (r15: never written back into the tree).
+# Unchanged from r13: elan installer unpacked in $RUNNER_TEMP, `git status --porcelain` asserted before/after setup and after the run
+# in both jobs, manifest re-checked after setup; action pins by commit SHA; base image by digest.
+# Pins (GPT r11 hw 151-153; resolved 2026-08-25 from the GitHub API / Docker registry, no docker needed):
+#   actions/checkout          v4 -> 11d5960a326750d5838078e36cf38b85af677262
+#   actions/upload-artifact   v4 -> ea165f8d65b6e75b540449e92b4886f43607fa02
+#   actions/download-artifact v4 -> d3f86a106a0bac45b974a628896c90dbdf5c8093 (v4.3.0 = tag v4 on 2026-08-26, resolved from the GitHub API on <LOCAL_HOST>)
+#   elan v4.2.4 x86_64-unknown-linux-gnu tar.gz sha256 42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63
+#   sagemath/sagemath:10.8 index digest sha256:e2e4747b0e1ea8753a9cb5a399314a8b2c25fcefaf69ba85b22ee075829d09ea (Dockerfile FROM)
+# STATUS (2026-08-27, r21): STILL NEVER EXECUTED — no docker on any author machine; the first run is after Dr. Fukui's push.
+# Its URL / run id / commit SHA go into the release assets / metadata (hw 557-559), NOT into the repository. Nothing here is claimed green.
+name: verify
+on: [push, workflow_dispatch]
+jobs:
+  sage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: checkout must be clean before anything runs (r13 hw 20-21)
+        run: test -z "$(git status --porcelain)" || { echo "checkout mutated before setup:"; git status --porcelain; exit 1; }
+      - name: build image (base pinned by digest in the Dockerfile; digest echoed for the log)
+        run: |
+          docker build -t weber-verify .
+          docker image inspect --format '{{index .RepoDigests}}' weber-verify || true
+          mkdir -p "$RUNNER_TEMP/ci_out"
+          { echo "image_id=$(docker image inspect --format '{{.Id}}' weber-verify)"; echo "base_repo_digests=$(docker image inspect --format '{{index .RepoDigests}}' weber-verify)";
+            echo "runner_image=${ImageOS:-unknown}/${ImageVersion:-unknown}"; echo "runner_os=${RUNNER_OS:-unknown}/${RUNNER_ARCH:-unknown}"; } > "$RUNNER_TEMP/ci_out/ci_environment.txt"
+          cat "$RUNNER_TEMP/ci_out/ci_environment.txt"
+      - name: assert the image really is Sage 10.8 (hw 155)
+        run: docker run --rm --entrypoint sage weber-verify -c "import sage.version; assert sage.version.version=='10.8', sage.version.version; print('sage', sage.version.version, 'pari', pari.version())"
+      - name: run the portable verifier, SAGE PROFILE (the container's ENV VERIFY_PROFILE=sage; never the FULL line)
+        run: |
+          mkdir -p "$RUNNER_TEMP/ci_out"
+          docker run --rm -e VERIFY_PROFILE=sage -v "$RUNNER_TEMP/ci_out:/pkg/verify_out" weber-verify
+          tail -3 "$RUNNER_TEMP/ci_out/VERIFY_ALL_PORTABLE.log"
+          python3 -c "import json,sys; d=json.load(open('$RUNNER_TEMP/ci_out/SUMMARY.json')); print(d); sys.exit(0 if d['profile']=='sage' and d['status']=='PASS' else 1)"
+      - name: checkout must still be clean after the run (r13 hw 21, 32)
+        run: test -z "$(git status --porcelain)" || { echo "checkout mutated by the run:"; git status --porcelain; exit 1; }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: verify_out_sage
+          path: ${{ runner.temp }}/ci_out
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: checkout must be clean before setup (r13 hw 20)
+        run: test -z "$(git status --porcelain)" || { echo "checkout mutated before setup:"; git status --porcelain; exit 1; }
+      - name: install elan v4.2.4 OUTSIDE the checkout (pinned, sha256-checked; hw 154; r13 hw 17-19)
+        run: |
+          ELAN_INSTALL_DIR="$RUNNER_TEMP/elan-install"; mkdir -p "$ELAN_INSTALL_DIR"; cd "$ELAN_INSTALL_DIR"
+          curl -sSfL -o elan.tar.gz https://github.com/leanprover/elan/releases/download/v4.2.4/elan-x86_64-unknown-linux-gnu.tar.gz
+          echo "42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63  elan.tar.gz" | sha256sum -c -
+          tar xzf elan.tar.gz
+          ./elan-init -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          cd "$GITHUB_WORKSPACE"
+          test -z "$(git status --porcelain)" || { echo "checkout mutated by the elan setup:"; git status --porcelain; exit 1; }
+      - name: pinned mathlib workspace OUTSIDE the checkout (toolchain v4.31.0-rc1, mathlib d568c8c0)
+        run: |
+          WS="$RUNNER_TEMP/weber-lean-ws"; mkdir -p "$WS" && cd "$WS"
+          cp "$GITHUB_WORKSPACE/environment/lean-toolchain" lean-toolchain 2>/dev/null || echo "leanprover/lean4:v4.31.0-rc1" > lean-toolchain
+          cat > lakefile.toml <<'TOML'
+          name = "weber_pv"
+          defaultTargets = []
+          [[require]]
+          name = "mathlib"
+          git = "https://github.com/leanprover-community/mathlib4"
+          rev = "d568c8c09630de097a046763c17b9ea99f95f950"
+          TOML
+          lake update mathlib
+          lake exe cache get
+          echo '#print axioms Nat.add_comm' > smoke.lean && lake env lean smoke.lean
+      - name: checkout must be clean after setup, and the manifest must still check (r13 hw 20-22)
+        run: |
+          test -z "$(git status --porcelain)" || { echo "checkout mutated by setup:"; git status --porcelain; exit 1; }
+          python3 tools/gen_manifest.py --check
+      - name: run the portable verifier, LEAN PROFILE (workspace outside the checkout; never the FULL line)
+        run: |
+          VERIFY_PROFILE=lean SKIP_SAGE=1 SKIP_PAPER=1 LEAN_WORKSPACE="$RUNNER_TEMP/weber-lean-ws" bash scripts/verify_all_portable.sh
+          python3 -c "import json,sys; d=json.load(open('verify_out/SUMMARY.json')); print(d); sys.exit(0 if d['profile']=='lean' and d['status']=='PASS' else 1)"
+      - name: axiom-gate logs of the five load-bearing files (hw 149)
+        if: always()
+        run: for f in verify_out/09_lean_*.log; do echo "== $f"; grep -E "depends on axioms|does not depend|AXIOM GATE" "$f"; done
+      - name: checkout must still be clean after the run apart from verify_out/ (r13 hw 21, 32)
+        run: test -z "$(git status --porcelain | grep -v 'verify_out/')" || { echo "checkout mutated by the run:"; git status --porcelain; exit 1; }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with: { name: verify_out_lean, path: verify_out }
+  full:
+    # the ONLY place that may say FULL VERIFICATION: PASS — after one sage-profile PASS and one lean-profile PASS on the same commit
+    runs-on: ubuntu-latest
+    needs: [sage, lean]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4  (r21: the package round is read from CITATION.cff of THIS commit)
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: { name: verify_out_sage, path: agg/sage }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: { name: verify_out_lean, path: agg/lean }
+      - name: aggregate the two profile summaries into one attestation (hw 60-62, 74-77)
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SHA: ${{ github.sha }}
+          REF: ${{ github.ref }}
+        run: |
+          python3 - <<'PY'
+          import json, os, sys, platform, re
+          S = json.load(open('agg/sage/SUMMARY.json')); L = json.load(open('agg/lean/SUMMARY.json'))
+          PACKAGE_ROUND = re.search(r'^version: "?([A-Za-z0-9.]+)"?$', open('CITATION.cff').read(), re.M).group(1)   # single source of the package round (r21)
+          ok = (S.get('profile') == 'sage' and S.get('status') == 'PASS' and
+                L.get('profile') == 'lean' and L.get('status') == 'PASS' and
+                S.get('round') == L.get('round') and S.get('round') == PACKAGE_ROUND and
+                not S.get('full_line_printed') and not L.get('full_line_printed'))
+          print('package round %s ; sage summary round %s ; lean summary round %s' % (PACKAGE_ROUND, S.get('round'), L.get('round')))
+          env_txt = open('agg/sage/ci_environment.txt').read() if os.path.exists('agg/sage/ci_environment.txt') else ''
+          ci_env = dict(line.split('=', 1) for line in env_txt.splitlines() if '=' in line)
+          att = dict(round=S.get('round'), package_round=PACKAGE_ROUND, commit_sha=os.environ['SHA'], ref=os.environ['REF'], run_id=os.environ['RUN_ID'], run_url=os.environ['RUN_URL'],
+                     aggregator_runner=platform.platform(), sage_job_environment=ci_env, sage_profile=S, lean_profile=L,
+                     full_verification='PASS' if ok else 'FAIL',
+                     note='release asset; not committed to the repository (E15-3, GPT r14 sect 7)')
+          json.dump(att, open('ci_attestation.json', 'w'), indent=1)
+          print(json.dumps(att, indent=1))
+          print('FULL VERIFICATION: %s (commit %s, run %s)' % (att['full_verification'], att['commit_sha'], att['run_id']))
+          sys.exit(0 if ok else 1)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with: { name: ci_attestation, path: ci_attestation.json }

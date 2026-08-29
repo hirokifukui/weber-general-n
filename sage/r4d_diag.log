@@ -1,0 +1,7 @@
+(1) ht(eps_7) = 20.48410244   L0 = 16.33287094   ratio (rho of trivial l*e0) = 1.254164226
+(2) Gaussian heuristic (in rho units) vs observed BKZ min:
+  comp 3   GH_rho = 1.3790494   observed = 1.0037295   obs/GH = 0.727842
+  comp 23  GH_rho = 1.3790494   observed = 1.0294313   obs/GH = 0.746479
+  comp 8   GH_rho = 1.3790494   observed = 1.0408261   obs/GH = 0.754742
+  comp 28  GH_rho = 1.3790494   observed = 1.125029   obs/GH = 0.8158
+R4D DIAG DONE

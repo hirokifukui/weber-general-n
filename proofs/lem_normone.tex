@@ -1,0 +1,15 @@
+Let $N=3^n$, $q=3N$, $\zeta=\zeta_q$, $a=1+N$ and $\tau=\sigma^{3^{n-1}}$, where $\sigma$ is induced by $\zeta\mapsto\zeta^4$.
+
+\emph{(i) $a$ has exact order $3$ modulo $q$.} $(1+N)^3-1=3N+3N^2+N^3=q\,(1+N+N^2/3)$ with $3\mid N^2$ for $n\ge1$, so $a^3\equiv1\pmod q$ (\path{WeberP3Rel.a_cube_modEq_one}); and $a\not\equiv1\pmod q$ since $0<N<q$, so the order is exactly $3$ (the only divisors of $3$ being $1$ and $3$).
+
+\emph{(ii) $\tau$ acts by $\zeta\mapsto\zeta^{a}$.} By induction $4^{3^k}=1+3^{k+1}+3^{k+2}t_k$ with $t_k\in\Z$ (from $(1+u)^3=1+3u+3u^2+u^3$, $u=3^{k+1}(1+3t_{k-1})$), hence $4^{3^{n-1}}\equiv1+3^n=a\pmod{3^{n+1}}$ (\path{WeberP3Rel.four_pow_modEq}). Since $G=\operatorname{Gal}(B_{3,n}/\Q)$ is cyclic of order $N$ and $\tau$ has order $3$ by (i), $\tau$ generates its unique subgroup of order $3$, which is $\operatorname{Gal}(B_{3,n}/B_{3,n-1})$.
+
+\emph{(iii) Relative norm.} For $t$ prime to $3$, $\sigma_t:\zeta\mapsto\zeta^t$ sends $\eta_n=(\zeta^{a}-\zeta^{-a})/(\zeta-\zeta^{-1})=\sin(2a\pi/q)/\sin(2\pi/q)$ to $\sin(2ta\pi/q)/\sin(2t\pi/q)$. With $s(i)=\sin(2a^i\pi/q)$ ($i=0,1,2,3$; all nonzero since $q\nmid 2a^i$) this gives $\tau^i\eta_n=s(i+1)/s(i)$ and
+\[ \operatorname{Nr}_{B_{3,n}/B_{3,n-1}}(\eta_n)=\eta_n\cdot\tau\eta_n\cdot\tau^2\eta_n=\frac{s(1)}{s(0)}\frac{s(2)}{s(1)}\frac{s(3)}{s(2)}=\frac{s(3)}{s(0)}=1, \]
+because $a^3=1+mq$ gives $s(3)=\sin(2\pi/q+2\pi m)=s(0)$ (\path{WeberP3Rel.sin_telescope_step}, \path{WeberP3Rel.telescope_three}).
+
+\emph{(iv) Transfer to the saturation root.} Let $\alpha_\sigma\in\Z[G]$ and $\varepsilon\in E_{3,n}$ with $\eta_n^{\alpha_\sigma}=\varepsilon^{\ell}$, $\ell$ an odd prime. As $G$ is abelian, $\operatorname{Nr}$ commutes with $\alpha_\sigma$, so $\operatorname{Nr}(\varepsilon)^{\ell}=\operatorname{Nr}(\eta_n)^{\alpha_\sigma}=1$; $\operatorname{Nr}(\varepsilon)$ is a real number ($B_{3,n-1}$ is totally real) and $\ell$ is odd, hence $\operatorname{Nr}(\varepsilon)=1$ (\path{WeberP3Rel.eq_one_of_odd_pow_eq_one}). If moreover $H(\varepsilon)\ne0$ then $\varepsilon\notin E_{3,n-1}$ by (v) below. Thus every such $\varepsilon$ with $H(\varepsilon)\neq0$ lies in $E_{3,n}\setminus E_{3,n-1}$ and has relative norm $1$; the subgroup $U_{3,n}:=\{\varepsilon\in E_{3,n}:\operatorname{Nr}_{B_{3,n}/B_{3,n-1}}\varepsilon=1\}$ contains all $\ell$-th roots produced by Horie's lemma (\cite{MO13} Lemma~1.3).
+
+\emph{(v) Units of the lower layer with relative norm $1$.} Let $\varepsilon\in E_{3,n-1}$. The Galois group of $B_{3,n}/B_{3,n-1}$ is $\langle\tau\rangle$, of order $3$, and it fixes $\varepsilon$, so
+\[ \operatorname{Nr}_{B_{3,n}/B_{3,n-1}}(\varepsilon)=\varepsilon\cdot\tau\varepsilon\cdot\tau^2\varepsilon=\varepsilon^3 . \]
+Hence $\operatorname{Nr}(\varepsilon)=1$ gives $\varepsilon^3=1$ with $\varepsilon$ real, so $\varepsilon=1$ (\path{WeberP3Rel.eq_one_of_odd_pow_eq_one} with the odd exponent $3$). Consequently a unit $\varepsilon\in U_{3,n}$ with $H(\varepsilon)\ne0$ cannot lie in $E_{3,n-1}$: it would equal $1$ and have $H(\varepsilon)=0$.

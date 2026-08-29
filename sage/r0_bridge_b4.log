@@ -1,0 +1,8 @@
+n=3   t=3    (odd? True)   det(mult_nu) = 1   unit? True
+n=4   t=3    (odd? True)   det(mult_nu) = 1   unit? True
+n=5   t=3    (odd? True)   det(mult_nu) = 1   unit? True
+n=6   t=35   (odd? True)   det(mult_nu) = 1   unit? True
+n=7   t=35   (odd? True)   det(mult_nu) = 1   unit? True
+n=8   t=163  (odd? True)   det(mult_nu) = 1   unit? True
+n=9   t=163  (odd? True)   det(mult_nu) = 1   unit? True
+n=10  t=675  (odd? True)   det(mult_nu) = 1   unit? True

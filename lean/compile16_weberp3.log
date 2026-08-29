@@ -1,0 +1,9 @@
+weber_r16/WeberP3.lean:48:0: warning: automatically included section variable(s) unused in theorem `WeberP3.theoremP3_core`:
+  [CommGroup U]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CommGroup U] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+'WeberP3.l1_sq_le_card_mul_l2_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberP3.height_floor_of_l1_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberP3.theoremP3_core' depends on axioms: [propext, Classical.choice, Quot.sound]

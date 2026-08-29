@@ -1,0 +1,9 @@
+% proofs/statements/thm_SH.tex -- the STATEMENT of thm:SH: single source (r21, GPT r20 P1 = hw 1070-1083), \input by paper/draft/main_R*.tex and blueprint/src/content.tex;
+% the wrappers carry only \label, the Lean tags and the trust tag. Paper wording (ruling B, 2026-08-27). No \label / \lean / \uses / trust label / medium-specific \ref in this file.
+Let $K$ be a totally real number field of degree $N$, $H:K^\times\to\R^N$ the logarithmic map over its real embeddings, $\hgt=|H(\cdot)|$, and $U\subseteq\mathcal O_K^\times$ any set of units. Let $R$ be a free abelian group of rank $m$ and $h:R\to\R^N$ an additive map with (Rank): $h$ is injective; let $D$ be the covolume of the lattice $h(R)$ in its $\R$-span and $K_m=(2/\pi)^{m/2}\Gamma(2+m/2)$. Let $\ell$ be an odd prime and $L\subseteq R$ a subgroup with (Index): $\ell R\subseteq L$ and $[R:L]=\ell^{m-d}$; let $L_0>0$. Assume
+\begin{itemize}
+\item[(Car)] for every $a\in L$ there is $u\in U$ with $\ell\,H(u)=h(a)$ (the scaled lattice vector $\ell^{-1}h(a)$ is carried by a unit of $U$);
+\item[(Floor)] every $u\in U$ with $H(u)\ne0$ has $\hgt(u)\ge L_0$;
+\item[(Bl)] every lattice $\Lambda$ of rank $m$ in $\R^N$ contains $v\ne0$ with $|v|^m\le K_m\covol(\Lambda)$ (\cite{Bl14} Thm.~II, as \cite{MO16} Thm.~2.7).
+\end{itemize}
+Then $\ell^{d}\le K_mD/L_0^{m}$.

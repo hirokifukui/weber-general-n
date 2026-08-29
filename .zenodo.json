@@ -1,0 +1,32 @@
+{
+  "title": "weber_general_n: componentwise saturation-height bounds for relative class-number growth in the cyclotomic Z2- and Z3-towers (paper, Blueprint, Lean, certificates, verifier)",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "publication_date": "2026-08-28",
+  "creators": [
+    {
+      "name": "Fukui, Hiroki"
+    }
+  ],
+  "keywords": [
+    "Weber class number problem",
+    "cyclotomic Z2-extension",
+    "cyclotomic Z3-extension",
+    "relative units",
+    "saturation",
+    "Blichfeldt",
+    "certificates",
+    "Lean 4",
+    "mathlib"
+  ],
+  "description": "Theorem A: for every layer n >= 2 and odd prime l, l^{ord_{2^n}(l)} > C_n implies l does not divide h_n/h_{n-1}, with C_n an explicit product of L-values; at n = 7 an unconditional certified family of 1000 primes l = 65 (mod 128). Lean 4 kernel-checked cores (std-3 axioms), read-only certificate verifier, single-source Blueprint proofs, portable replay script. Release assets: paper PDF, Blueprint PDF, certificates, checker, CI attestation (ci_attestation.json) and CI logs; the source commit SHA and tag are in the GitHub Release metadata. MSC: 11R18, 11R29 (primary); 11H06, 11Y40 (secondary).",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/hirokifukui/weber-general-n",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "Synchronized with CITATION.cff (tools/check_release_metadata.py). License: MIT for code and certificates, CC BY 4.0 for the prose documents (LICENSE, LICENSE-CC-BY-4.0.txt). Repository: https://github.com/hirokifukui/weber-general-n. Version DOI reserved at release time; not written into the source tree.",
+  "license": "MIT"
+}

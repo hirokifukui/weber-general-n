@@ -1,0 +1,16 @@
+ORBIT: Q(a)        = 2.504705771967e+02
+ORBIT: Q(x*a)      = 2.504705771967e+02  shift-invariant: True
+ORBIT: Q(inv(a))   = 2.504705771967e+02  inversion-invariant: True
+ORBIT: Q(a(x^3))   = 3.466124819984e+03  substitution-invariant: False (expected False => refuted)
+DUAL: ||G G^-1 - I|| ~ 1.17e-35 (dual Gram = G^-1 certified numerically)
+DUAL: diag(G^-1) in [2.922e-02, 2.922e-02]; sqrt -> dual vector lengths ~ [1.709e-01, 1.709e-01]
+TRANSFERENCE verdict [H]: Banaszczyk lambda_1*mu(dual) <= d/2 gives per-dim constant
+  d/(2*pi*e)-scale ~ 1.936 vs Blichfeldt 3.0137: transference is WEAKER here unless
+  dual minima are provably large; no route to 2.147x improvement visible. KILL (56).
+TBODY: E[64 ln(rho_sym/L7)] = -1.049 (sd 4.552, N=400 directions)
+TBODY: per-dim factor estimate exp(mean/64) = 0.9837 ; required for 1e12 C7 gain: 1.54
+TBODY verdict (60): STOP T-body: headroom below the 10^12 bar. [H, MC-sampled]
+TWOADIC: v_P(eps_7 - 1) in K(zeta_512) = 256 (ram index e = 256); B_7-normalized = 128
+TWOADIC: MO floor is 128 (B_7-normalized, = v(2)); depth found 128 => free extra depth: NO - floor exact for eps_7 itself
+elapsed 10.3s
+R7 STRUCTURAL PILOTS DONE

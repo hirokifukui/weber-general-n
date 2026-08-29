@@ -1,0 +1,5 @@
+Lean toolchain : leanprover/lean4:v4.31.0-rc1
+mathlib commit : d568c8c09630de097a046763c17b9ea99f95f950 (lake-manifest pin)
+  (second pinned dep rev d575be693add4fe9cb996968968ce42ce75c5ccd)
+verification workspaces sharing this pin: <LOCAL_HOST> <LOCAL_LEAN_WORKSPACE>, <LOCAL_HOST> <LOCAL_LEAN_WORKSPACE>
+recorded 2026-08-24 (r7; homework 27)

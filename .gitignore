@@ -1,0 +1,32 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.bak
+*.bak_*
+
+# author's local literature cache (third-party; never committed)
+literature_cache/
+paper/*.pdf
+!paper/draft/*.pdf
+paper/sources/
+
+# runtime verification output (reproduced by CI on every push; not committed)
+verify_out/
+
+# internal session files
+HANDOFF.md
+papers/
+archive/
+docs/archive/
+external_review/
+
+# LaTeX by-products
+*.aux
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+paper/draft/*.log
+blueprint/src/*.log
+*.sage.py

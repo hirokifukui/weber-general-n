@@ -1,0 +1,7 @@
+'WeberCert.barT_two' depends on axioms: [propext]
+'WeberCert.barT_of_ge_three' depends on axioms: [propext, Quot.sound]
+'WeberCert.barT_seven' depends on axioms: [propext]
+'WeberCert.barT_two_lt_uniform' depends on axioms: [propext]
+'WeberCert.barT_le_uniform' depends on axioms: [propext, Quot.sound]
+'WeberCert.t_witness_refutes_saturation_barT' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0

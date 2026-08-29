@@ -1,0 +1,26 @@
+Gram built; max entry radius = 9.388e-150
+lambda_min(G) >= 1.384887 (numeric 1.384887 - error)
+enumeration bound B = 419.598454 ; slack = 6.889e-11 ; |v|^2 <= 303.0
+qfminim: 64 vector pairs within bound (0.8s)
+re-certified candidate lengths^2 (sorted, first 10):
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+  |v|^2 in [419.598452825, 419.598452825]  supp=1
+generator length^2 = [419.598452825, 419.598452825]
+LAMBDA_1 CERTIFIED: lambda_1^2 in [419.598452825, 419.598452825] -> lambda_1 = 20.4841024
+  lambda_1^2 <= [419.598452825, 419.598452825] (certified vector, rank-1 independent)
+  lambda_2^2 <= [419.598452825, 419.598452825] (certified vector, rank-2 independent)
+  lambda_3^2 <= [419.598452825, 419.598452825] (certified vector, rank-3 independent)
+LAMBDA_2, LAMBDA_3 CERTIFIED equal to the listed values IF the enumeration
+  bound exceeded them - it did (all three <= 20.4841 < sqrt(B)).
+HW 66 diagnostic: full enumeration to radius L_2 = 23.699 needs bound 561.6
+  (ratio to lambda_1^2: 1.34) - attempted only if this run is fast.
+elapsed 1.4s
+R9 BASE MINIMUM CERT DONE

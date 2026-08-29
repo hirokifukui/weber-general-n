@@ -1,0 +1,17 @@
+LLL top-5 vector lengths (float, /SCALE):
+  20.484102
+  20.484102
+  20.484102
+  20.484102
+  20.484102
+CERT: a = [0, 0, 0, 0, 0, 0]..., |Ha| in [20.484102, 20.484102]
+CERT: a = [1, 0, 0, 0, 0, 0]..., |Ha| in [20.484102, 20.484102]
+CERT: a = [0, 1, 0, 0, 0, 0]..., |Ha| in [20.484102, 20.484102]
+SUMMARY (hw 83-84): lambda_1(base) = ht(eps_7) = 20.4841 [certified generator];
+  lambda_2, lambda_3 UPPER bounds from LLL above; LOWER bound for all: L_1 = 16.3329 (MO).
+  Raised floors 23.699 / 31.412 / 39.221 vs base lambda_1 20.484: base vectors sit
+  BELOW every raised floor - so in any coset-level raised-floor theorem the a in lR
+  case CANNOT rely on the raised floor unless depth transfers to the genuine unit;
+  they must be excluded by coset separation, not by height. (hw 83 relation map)
+R8 BASE MINIMA DONE
+EXIT=0

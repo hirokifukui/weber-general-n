@@ -1,0 +1,33 @@
+n r    N   c   D lo / hi (10 digits)                     rad(D)     C3 lo / hi                              Thm0.3       C3hi/Thm0.3
+1 1    3   2  1.471009014 / 1.471009015  3.66e-1202  2.696072808 / 2.696072809  4.00000  0.674019
+2 1    9   2  10.81753711 / 10.81753712  6.15e-1201  6.608812356 / 6.608812357  4.00000  1.65221
+2 2    9   6  978.2993042 / 978.2993043  4.51e-1195  669.2341301 / 669.2341302  5760.00  0.116187
+3 1   27   2  42.92134754 / 42.92134755  8.62e-1200  8.740718244 / 8.740718245  4.00000  2.18518
+3 2   27   6  77996.98048 / 77996.98049  5.23e-1193  1976.152074 / 1976.152075  5760.00  0.343082
+3 3   27  18  6.052456008e13 / 6.052456009e13  1.08e-1171  2.583977137e11 / 2.583977138e11  3.27802e18  7.88275e-8
+4 1   81   2  143.3993513 / 143.3993514  1.20e-1198  9.734187440 / 9.734187441  4.00000  2.43355
+4 2   81   6  2.945051903e6 / 2.945051904e6  7.69e-1191  2763.578222 / 2763.578223  5760.00  0.479788
+4 3   81  18  2.387889803e19 / 2.387889804e19  3.57e-1168  5.179406695e12 / 5.179406696e12  3.27802e18  1.58005e-6
+4 4   81  54  3.256633159e54 / 3.256633160e54  2.83e-1092  2.120399840e44 / 2.120399841e44  3.09834e79  6.84369e-36
+5 1  243   2  449.0127300 / 449.0127301  1.52e-1197  10.15991131 / 10.15991132  4.00000  2.53998
+5 2  243   6  9.051487290e7 / 9.051487291e7  9.46e-1189  3145.828119 / 3145.828120  5760.00  0.546151
+5 3  243  18  7.246608678e23 / 7.246608679e23  3.75e-1163  7.985631215e12 / 7.985631216e12  3.27802e18  2.43612e-6
+5 4  243  54  1.736139652e71 / 1.736139653e71  1.22e-1084  1.482380525e48 / 1.482380526e48  3.09834e79  4.78445e-32
+5 5  243 162  2.372653050e202 / 2.372653051e202  2.22e-817  2.477213841e167 / 2.477213842e167  2.97322e313  8.33176e-147
+Traceback (most recent call last):
+  File "<LOCAL_PATH>", line 57, in <module>
+    json.dump(out, open("certificates/p3/D3_cert_r16.json","w"), indent=_sage_const_1 )
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/tmp/sage-10.8-current/local/lib/python3.13/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/var/tmp/sage-10.8-current/local/lib/python3.13/json/encoder.py", line 433, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/var/tmp/sage-10.8-current/local/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/var/tmp/sage-10.8-current/local/lib/python3.13/json/encoder.py", line 440, in _iterencode
+    o = _default(o)
+  File "/var/tmp/sage-10.8-current/local/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Integer is not JSON serializable

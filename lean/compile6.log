@@ -1,0 +1,4 @@
+'covol_bookkeeping' depends on axioms: [propext, Classical.choice, Quot.sound]
+'saturation_short_unit' does not depend on any axioms
+'deg2_threshold_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'deg1_threshold_valid' depends on axioms: [propext]

@@ -1,0 +1,46 @@
+prime   LLL min|v|   orbit min|v|   cv=covol^{1/64}   constLLL  (need <=1.404 at l=1e9)
+     257   20.48410     43.84773       14.74889       1.3889
+   78721   20.48410     34.96126       13.48693       1.5188
+  163841   20.48410     34.29055       13.33335       1.5363
+  259841   20.48410     33.54908       13.23761       1.5474
+  356737   20.48410     33.39191       13.17222       1.5551
+  455809   20.48410     34.22348       13.12188       1.5611
+  557057   20.47429     32.95710       13.08082       1.5652
+  653057   20.48410     33.36653       13.04836       1.5699
+  747521   20.48410     32.29129       13.02085       1.5732
+  842497   20.48410     32.51014       12.99653       1.5761
+  956929   20.48410     32.61631       12.97070       1.5793
+ 1052417   20.48410     33.43939       12.95143       1.5816
+ 1153153   20.48410     31.83585       12.93295       1.5839
+ 1257089   20.48410     33.11410       12.91552       1.5860
+ 1364609   20.48410     32.89649       12.89897       1.5880
+ 1468673   20.48410     31.21590       12.88417       1.5899
+ 1571329   20.48410     30.71007       12.87057       1.5915
+ 1677569   20.48410     31.79512       12.85742       1.5932
+ 1783553   20.48410     31.18547       12.84512       1.5947
+ 1892353   20.48410     32.37825       12.83324       1.5962
+ 2003329   20.48410     31.42873       12.82182       1.5976
+ 2105729   20.48410     31.59747       12.81184       1.5988
+ 2211329   20.48410     32.45923       12.80204       1.6001
+ 2327681   20.48410     31.88827       12.79179       1.6013
+ 2429953   20.48410     31.21421       12.78320       1.6024
+ 2543617   20.48410     32.62846       12.77407       1.6036
+ 2653697   20.48410     31.91723       12.76562       1.6046
+ 2767361   20.48410     30.26495       12.75726       1.6057
+ 2880641   20.48410     31.42011       12.74926       1.6067
+ 2999041   20.48410     33.29888       12.74124       1.6077
+SUMMARY: constLLL min 1.3889 mean 1.5768 max 1.6077 ; first-half mean 1.5540 vs second-half 1.5996
+BASE-VECTOR IDENTIFICATION: ht(eps_7) = 20.48410 ; LLL minima all equal it: False
+VERDICT (prose from boolean): at 29/30 primes the LLL minimum equals the base
+  generator ht(eps_7) = 20.4841; EXCEPTIONS (prime, LLL min): [(557057, 20.47429)]
+  Every exception is still > L_7 = 16.3329, so the operative conclusion holds:
+  no vector below L_7 was found at any sampled prime - but the minima are NOT
+  all the base generator, and no stronger claim is made. [MC-float, limited scope]
+STATUS (r8): route verdicts are NOT drawn from this diagnostic. Geometry route =
+  low priority, not stopped; the 1e22 extrapolation is withdrawn (no theorem behind
+  it); the mod-16 closure claim is RETRACTED (index obstruction - see
+  theory/FILTER_INDEX_OBSTRUCTION.md). This log is [MC-float] evidence only.
+CAVEATS: LLL approximation only (no BKZ - hw 51), 2 components/prime, l <= 3e6.
+elapsed 11.6s
+R7 CLS1 PILOT2 DONE
+EXIT=0

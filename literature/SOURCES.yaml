@@ -1,0 +1,66 @@
+# SOURCES.yaml — third-party literature used by weber_general_n.
+# Bibliographic lines are verbatim from proofs/bibliography.tex (the paper's own bibliography).
+# local_file = the copy the author read (author's local cache; NOT in this repository).
+# sha256_16 = first 16 hex of SHA-256 of that local file.
+# doi: filled only when confirmed against the publisher page; never asserted from memory.
+# redistribution: not_redistributed for every entry.
+sources:
+  - key: MO16
+    citation: "T. Morisawa, R. Okazaki, Height and Weber's class number problem, J. Theor. Nombres Bordeaux 28 (2016), 811-828."
+    local_file: paper/MO2016_height_weber_jtnb965.pdf
+    sha256_16: ad43c2c1c4264a93
+    note: "duplicate local copy paper/MO2016_height_weber.pdf, same sha256"
+    used_in: "Theorem A comparators; Lemma A+ ((Floor), MO16 Lemma 2.5); Blichfeldt form (MO16 Thm 2.7); Z3 relative floor (Lemma 2.5(2)); Example 1.6 cross-check"
+    redistribution: not_redistributed
+  - key: KY
+    citation: "T. Kashio, H. Yoshizaki, Minimal relative units of the cyclotomic Z_2-extension, arXiv:2107.08587v3 (2022)."
+    arxiv: "2107.08587v3"
+    local_file: paper/KY_2107.08587_weber.pdf
+    sha256_16: c63dbf907039ba49
+    note: "duplicate local copy paper/KY2022_minimal_relative_units.pdf, same sha256"
+    used_in: "A_n structure (sect 4); KY1000 target family (sect 4.2 list); freeness of A_n/{+-1}"
+    redistribution: not_redistributed
+  - key: MO13
+    citation: "T. Morisawa, R. Okazaki, Mahler measure and Weber's class number problem in the cyclotomic Z_p-extension of Q for odd prime number p, Tohoku Math. J. 65 (2013), 253-272."
+    local_file: paper/MO2013_Tohoku_oddp.pdf
+    sha256_16: "670adde803470852"
+    used_in: "odd-p comparators (Thm 0.3, Lemma 9.1/9.2); Z3 track inputs"
+    redistribution: not_redistributed
+  - key: Ho05a
+    citation: "K. Horie, Triviality in ideal class groups of Iwasawa-theoretical abelian number fields, J. Math. Soc. Japan 57 (2005), 827-857."
+    local_file: paper/Horie2005_JMSJ_triviality.pdf
+    sha256_16: 6c7e2245cf483fbc
+    used_in: "Proposition 1 = general form of Horie's saturation lemma (Phase -1 audit; RELEASE_STATUS r18 block)"
+    redistribution: not_redistributed
+  - key: Ho05b
+    citation: "K. Horie, Primary components of the ideal class group of the Z_p-extension over Q for typical inert primes, Proc. Japan Acad. Ser. A 81 (2005), 40-43."
+    local_file: paper/Horie2005_PJA_typical_inert.pdf
+    sha256_16: 32698eb99c18ce63
+    used_in: "Lemma 2 (relays Horie 2002 Lemmas 2,3,8); Track B gates (theory/TRACKB_P3_GATES_R16.md)"
+    redistribution: not_redistributed
+  - key: HH09
+    citation: "K. Horie, M. Horie, The ideal class group of the Z_p-extension over the rationals, Tohoku Math. J. 61 (2009), 551-570."
+    local_file: paper/sources/HorieHorie2009_Tohoku61_Zp_extension.pdf
+    sha256_16: 50a2d20f2720d263
+    extracted_text: "paper/sources/HorieHorie2009_Tohoku61_text.txt (sha256_16 31da7f1af0cada51; local only)"
+    used_in: "Theorem 1 / Prop 2 / Prop 3 thresholds (theory/PHASE_MINUS1_INTEGRATED_AUDIT_R10.md)"
+    redistribution: not_redistributed
+  - key: MO3
+    citation: "T. Morisawa, R. Okazaki, Filtrations of units of Viete field, Int. J. Number Theory 16 (2020), 1067-1079."
+    local_file: paper/sources/MO3_2020_IJNT_filtrations_viete.pdf
+    sha256_16: ee8753bf349bc062
+    extracted_text: "paper/sources/MO3_2020_{raw,clean,text}.txt (local only; the publisher's download watermark in the extraction is one reason these stay local)"
+    used_in: "Phase -1 audit (theory/PHASE_MINUS1_INTEGRATED_AUDIT_R10.md)"
+    redistribution: not_redistributed
+  - key: Wa78
+    citation: "L. C. Washington, The non-p-part of the class number in a cyclotomic Z_p-extension, Invent. Math. 49 (1978), 87-97."
+    local_file: paper/sources/Washington1978_Invent49_nonp_part.pdf
+    sha256_16: b0954600a0ad5fd1
+    extracted_text: "paper/sources/Washington1978_Invent49_OCR.txt (tesseract OCR of the GDZ scan; local only)"
+    used_in: "boundedness theorem, quoted verbatim in theory/PHASE_MINUS1_INTEGRATED_AUDIT_R10.md; effectivity caveat recorded there"
+    redistribution: not_redistributed
+  - key: Luo26
+    citation: "(not a bibliography item) local reference copy, quarantined by internal ruling; not used as an input to any claim"
+    local_file: paper/Luo2026_weber_QUARANTINED.pdf
+    sha256_16: 642680e08ae2fc52
+    redistribution: not_redistributed

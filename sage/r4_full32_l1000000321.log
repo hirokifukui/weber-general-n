@@ -1,0 +1,35 @@
+idx  f=y^2+c (c)          rho          T_best        chk1  chk2  verdict
+0    30063488             1.074942     5475.9641     True  True  OPEN
+1    30912022             1.08683      5097.3287     True  True  OPEN
+2    42483948             1.086348     5843.8888     True  True  OPEN
+3    59955883             1.003729     5834.6175     True  True  OPEN
+4    78186285             1.087023     5334.9006     True  True  OPEN
+5    160612070            1.08371      5805.1423     True  True  OPEN
+6    191346380            1.06254      4858.3227     True  True  OPEN
+7    246360387            0.9740585    4897.8247     True  True  RHO_PASS
+8    268629094            1.040826     4699.79       True  True  OPEN
+9    269645956            1.079826     3704.8075     True  True  T_PASS
+10   280492327            1.074942     5111.7506     True  True  OPEN
+11   303644312            1.086225     8259.5202     True  True  OPEN
+12   311722386            1.078481     4377.2435     True  True  OPEN
+13   424439170            1.085739     5841.6407     True  True  OPEN
+14   441230693            1.085739     3820.7355     True  True  T_PASS
+15   447503416            1.120432     4974.772      True  True  OPEN
+16   552496905            1.011428     3218.545      True  True  T_PASS
+17   558769628            1.110012     5489.3684     True  True  OPEN
+18   575561151            1.097715     6382.94       True  True  OPEN
+19   688277935            0.9740585    3396.3297     True  True  RHO_PASS
+20   696356009            1.003729     6003.8287     True  True  OPEN
+21   719507994            1.082724     5679.8079     True  True  OPEN
+22   730354365            1.103864     5751.3619     True  True  OPEN
+23   731371227            1.029431     4545.7976     True  True  OPEN
+24   753639934            1.078481     4346.8339     True  True  OPEN
+25   808653941            1.10433      4346.489      True  True  OPEN
+26   839388251            1.040826     6224.6764     True  True  OPEN
+27   921814036            1.086348     5703.1528     True  True  OPEN
+28   940044438            1.125029     8969.9507     True  True  OPEN
+29   957516373            1.087023     5968.3472     True  True  OPEN
+30   969088299            1.011428     3424.8341     True  True  T_PASS
+31   969936833            1.082724     3961.2906     True  True  T_PASS
+SUMMARY: RHO_PASS 2 / T_PASS 5 / OPEN 25 of 32   worst rho = 1.125029
+R4 FULL32 DONE

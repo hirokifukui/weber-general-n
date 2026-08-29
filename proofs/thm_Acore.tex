@@ -1,0 +1,15 @@
+We write the argument so that it can be followed without the Lean source. There are three data: a set of ``components'' $f$ with a predicate \emph{saturated}$(f)$ and a real number $\operatorname{ht}(f)$ attached to each $f$; positive real constants $L$ (a height floor), $K$ (the Blichfeldt constant), $D$ (a covolume) and $\ell^d$ (the index of the component lattice), and an integer $m>0$ (the rank); and three hypotheses, each a plain implication or inequality with no quantifier hidden inside a definition:
+\begin{itemize}
+\item[(ky41)] if $\ell\mid k_n$, then some component $f$ is saturated;
+\item[(blichfeldt)] for every component $f$, $\operatorname{ht}(f)^m\le KD/\ell^d$;
+\item[(floor)] for every saturated component $f$, $L\le\operatorname{ht}(f)$.
+\end{itemize}
+Put $C:=KD/L^m$ and assume $C<\ell^d$. We prove $\ell\nmid k_n$.
+
+Suppose, for a contradiction, that $\ell\mid k_n$. By (ky41) there is a saturated component $f$. By (floor), $L\le\operatorname{ht}(f)$. Since $0<L$ and $m$ is a positive integer, the function $y\mapsto y^m$ is increasing on $y\ge0$, so $L^m\le\operatorname{ht}(f)^m$. By (blichfeldt), $\operatorname{ht}(f)^m\le KD/\ell^d$. Chaining the two inequalities, $L^m\le KD/\ell^d$.
+
+On the other hand the assumption $C<\ell^d$ reads $KD/L^m<\ell^d$. Multiply both sides by $L^m>0$: $KD<\ell^dL^m$. Divide both sides by $\ell^d>0$: $KD/\ell^d<L^m$. The two displayed conclusions, $L^m\le KD/\ell^d$ and $KD/\ell^d<L^m$, contradict each other. Hence $\ell\nmid k_n$.
+
+In the paper the three hypotheses are instantiated as follows (this instantiation is Prop.~F, not this theorem): components are the irreducible factors $f$ of $x^m+1$ over $\F_\ell$; \emph{saturated} is the conclusion of \cite{KY} Prop.~4.1 for the component $f_0$ of Lemma~\ref{lem:E}; $\operatorname{ht}(f)$ is the length of the shortest nonzero vector of $\Lambda_f$; $L=L_n$ is the floor of Lemma~A$^+$; $K=(2/\pi)^{m/2}\Gamma(2+m/2)$ and $D=D_n$ are the constants of Blichfeldt's theorem and of Lemma~D, so that (blichfeldt) is the power-$m/2$ form of Blichfeldt's inequality for the lattice $\Lambda_f$ of covolume $D_n/\ell^{d}$; and $C=C_n$. In that instantiation (floor) is where the saturation description enters (a short vector of $\Lambda_{f_0}$ is the log vector of a relative unit $\ne\pm1$, whose height is at least $L_n$), and (ky41) is the existence of the saturation component.
+
+\emph{Lean.} \path{TheoremAInputs.theoremA_of_inputs}: the three hypotheses are the fields \texttt{ky41}, \texttt{blichfeldt}, \texttt{floor} of the structure \texttt{TheoremAInputs}; the two rewritings of $C<\ell^d$ are \path{div_lt_iff}; the final contradiction is \texttt{linarith}. Axiom census std-3 (\path{lean/WeberExternalResults.lean}).

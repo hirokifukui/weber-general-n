@@ -1,0 +1,35 @@
+idx  c                    rho          T_best        Qc1 Qc2 Tc1 Tc2  verdict   t
+0    30063488             0.9689823    3055.6739     True True True True  RHO_PASS 3s
+1    30912022             0.9501516    2240.5369     True True True True  RHO_PASS 2s
+2    42483948             0.9461975    2115.6374     True True True True  RHO_PASS 2s
+3    59955883             0.9592332    2754.7361     True True True True  RHO_PASS 2s
+4    78186285             0.9612194    2830.5779     True True True True  RHO_PASS 2s
+5    160612070            0.9883408    2189.1926     True True True True  RHO_PASS 2s
+6    191346380            0.9771827    2454.0753     True True True True  RHO_PASS 2s
+7    246360387            0.9553479    2583.5395     True True True True  RHO_PASS 2s
+8    268629094            0.9512775    2393.4104     True True True True  RHO_PASS 2s
+9    269645956            0.9723293    2758.2833     True True True True  RHO_PASS 2s
+10   280492327            0.9605482    2689.0613     True True True True  RHO_PASS 2s
+11   303644312            0.938718     2837.583      True True True True  RHO_PASS 2s
+12   311722386            0.9565946    2802.4094     True True True True  RHO_PASS 2s
+13   424439170            0.9600447    2155.8567     True True True True  RHO_PASS 2s
+14   441230693            0.9600447    2488.524      True True True True  RHO_PASS 2s
+15   447503416            0.9501516    2270.8533     True True True True  RHO_PASS 2s
+16   552496905            0.9977245    3218.545      True True True True  RHO_PASS 2s
+17   558769628            0.9781835    2667.0852     True True True True  RHO_PASS 2s
+18   575561151            0.9781835    1971.018      True True True True  RHO_PASS 2s
+19   688277935            0.9553479    2426.1123     True True True True  RHO_PASS 2s
+20   696356009            0.9592332    2588.9421     True True True True  RHO_PASS 2s
+21   719507994            0.9484393    2070.2117     True True True True  RHO_PASS 2s
+22   730354365            0.9771827    2733.6483     True True True True  RHO_PASS 2s
+23   731371227            0.9883408    3316.084      True True True True  RHO_PASS 2s
+24   753639934            0.9565946    3373.4483     True True True True  RHO_PASS 2s
+25   808653941            0.9723293    2752.1826     True True True True  RHO_PASS 2s
+26   839388251            0.9512775    2409.2472     True True True True  RHO_PASS 2s
+27   921814036            0.9461975    2502.3829     True True True True  RHO_PASS 2s
+28   940044438            0.938718     2016.9869     True True True True  RHO_PASS 2s
+29   957516373            0.9752865    2607.1267     True True True True  RHO_PASS 2s
+30   969088299            0.9977245    2491.825      True True True True  RHO_PASS 2s
+31   969936833            0.9484393    2658.6318     True True True True  RHO_PASS 2s
+SUMMARY: RHO_PASS 32 / T_PASS 0 / OPEN 0 of 32   worst rho = 0.9977245   max rho = 0.9977245
+R5 FULL32 DONE

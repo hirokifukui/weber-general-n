@@ -1,0 +1,31 @@
+weber_r16/WeberSH.lean:28:0: warning: automatically included section variable(s) unused in theorem `WeberSH.H_pow`:
+  [NormedSpace ℝ V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NormedSpace ℝ V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+weber_r16/WeberSH.lean:41:0: warning: automatically included section variable(s) unused in theorem `WeberSH.Hι_nsmul`:
+  [NormedSpace ℝ V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NormedSpace ℝ V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+weber_r16/WeberSH.lean:54:0: warning: automatically included section variable(s) unused in theorem `WeberSH.base_branch`:
+  [CommGroup U]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CommGroup U] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+weber_r16/WeberSH.lean:67:0: warning: automatically included section variable(s) unused in theorem `WeberSH.short_vector_ge_floor`:
+  [CommGroup U]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CommGroup U] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+'WeberSH.H_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberSH.Hι_nsmul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberSH.base_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberSH.sat_root_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberSH.short_vector_ge_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberSH.theoremSH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberSH.theoremSH_contra' depends on axioms: [propext, Classical.choice, Quot.sound]

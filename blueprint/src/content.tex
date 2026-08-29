@@ -1,0 +1,424 @@
+% leanblueprint content — weber_general_n, r20 (2026-08-27). Statements from
+% theory/STATEMENT_FREEZE_1.0.0.md and paper/draft/main_1.0.0.tex. PROOFS are the single-source files
+% ../../proofs/*.tex (\proofsdir), shared verbatim with the paper (GPT r11 hw 171-190).
+%  * Every node carries one of: a full proof (\begin{proof}), \leanok (kernel-checked as stated), a
+%    certificate path [C], an exact literature citation [L], or an experiment log path [E];
+%    check_graph.py fails on any node with none of these (evidence-presence gate, hw 183-184; renamed r13, GPT r12 hw 47),
+%    and, from r13, on any F/M node whose proof body is only a kernel note (human-proof completeness, hw 49).
+% Conventions (GPT r10 hw 92-96):
+%  * \leanok is used ONLY in the sense "this node, exactly as stated, is a kernel-checked
+%    declaration with std-3 axiom footprint" (no sorry, no native_decide). See lean/README_lean.md.
+%  * Nodes whose Lean content is a discrete core RELATIVE to literature inputs are split: the
+%    paper-level node carries no \lean and \uses the core node, which carries \lean + \leanok.
+%    This keeps standard leanblueprint semantics (no custom \leanrelative macro).
+%  * Every node title ends with its trust label: [F] kernel / [C] certificate + read-only checker /
+%    [L] literature input (verbatim location and source hash in theory/PHASE_MINUS1_INTEGRATED_AUDIT_R10.md
+%    part (c) and the SOURCES block below) / [E] experiment, used in no theorem / composites.
+%  * exp:class1 and exp:svp are INTENTIONAL non-theorem nodes (GPT r12 hw 53): they record experiments,
+%    use nothing and are used by nothing; check_graph.py reports them as orphans by design.
+%  * Certificate nodes name the certificate id (CORRESPONDENCE.csv) and the checker version
+%    (scripts/family_verify.sage sha256 0f38bb0d..., r11).
+%
+% SOURCES (verbatim locations; hashes of the on-disk primaries):
+%  KY  = Kashio-Yoshizaki, arXiv:2107.08587v3; paper/KY_2107.08587_weber.pdf. Def 2.1 p.3; Thm 2.3 p.4;
+%        Eq.(17) p.10; sect 4 pp.13-15; Prop 4.1 p.15 with display (23).
+%  MO16 = Morisawa-Okazaki, JTNB 28 (2016) 811-828; paper/MO2016_height_weber_jtnb965.pdf. Def 2.2 p.815;
+%        Lemma 2.5(1) p.817; Thm 2.7 p.818; sect 3.3 p.820.
+%  MO3 = Morisawa-Okazaki, IJNT 16 (2020) 1067-1079; paper/sources/MO3_2020_IJNT_filtrations_viete.pdf. Prop 6.6 p.1075.
+%  Wash = Washington, Introduction to Cyclotomic Fields, 2nd ed. (1997). Cited at chapter level (Ch.2 discriminant / integral basis; Ch.4 L(1,chi) formula and Gauss-sum modulus); statement numbers = OPEN hw 29.
+%  Bl14 = Blichfeldt, Trans. AMS 15 (1914) 227-235, Thm II (as quoted in MO16 Thm 2.7).
+
+\chapter{Setting}
+\begin{definition}[Weber layers, relative units, the KY unit, components]\label{def:setting}
+$B_n=\mathbb{Q}(X_n)$, $X_n=2\cos(2\pi/2^{n+2})$; $G_n=\langle\sigma\rangle$, $\sigma(X_n)=2\cos(3\cdot 2\pi/2^{n+2})$;
+$\tau=\sigma^{2^{n-1}}$; $E_n$ the units, $RE^+_n=\{\varepsilon: N_{n/n-1}\varepsilon=1\}$;
+$\varepsilon_n=(X_n+1)/(X_n-1)$; $A_n=\langle\pm1,\varepsilon_n\rangle_{\mathbb{Z}[G_n]}$;
+$m=2^{n-1}$; $R_n=\mathbb{Z}[x]/(x^m+1)$; $u_a=\prod\sigma^i(\varepsilon_n)^{a_i}$; $\lambda_j=\log|\sigma^j\varepsilon_n|$;
+$H_n:\mathbb{Z}^m\to\mathbb{R}^{2m}$, $(H_na)_j=\sum_i a_i\lambda_{i+j}$; $D_n=\operatorname{covol}H_n(\mathbb{Z}^m)$;
+$L_n=\sqrt{2^n}\log(2+\sqrt5)$; $d_n(\ell)=\operatorname{ord}_{2^n}(\ell)$; for $f\mid x^m+1$ irreducible over $\mathbb{F}_\ell$:
+$M_f=((x^m+1)/f)\mathbb{F}_\ell[x]/(x^m+1)$, $L_f=\pi^{-1}(M_f)$, $\Lambda_f=\ell^{-1}H_n(L_f)$;
+$C_n=(2/\pi)^{m/2}\Gamma(2+m/2)D_n/L_n^m$. The KY identification (KY sect.~4) is
+\begin{equation}\label{eq:ident}
+R_n/\ell R_n=\mathbb{F}_\ell[x]/(x^m+1)\;\xrightarrow{\ \sim\ }\;A_n^{1/\ell}/A_n,\qquad \bar a\mapsto r_aA_n,\quad r_a:=\prod_{i<m}\sigma^i(\varepsilon_n)^{a_i/\ell},
+\end{equation}
+$A_n^{1/\ell}=\{x\in\mathbb{R}:x^\ell\in A_n\}$, $r_a$ the real $\ell$-th root of $u_a$; well defined on classes mod $\ell$ since $a\mapsto a+\ell b$ multiplies $r_a$ by $u_b\in A_n$.
+\end{definition}
+
+\chapter{Literature inputs}
+\begin{lemma}[KY index {[L]}]\label{lem:ky17}
+$[RE^+_n:A_n]=h_n/h_{n-1}=:k_n$. (KY Eq.~(17), p.10, exact equality.)
+\end{lemma}
+\begin{lemma}[KY freeness and identification {[L]}]\label{lem:kyfree}
+$A_n/\{\pm1\}$ is free abelian on $\sigma^i(\varepsilon_n)$, $0\le i<m$; $R_n/\ell R_n\simeq A_n^{1/\ell}/A_n$, $\bar a\mapsto r_aA_n$ with $r_a$ the real $\ell$-th root of $u_a$. (KY sect.~4, pp.13--14.)
+\end{lemma}
+\begin{lemma}[KY saturation {[L]}]\label{lem:ky41}
+If $\ell\mid k_n$ then some irreducible $f_0\mid x^m+1$ over $\mathbb{F}_\ell$ has $\{g\cdot\varepsilon_n: g\bmod(x^m+1)\in M_{f_0}\}\subseteq RE^+_n$, i.e.\ the image of $M_{f_0}$ in $A_n^{1/\ell}/A_n$ lies in the subgroup $RE^+_n/A_n=\{[\varepsilon]:\varepsilon\in RE^+_n\cap A_n^{1/\ell}\}$ (a set of cosets). (KY Prop.~4.1, p.15, display (23).)
+\end{lemma}
+\begin{lemma}[KY trace floor {[L]}]\label{lem:ky23}
+For $n\ge3$ and $\varepsilon\in RE^+_n\setminus\{\pm1\}$: $\operatorname{Tr}\varepsilon^2\ge33\cdot2^n$ (KY Thm.~2.3, p.4). For $n=2$: $\ge17\cdot2^n$ (MO3 Prop.~6.6).
+\end{lemma}
+\begin{lemma}[Height floor {[L]}]\label{lem:mo25-z2}
+For $\varepsilon\in E_n\setminus E_{n-1}$ with $N_{n/n-1}\varepsilon=1$: $\operatorname{ht}(\varepsilon)\ge L_n$. (MO16 Lemma~2.5(1), p.817.)
+\end{lemma}
+\begin{lemma}[Blichfeldt {[L]}]\label{lem:blich}
+A rank-$d$ lattice $\Lambda$ has a nonzero $v$ with
+\[ |v|^2\le\frac{2}{\pi}\Gamma\big(1+\tfrac{d+2}{2}\big)^{2/d}\operatorname{covol}(\Lambda)^{2/d} \]
+(Bl14 Thm.~II; MO16 Thm.~2.7). Equivalent power form: $|v|^d\le(2/\pi)^{d/2}\Gamma(2+d/2)\operatorname{covol}(\Lambda)$.
+\end{lemma}
+\begin{lemma}[Dirichlet {[L]}]\label{lem:dirichlet}
+The logarithmic image of $E_n$ in $\mathbb{R}^{2^n}$ is discrete; $L(1,\chi)\ne0$ for nontrivial Dirichlet $\chi$.
+\end{lemma}
+\begin{lemma}[Schinzel's inequality {[L]}]\label{lem:schinzel}
+Let $\varepsilon$ be a totally real unit different from $\pm1$ and $\mathfrak M$ an ideal of $\mathbb Q(\varepsilon)$ containing $\varepsilon^2-1$, $C$ the absolute norm of $\mathfrak M$, $d=[\mathbb Q(\varepsilon):\mathbb Q]$. Then $M(\varepsilon)\ge\big((C^{1/d}+\sqrt{C^{2/d}+4})/2\big)^{d/2}$. (MO3 Thm.~5.1, p.~1074, quoting Schinzel; verbatim in paper/sources/MO3\_2020\_clean.txt, line 631.)
+\end{lemma}
+\begin{lemma}[Height versus Mahler measure {[L]}]\label{lem:mo24}
+For a unit $\varepsilon$ of a totally real field of degree $N$: $\log M(\varepsilon)\le\tfrac12\sqrt N\operatorname{ht}(\varepsilon)$ (MO16 eq.~(2.4), proof of Lemma~2.3; Cauchy--Schwarz, reproved inside Lemma~\ref{lem:depthfloor}).
+\end{lemma}
+\begin{lemma}[Ramar\'e's bound for $|L(1,\chi)|$, even conductor {[L]}]\label{lem:ramare}
+For every even primitive Dirichlet character $\chi$ of conductor $q$ with $2\mid q$ and $q\ge4$: $|L(1,\chi)|\le U(q):=\frac14(\log q+2\log2)+\log(4q)/\sqrt q$. (Ram04 Corollary~1 with $h=1$, $k=2$: $\omega(h)=0$, $\phi(hk)/(2hk)=1/4$, $\sum_{p\mid 2}\log p/(p-1)=\log2$, $\kappa_\chi=0$ for even $\chi$, error term $\phi(h)2^{\omega(k)-1}h^{-1}q^{-1/2}\log(q\cdot4)$; condition $q\ge k^24^{\omega(h)}=4$. Read from the author's accepted manuscript; the journal typesetting is to be compared before release.)
+\end{lemma}
+\begin{lemma}[Robbins' Stirling bound {[L]}]\label{lem:robbins}
+For every integer $k\ge1$: $k!=\sqrt{2\pi k}\,(k/e)^k e^{r_k}$ with $1/(12k+1)<r_k<1/(12k)$; in particular $k!\le\sqrt{2\pi k}\,(k/e)^ke^{1/(12k)}$. (Rob55.)
+\end{lemma}
+\begin{lemma}[Horie's saturation lemma at odd $p$ {[L]}; Ho05a Prop.~1 read in r17]\label{lem:horie13}
+$p$ odd, $\ell\ne p$ prime, $F\subseteq\Q(\zeta_{p^n})$ an extension of the decomposition field of $\ell$; $\eta_n$ the Horie unit; $\alpha\mapsto\alpha_\sigma$ the coordinate lift $\Z[\zeta_{p^n}]\to\Z[\operatorname{Gal}]$. Then $\ell\mid h_{p,n}/h_{p,n-1}$ iff there is a prime $\mathcal L$ of $F$ above $\ell$ with $\eta_n^{\alpha_\sigma}$ an $\ell$-th power in $E_{p,n}$ for every $\alpha\in\ell\mathcal L^{-1}$. (MO13 Lemma~1.3, attributed to Ho05b, which relays Ho02 Lemmas 2, 3, 8; the same statement is quoted in Horie--Horie, Tohoku 61 (2009). Only the direction ``$\ell\mid h_{p,n}/h_{p,n-1}\Rightarrow$'' is used. r17: the general form of the lemma, with proof, is Ho05a Proposition~1 (open access; paper/Horie2005\_JMSJ\_triviality.pdf, read): for a Dirichlet character $\chi$ of order $g_\chi$ prime to $\ell$, $\sigma$ a generator of $\operatorname{Gal}(K_\chi/\Q)$ and $k\subseteq\Q(\zeta_{g_\chi})$ containing the decomposition field of $\ell$, $\ell\mid\bar h_\chi$ iff there is a prime $\mathfrak l$ of $k$ above $\ell$ such that $|\eta_\chi^{\alpha_\sigma}|$ is an $\ell$-th power in $E_\chi$ for every $\alpha\in\ell\mathfrak l^{-1}$; MO13 Lemma~1.3 is its specialisation to the layer ($K_\chi=B_{p,n}$, $\bar h_\chi=h_{p,n}/h_{p,n-1}$, $\eta_\chi$ the Horie unit up to sign and a root of unity). The original Ho02 (JLMS, paywalled) has still not been compared verbatim; Ho05a is by the same author and contains the proof.)
+\end{lemma}
+\par\noindent{\small\emph{Historical / superseded input (not a node of the graph; used by no current theorem).} The r16 floor was the Schinzel-type Mahler-measure bound $M(\varepsilon)\ge((1+\sqrt5)/2)^{d/2}$ for a totally real unit $\varepsilon\ne\pm1$ of degree $d$ (MO13 Thm.~2.2 with the ideal $\mathfrak M=(1)$; Sch73); superseded in r17 by Lemma~\ref{lem:mo25-z3} and kept here only for the record (1.0.0, GPT r21 item 8).}\par
+\begin{lemma}[Washington {[L]}]\label{lem:wash}
+For $\chi$ even primitive of conductor $f>1$:
+\[ L(1,\chi)=-\frac{\tau(\chi)}{f}\sum_{a=1}^f\bar\chi(a)\log|1-\zeta_f^a| ,\qquad |\tau(\chi)|=\sqrt f . \] (Wash, Chapter~4: the $L(1,\chi)$ formula for even primitive $\chi$ and the Gauss-sum modulus; cited at chapter level, hw 29.)
+\end{lemma}
+
+\chapter{The componentwise lemmas (Appendix A of the paper)}
+\begin{lemma}[A: bridge {[F]}]\label{lem:A}\lean{bridge_fixed_norm_sq, torsion_pm_one}\leanok
+\input{\proofsdir/statements/lem_A}
+\end{lemma}
+\begin{proof}\leanok
+\input{\proofsdir/lem_A}
+The Lean declaration(s) named above are this proof verbatim; \texttt{\#print axioms} within std-3 (lean/README\_lean.md).
+\end{proof}
+\begin{lemma}[A$^+$: floor for relative units $\ne\pm1$ {[L-relative]}]\label{lem:Aplus}
+\input{\proofsdir/statements/lem_Aplus}
+\uses{lem:A, lem:mo25-z2}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_Aplus}
+\end{proof}
+\begin{lemma}[B: equal factor degrees {[F]}]\label{lem:B}\lean{WeberLemmaB.X_pow_add_one_eq_cyclotomic, WeberLemmaB.factor_degree, WeberLemmaB.factor_degree_eq}\leanok
+\input{\proofsdir/statements/lem_B}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Kernel-checked (\path{WeberLemmaB.factor_degree}, \path{WeberLemmaB.factor_degree_eq}); the prose proof below is the same argument.}\par
+\begin{proof}
+\input{\proofsdir/lem_B}
+\end{proof}
+\begin{lemma}[C: index of a component {[F, quotient form]}]\label{lem:C}\lean{component_card_quotient}\leanok
+\input{\proofsdir/statements/lem_C}
+\end{lemma}
+\par\noindent{\small\emph{Note.} $[R_n:L_f]=\ell^{\,m-d_f}$ is the dimension count of $(\mathbb{F}_\ell[x]/(x^m+1))/M_f$; the pullback identification along $\pi$ is not formalised.}\par
+\begin{proof}
+\input{\proofsdir/lem_C}
+\end{proof}
+\begin{lemma}[D: rank and covolume {[L-relative]}]\label{lem:D}
+\input{\proofsdir/statements/lem_D}
+\uses{lem:kyfree, lem:dirichlet, lem:C}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D}
+\end{proof}
+\begin{lemma}[E: saturation chain {[L-relative; coset step F]}]\label{lem:E}\lean{coset_absorb, WeberRoots.root_change_rep, WeberRoots.coset_eq_of_change_rep, WeberSH.sat_root_log}
+\input{\proofsdir/statements/lem_E}
+\uses{lem:ky17, lem:ky41, lem:kyfree}
+\end{lemma}
+\par\noindent{\small\emph{Note.} The group step ``a coset in $RE^+_n/A_n$ has every representative in $RE^+_n$'' is \texttt{coset\_absorb} [F]; the rest consumes the [L] inputs.}\par
+\begin{proof}
+\input{\proofsdir/lem_E}
+\end{proof}
+\begin{lemma}[E$'$: the base case $a\in\ell R_n$ {[L-relative]}]\label{lem:Eprime}
+\input{\proofsdir/statements/lem_Eprime}
+\uses{lem:kyfree}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_Eprime}
+\end{proof}
+\begin{theorem}[SH: componentwise saturation--height bound, carrier form {[M; F-core]}]\label{thm:SH}\lean{WeberSH.short_vector_ge_floor, WeberSH.theoremSH, WeberSH.theoremSH_contra}
+\input{\proofsdir/statements/thm_SH}
+\uses{lem:blich, thm:Acore}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_SH}
+\end{proof}
+\begin{corollary}[SH-mod: the module form {[M; F-core]}]\label{cor:SHmod}\lean{WeberSH.sat_root_log, WeberSH.base_branch, WeberSH.H_pow, WeberSH.Hι_nsmul}
+\input{\proofsdir/statements/cor_SHmod}
+\uses{thm:SH}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_SHmod}
+\end{proof}
+\begin{proposition}[F: factorwise bound {[L-relative]}]\label{prop:F}
+\input{\proofsdir/statements/prop_F}
+\uses{cor:SHmod, lem:E, lem:Eprime, lem:Aplus, lem:D, lem:C, lem:blich}
+\end{proposition}
+\begin{proof}
+\input{\proofsdir/prop_F}
+\end{proof}
+
+\chapter{Old and new components}
+\begin{lemma}[old/new decomposition {[M]}]\label{lem:oldnew}
+\input{\proofsdir/statements/lem_oldnew}
+\uses{def:setting}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_oldnew}
+\end{proof}
+
+\chapter{Main results}
+\begin{theorem}[A core: discrete implication {[F]}]\label{thm:Acore}\lean{TheoremAInputs.theoremA_of_inputs}\leanok
+Given a carrier of components with predicates \emph{saturated}, a height $\operatorname{ht}$, constants $L,K,D,\ell^d>0$, $m>0$, and the hypotheses (ky41) $\ell\mid k_n\Rightarrow\exists f$ saturated; (blichfeldt) $\forall f$, $\operatorname{ht}(f)^m\le KD/\ell^d$; (floor) saturated $f\Rightarrow L\le\operatorname{ht}(f)$: if $C:=KD/L^m<\ell^d$ then $\ell\nmid k_n$.
+\end{theorem}
+\begin{proof}\leanok
+\input{\proofsdir/thm_Acore}
+The Lean declaration(s) named above are this proof verbatim; \texttt{\#print axioms} within std-3 (lean/README\_lean.md).
+\end{proof}
+\begin{theorem}[A {[L-relative, F-core]}]\label{thm:A}
+\input{\proofsdir/statements/thm_A}
+\uses{thm:Acore, prop:F, lem:B}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_A}
+\end{proof}
+\begin{lemma}[D0: group determinant]\label{lem:D0}
+\input{\proofsdir/statements/lem_D0}
+\uses{def:setting}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Paper Appendix~D, Lemma~0; second route to the normalisation: ball-arithmetic eigenvector check, \path{sage/r11_propD_audit.log}.}\par
+\begin{proof}
+\input{\proofsdir/lem_D0}
+\end{proof}
+\begin{lemma}[D1: cyclotomic-unit expression]\label{lem:D1}
+\input{\proofsdir/statements/lem_D1}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D1}
+\end{proof}
+\begin{lemma}[D2: imprimitive terms vanish]\label{lem:D2}
+\input{\proofsdir/statements/lem_D2}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D2}
+\end{proof}
+\begin{lemma}[D3: Washington's formula in the form used {[L]}]\label{lem:D3}
+\input{\proofsdir/statements/lem_D3}
+\uses{lem:wash}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D3}
+\end{proof}
+\begin{lemma}[D4: $\prod|1-\chi(3)|=2$ for every $n$ {[M]}]\label{lem:prod13}
+\input{\proofsdir/statements/lem_prod13}
+\uses{def:setting}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_prod13}
+\end{proof}
+\begin{proposition}[D: evaluation of $D_n$ {[L-relative; classical]}]\label{prop:D}
+\input{\proofsdir/statements/prop_D}
+\uses{lem:D0, lem:D1, lem:D2, lem:D3, lem:prod13}
+\end{proposition}
+\par\noindent{\small\emph{Note.} Cross-CAS: r10\_bin4 (PARI/Magma), r11\_propD\_audit (Arb digamma route).}\par
+\begin{proof}
+\input{\proofsdir/prop_D}
+\end{proof}
+\begin{corollary}[A$'$ {[follows]}]\label{cor:Aprime}
+\input{\proofsdir/statements/cor_Aprime}
+\uses{thm:A, prop:D}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_Aprime}
+\end{proof}
+\begin{corollary}[T: order threshold {[F]}]\label{cor:T}\lean{TheoremAInputs.theoremA_threshold}\leanok
+\input{\proofsdir/statements/cor_T}
+\uses{thm:Acore}
+\end{corollary}
+\par\noindent{\small\emph{Note.} Read relative to the core hypotheses (the [L] inputs), as Theorem~A.}\par
+\begin{proof}\leanok
+\input{\proofsdir/cor_T}
+\end{proof}
+\begin{corollary}[$\widehat{\mathrm A}$: computation-free criterion {[M relative to Theorem A's inputs + L: Ram04]}]\label{cor:Ahat}\lean{WeberHatC.prod_le_pow_card_of_le, WeberHatC.C_le_hatC, WeberHatC.theoremA_of_hat}
+\input{\proofsdir/statements/cor_Ahat}
+\uses{cor:Aprime, lem:ramare, thm:A, thm:Acore}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_Ahat}
+\end{proof}
+\begin{corollary}[explicit order threshold {[M relative to cor:Ahat + L: Rob55]}]\label{cor:order}
+\input{\proofsdir/statements/cor_order}
+\uses{cor:Ahat, lem:robbins}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_order}
+\end{proof}
+\begin{lemma}[C7: rigorous enclosure of $C_7$ {[C]}]\label{lem:C7}
+\input{\proofsdir/statements/lem_C7}
+\uses{cor:Aprime}
+\end{lemma}
+\begin{lemma}[C7 integer comparison {[F]}]\label{lem:C7int}\lean{c7_deg2_instance, deg1_threshold_valid, deg2_threshold_valid}\leanok
+\input{\proofsdir/statements/lem_C7int}
+\end{lemma}
+\begin{proof}\leanok
+\input{\proofsdir/lem_C7int}
+The Lean declaration(s) named above are this proof verbatim; \texttt{\#print axioms} within std-3 (lean/README\_lean.md).
+\end{proof}
+\begin{corollary}[n=7 {[C + F]}]\label{cor:7}
+\input{\proofsdir/statements/cor_7}
+\uses{cor:T, lem:C7, lem:C7int, lem:B}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_7}
+\end{proof}
+
+\chapter{Scaling (Appendix E of the paper)}
+\begin{lemma}[S-group: $L\cap kR=kL$ for $k$ coprime to the index {[F]}]\label{lem:Sgroup}\lean{coprime_smul_injective, smul_mem_iff_of_coprime}\leanok
+$R$ abelian, $[R:L]<\infty$, $\gcd(k,[R:L])=1$ $\Rightarrow$ $L\cap kR=kL$.
+\end{lemma}
+\begin{proof}\leanok
+\input{\proofsdir/lem_Sgroup}
+\end{proof}
+\begin{lemma}[S-analytic: the general-$t$ inequality {[F]}]\label{lem:Sineq}\lean{ineq_t_general}\leanok
+For every $t\ge2$: $(2+\sqrt5)^{2^{t-1}}>2^t+\sqrt{4^t+1}$.
+\end{lemma}
+\begin{proof}\leanok
+\input{\proofsdir/lem_Sineq}
+The Lean declaration(s) named above are this proof verbatim; \texttt{\#print axioms} within std-3 (lean/README\_lean.md).
+\end{proof}
+\begin{lemma}[depth-$t$ height floor {[M, L-relative]}]\label{lem:depthfloor}
+\input{\proofsdir/statements/lem_depthfloor}
+\uses{lem:A, lem:schinzel, lem:mo24}
+\end{lemma}
+\par\noindent{\small\emph{Note.} $L_{n,1}=L_n$. This is the floor used by the depth-$t$ variant in Theorem~\ref{thm:S0}; from r16 it is a lemma, not a hypothesis of that theorem.}\par
+\begin{proof}
+\input{\proofsdir/lem_depthfloor}
+\end{proof}
+\begin{lemma}[odd-power depth transfer {[M, F-core]}]\label{lem:oddtransfer}\lean{WeberOddTransfer.pow_odd_eq_one_iff_of_two_pow_card, WeberOddTransfer.pow_odd_eq_iff_of_two_pow_card, WeberOddTransfer.isUnit_pow_odd_eq_one_iff}
+\input{\proofsdir/statements/lem_oddtransfer}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Inputs proved inside the lemma: $2$ is totally ramified in $B_n$ with residue field $\mathbb{F}_2$, so $(\mathcal O_n/2^t\mathcal O_n)^\times$ is a group of order $2^{2^n t-1}$; the odd power map on a group of $2$-power order is a bijection (\path{lean/WeberOddTransfer.lean}, five declarations, std-3; r15, GPT r14 sect 4, E15-1). The manuscript's identification of $(\mathcal O_n/2^t\mathcal O_n)^\times$ as a $2$-group is [M]; only the group statement is kernel-checked.}\par
+\begin{proof}
+\input{\proofsdir/lem_oddtransfer}
+\end{proof}
+\begin{theorem}[S0: abstract scale law {[M relative to (i); F-core]}]\label{thm:S0}
+\input{\proofsdir/statements/thm_S0}
+\uses{lem:Sgroup, lem:Sineq, lem:C, lem:E, lem:Eprime, lem:depthfloor, lem:oddtransfer}
+\end{theorem}
+\par\noindent{\small\emph{Note.} r15: the former hypothesis (ii) is now Lemma~\ref{lem:depthfloor}; the transfer from the depth of $u_a=r_a^{\ell}$ to the depth of $r_a$ is Lemma~\ref{lem:oddtransfer} (E15-1); the floor is applied to $r_a$ in the non-base branch and to $u_b$ in the base branch.}\par
+\begin{proof}
+\input{\proofsdir/thm_S0}
+\end{proof}
+\begin{lemma}[J\_t certificates, $t=2,3,4$ {[C]}]\label{lem:Jt}
+$J_t=2^{t-1}R_n$ at $n=7$ for $t=2,3,4$ (\path{certificates/twoadic_rank/fam{1,2,3}_*.txt}; \path{sage/r9_scaling_no_go.log}): constructed independently in Sage and in Magma, and replayed by the standalone Python rank checker \path{scripts/verify_twoadic_rank.py} (a replay of the stored bit matrices, not a third construction; E15-2).
+\end{lemma}
+\begin{corollary}[S1 {[C + F]}]\label{cor:S1}
+\input{\proofsdir/statements/cor_S1}
+\uses{thm:S0, lem:Jt, lem:depthfloor, lem:oddtransfer}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_S1}
+\end{proof}
+
+\chapter{The cyclotomic $\Z_3$-tower (Track B)}
+\begin{definition}[The $p=3$ data]\label{def:p3}
+$B_{3,n}$ the degree-$3^n$ layer, $N=3^n$, $q=3^{n+1}$, $\eta_n=\sin(2(1+3^n)\pi/q)/\sin(2\pi/q)$ the Horie unit (MO13 \S1, one factor at $p=3$), $\sigma$ the generator of $\operatorname{Gal}(B_{3,n}/\Q)$ induced by $\zeta_q\mapsto\zeta_q^4$, $\tau=\sigma^{3^{n-1}}$; for $\ell\ne3$: $f=\operatorname{ord}_3(\ell)$, $3^s\|\ell^2-1$, $r=\min(n,s)$, $c=2\cdot3^{r-1}$; $u_\alpha=\eta_n^{\alpha_\sigma}$ for $\alpha\in\Z[\zeta_{3^r}]\subseteq\Z[\zeta_{3^n}]$ (lift exponents $3^{n-r}j$, $j<c$); $\lambda_j=\log|\sigma^j\eta_n|$, $\hat\lambda_k=\sum_j\lambda_je^{-2\pi ijk/N}$; $D_r^{(n)}$ the covolume of the lattice spanned by $H(\sigma^{3^{n-r}j}\eta_n)$, $j<c$; $U_{3,n}=\{\varepsilon\in E_{3,n}:\operatorname{Nr}_{B_{3,n}/B_{3,n-1}}\varepsilon=1\}$; $L^{\mathrm{rel}}_{3,n}=\sqrt N\log\frac{3^{(N-1)/(2N)}+\sqrt{3^{(N-1)/N}+4}}2$; $C^{(3)}_{n,r}=(2/\pi)^{c/2}\Gamma(2+c/2)D_r^{(n)}/(L^{\mathrm{rel}}_{3,n})^c$. Throughout the $\Z_3$-tower, ``$\ell\mid h_{3,n}/h_{3,n-1}$'' means $v_\ell(h_{3,n})>v_\ell(h_{3,n-1})$, and ``$\ell\nmid h_{3,n}/h_{3,n-1}$'' its negation; by Lemma~\ref{lem:oldnew} with $p=3$ and $\ell\ne3$ (the extension $B_{3,n}/B_{3,n-1}$ is cyclic of degree $3$) this is $\ker(N)_\ell\ne0$, and $v_\ell(h_{3,n})\ge v_\ell(h_{3,n-1})$ always holds, so the quotient is $\ell$-integral for every $\ell\ne3$.
+\end{definition}
+\begin{lemma}[Relative-norm-one height floor {[L]}]\label{lem:mo25-z3}
+\input{\proofsdir/statements/lem_mo25-z3}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Read verbatim from the JTNB PDF (\path{paper/MO2016_height_weber_jtnb965.pdf}).}\par
+\begin{lemma}[Relative norm of the Horie unit {[F]}]\label{lem:normone}\lean{WeberP3Rel.a_cube_modEq_one, WeberP3Rel.four_pow_modEq, WeberP3Rel.telescope_three, WeberP3Rel.sin_telescope_step, WeberP3Rel.eq_one_of_odd_pow_eq_one}\leanok
+\input{\proofsdir/statements/lem_normone}
+\uses{def:p3}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Every such $\varepsilon$ lies in $U_{3,n}\setminus E_{3,n-1}$ and satisfies the hypothesis of Lemma~\ref{lem:mo25-z3}.}\par
+\begin{proof}\leanok
+\input{\proofsdir/lem_normone}
+The Lean declarations named above are the five discrete steps (order of $a$, action of $\tau$, telescoping, periodicity of $\sin$, odd-power transfer) verbatim; the Galois-theoretic sentences ((ii) second half, (iii) first sentence, (iv) commutation of $\operatorname{Nr}$ with $\Z[G]$) are M.
+\end{proof}
+\begin{lemma}[Discriminant of $\Q(\zeta_{p^r})$ {[L]}]\label{lem:disc}
+\input{\proofsdir/statements/lem_disc}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Washington is cited at chapter level; no theorem number is load-bearing (hw 29/984).}\par
+\begin{theorem}[Spectral rank and exact covolume {[F-core; L for $L(1,\chi)\ne0$]}]\label{thm:rank3}\lean{WeberP3Rel.dft_vanish_of_relnorm, WeberP3Rel.eq_zero_of_vanish_on_primitiveRoots, WeberP3Rel.totient_three_pow, WeberP3Rel.twisted_sum_shift, WeberP3Rel.twisted_sum_shift_diff, WeberP3Rel.twisted_sum_shift_diff_ne_zero, WeberP3Rel.pow_third_eq_one_iff}
+\input{\proofsdir/statements/thm_rank3}
+\uses{def:p3, lem:normone, lem:D3, lem:dirichlet, lem:disc}
+\end{theorem}
+\par\noindent{\small\emph{Note.} The linear independence is (Rank) of Theorem~\ref{thm:SH}.}\par
+\begin{proof}
+\input{\proofsdir/thm_rank3}
+Lean covers Step~1 (the coset-sum vanishing), the finite Fourier algebra of Step~2 (the shift rule of the twisted sum on $\Z/N$, the factor $\omega^{j_0k}(\omega^{Nk/3}-1)$ in front of $\hat\Gamma_k$, and $\omega^{Nk/3}=1\iff3\mid k$ for a primitive $N$-th root: \path{WeberP3Rel.twisted_sum_shift_diff_ne_zero}, \path{pow_third_eq_one_iff}), the polynomial step of Step~3 and $\varphi(3^r)=c$; what remains M with L inputs in Step~2 is only $\hat\Gamma_k\ne0$ (the character identification, Washington's formula, Dirichlet), and Step~4 (Parseval, Vandermonde, discriminant) is M.
+\end{proof}
+\begin{lemma}[Certified covolumes and constants at $p=3$ {[C]}]\label{lem:D3cert}
+The JSON certificate \artPcert{} (format v3, generated by \artPgen{}: every certified quantity is stored as EXACT dyadic endpoints $\pm m\cdot2^{e}$, being the outward hull of two independent $4000$-bit ball enclosures --- the producer's, sage/r19\_trackB/p3\_covol\_balls\_r19.sage, and the read-only replay's, sage/r19\_trackB/p3\_readonly\_recomputed\_r19.json --- widened about its centre to twice its half-width, with both enclosures and the bare hull kept per field, the radius, the precision and the rounding mode; directed $40$-digit decimals for display only) encloses, for $1\le r\le n\le5$, $D_r^{(n)}$ by two independent linear-algebraic routes from the same log profile $(\lambda_j)$ --- the Gram determinant and the character product of Theorem~\ref{thm:rank3} (quotient enclosing $1$; intersection of the two enclosures stored separately) --- $L^{\mathrm{rel}}_{3,n}$, $C^{(3)}_{n,r}$, $\sqrt{C^{(3)}_{n,r}}$, the comparators $G(3,r,1)$, $G(3,r,2)$ of MO16 Thm.~A, and the quotients, each with radius $<10^{-800}$; it records that $\hat\lambda_k$ encloses $0$ for $3\mid k$ and is bounded away from $0$ for $3\nmid k$ ($n\le5$), and that $C^{(3)}_{n,r}<G(3,r,1)$, $\sqrt{C^{(3)}_{n,r}}<G(3,r,2)$ in all fifteen rows. The label [C] rests on the READ-ONLY REPLAY \artPreplay{} (verifier step 04f): it does not trust the JSON but rebuilds $\eta_n$, all conjugate logarithms, both routes (Gram--Schmidt; DFT with a table of powers of $e^{-2\pi i/N}$), the floor, $C^{(3)}_{n,r}$ and $G(3,s,f)$ from the definitions in ball arithmetic at $4000$ bits, requires every certified interval to CONTAIN its recomputed enclosure ($120/120$ of the $8$ load-bearing intervals of the $15$ rows; overlap alone is not accepted --- the r18 gate accepted overlap and $65/120$ shipped intervals failed containment under it, ERRATA\_R19 E19-1), re-decides the improvement from its own balls, and rejects twelve planted certificates (malformed; one route missing; wrong discriminant exponent; Schinzel floor substituted; MO13 comparator substituted; and seven that meet but do not contain the recomputed interval: shifted narrow intervals, lower endpoints moved inward, upper endpoints moved inward, Gram route alone, DFT route alone, $C$ alone, $\sqrt C$ alone; ledger docs/P3\_NEGCTL\_LEDGER\_R19.md generated from the replay's JSON). The coverage relation is re-decided on the stored recomputation by \artPcover{} (step 04g); the consistency/print-string half is \artPcheck{} (step 04e). In particular $C^{(3)}_{4,4}\in[1.072749779\times10^{33},1.072749780\times10^{33}]$ and $\sqrt{C^{(3)}_{4,4}}\in[3.275285910\times10^{16},3.275285911\times10^{16}]$. The r16, r17 and r18 certificates (Schinzel floor; $40$-digit display endpoints; overlap-era v2) are retained for the record and are rejected by the replay as deprecated.
+\end{lemma}
+\begin{theorem}[P3: layer-fixed bound in the $\Z_3$-tower {[L-relative; F-core]}]\label{thm:P3}\lean{WeberP3.theoremP3_core, WeberSH.theoremSH_contra}
+\input{\proofsdir/statements/thm_P3}
+\uses{lem:oldnew, def:p3, thm:SH, lem:horie13, lem:normone, lem:mo25-z3, lem:blich, thm:rank3}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_P3}
+\end{proof}
+\begin{corollary}[$n=4$ {[C + M]}]\label{cor:P3n4}
+\input{\proofsdir/statements/cor_P3n4}
+\uses{thm:P3, lem:D3cert}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_P3n4}
+\end{proof}
+
+\chapter{Certificates}\label{ch:cert}
+\begin{definition}[Verifier specification {[C]}]\label{def:verifier}
+scripts/family\_verify.sage (r11, sha256 0f38bb0d\ldots; unchanged in r12--r13): on input a witness file it recomputes the factorisation of $x^m+1$ over $\mathbb{F}_\ell$, asserts the header fields, and accepts a line $(f,\mathrm{route},a)$ only if $f$ is a recomputed factor, $f\cdot a\equiv0\bmod(\ell,x^m+1)$, $a\notin\ell R_n$, some log coordinate is certified nonzero, and (RHO) $\operatorname{ht}(\ell^{-1}H_na)<L_n$ resp.\ (T) $\sum_j e^{2y_j}<\bar T_n$ hold with the ball's upper endpoint, where $\bar T_n=17\cdot2^n$ for $n=2$ and $33\cdot2^n$ for $n\ge3$ is recomputed from $n$ (Lemma~\ref{lem:ky23}; a header claiming another threshold is rejected), the claimed value agreeing to $10^{-6}$. Verdict EXCLUDED iff every component has an accepted line and no line fails.
+\end{definition}
+\begin{theorem}[Certificate core: direct KY chain {[F]}]\label{thm:certcore}\lean{WeberCert.exclusion_chain_direct, WeberCert.rho_witness_refutes_saturation, WeberCert.t_witness_refutes_saturation, WeberCert.exclusion_of_checker_spec}\leanok
+If $\ell\mid k_n$ implies a saturated component, if a RHO witness (nonzero vector of height $<L$) and a T witness (nonzero vector with $T<\bar T$) each refute saturation, and if every component carries one of them, then $\ell\nmid k_n$; \texttt{exclusion\_of\_checker\_spec} states the verifier specification ``EXCLUDED $\Rightarrow$ every component carries a witness'' as an explicit hypothesis (the implementation is NOT verified).
+\end{theorem}
+\begin{proof}\leanok
+\input{\proofsdir/thm_certcore}
+The Lean declaration(s) named above are this proof verbatim; \texttt{\#print axioms} within std-3 (lean/README\_lean.md).
+\end{proof}
+\begin{lemma}[The piecewise trace threshold $\bar T_n$ {[F]}]\label{lem:barT}\lean{WeberCert.barT, WeberCert.barT_two, WeberCert.barT_of_ge_three, WeberCert.barT_seven, WeberCert.barT_two_lt_uniform, WeberCert.barT_le_uniform, WeberCert.t_witness_refutes_saturation_barT}\leanok
+$\bar T_n:=17\cdot2^n$ for $n=2$ and $33\cdot2^n$ for $n\ge3$ (lean/WeberCertFloor.lean, r13, E13-1). Then $\bar T_2=68$, $\bar T_7=4224$, $\bar T_n\le33\cdot2^n$ for all $n$ with $\bar T_2<33\cdot2^2$, and the T-refutation of Theorem~\ref{thm:certcore} holds at $\mathrm{bar}=\bar T_n$.
+\uses{thm:certcore, lem:ky23}
+\end{lemma}
+\begin{proof}\leanok
+\input{\proofsdir/lem_barT}
+\end{proof}
+\begin{theorem}[Certificate soundness {[C+L, F-core]}]\label{thm:cert}
+\input{\proofsdir/statements/thm_cert}
+\uses{thm:certcore, lem:barT, def:verifier, lem:ky17, lem:ky41, lem:E, lem:Aplus, lem:ky23}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_cert}
+\end{proof}
+\begin{lemma}[KY1000 certificates {[C]}]\label{lem:ky1000}
+\input{\proofsdir/statements/lem_ky1000}
+\uses{def:verifier}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Certificate id FAMILY\_KY1000: \path{certificates/family/KY1000/witness_n7_l*.txt} (1000 files, SHA-256 in \path{MANIFEST_SHA256.txt}); clean run \path{sage/family_ky1000_r11_clean/VERIFY_LEDGER.txt}: EXCLUDED 1000/1000; negative controls 9/9 rejected and the $n=2$ positive control accepted (\path{sage/negctl_r13/negctl_r13.log}; \path{certificates/negctl/negctl_ledger_r14.json}).}\par
+\begin{lemma}[KY1000 target list {[C]}]\label{lem:ky1000target}
+Certificate id KY1000\_TARGET: \path{sage/family_ky1000/KY1000_primes.txt} has 1000 distinct ascending primes, all $\equiv65\ (128)$, all $>10^9$, elementwise equal to the first 1000 qualifying primes regenerated from $10^9$, equal to the set
+\[ \{\ell\ \text{prime}:10^9<\ell\le1001287361,\ \ell\equiv65\ (128)\}, \]
+and equal to the witness-file set; checker \path{scripts/verify_ky1000_target.py} (verifier step 03b; 5 planted corruptions rejected, step 03c).
+\end{lemma}
+\begin{theorem}[Family {[C+L, F-core]}]\label{thm:family}
+\input{\proofsdir/statements/thm_family}
+\uses{thm:cert, lem:ky1000, lem:ky1000target}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_family}
+\end{proof}
+
+\chapter{Experiments (used in no theorem)}
+\begin{lemma}[Class 1 centered/local scan {[E] (intentional non-theorem node, used by nothing)}]\label{exp:class1}
+At $\ell=1000000513$, the centered representatives with local $\pm\ell$-coordinate descent give no T or RHO witness on any of the 64 components. Not a full CVP; no theorem uses this. Log: sage/r9\_tscan64\_1000000513.log.
+\end{lemma}
+\begin{lemma}[Classes 63/127 near-misses {[E] (intentional non-theorem node, used by nothing)}]\label{exp:svp}
+Exact SVP at $\ell=10000003199$: $\operatorname{ht}/L_7\in[1.009,1.011]$ on the component minima. Log: sage/r10\_escalate\_l10000003199.log; certificates/experiments/family\_extra/.
+\end{lemma}

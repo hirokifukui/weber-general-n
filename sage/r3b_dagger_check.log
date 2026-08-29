@@ -1,0 +1,17 @@
+(a) relative norms eta_n * tau(eta_n):
+  n=3  3^(2^(n-1)) mod 2^(n+2) = 17   Nr = -1.0
+  n=4  3^(2^(n-1)) mod 2^(n+2) = 33   Nr = -1.0
+  n=5  3^(2^(n-1)) mod 2^(n+2) = 65   Nr = -1.0
+  n=6  3^(2^(n-1)) mod 2^(n+2) = 129   Nr = -1.0
+  n=7  3^(2^(n-1)) mod 2^(n+2) = 257   Nr = -1.0
+(b) cls 65, l=1000000321, 8 sampled components, witness extraction:
+  best component index 7   f = y^2 + 246360387
+  rho = 0.9740585225   (r3 logged 0.989279)
+  ht(eta^((1-z)a)) = l*sqrt(Q) = 15909177247.9   threshold l*sqrt(128)*log(2+sqrt5) = 16332876187.8
+  chk1 (a not in l*R): True
+  chk2 (f*a = 0 mod (l, x^64+1), i.e. a in M_f): True
+  chk3 antisymmetry max|y_{j+64}+y_j| = 4.9591e-39
+  chk4 max|y_j| = 3.619795  (must be provably nonzero for the E_{n-1} exclusion)
+  witness coeffs (first 16): [6190802, 0, -48775759, 0, -93799363, 0, 146191874, 0, 148715299, 0, -41893819, 0, -25317057, 0, 118759009, 0]
+  witness coeffs (last 48 nonzero count): 32 of 64
+R3B DAGGER CHECK DONE

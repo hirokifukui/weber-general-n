@@ -1,0 +1,5 @@
+'bridge_fixed_norm_sq' depends on axioms: [propext]
+'torsion_pm_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'component_card_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'coset_absorb' depends on axioms: [propext, Quot.sound]
+EXIT=0

@@ -1,0 +1,29 @@
+recomputed n=1 r=1 c=2  D_int lo 1.471009014  C3rel hi 1.391237826  G1 lo 3.98554 G2 lo 1.99638  imp True True
+recomputed n=2 r=1 c=2  D_int lo 10.81753711  C3rel hi 2.763643660  G1 lo 3.98554 G2 lo 1.99638  imp True True
+recomputed n=2 r=2 c=6  D_int lo 978.2993042  C3rel hi 48.93887178  G1 lo 189.926 G2 lo 13.7813  imp True True
+recomputed n=3 r=1 c=2  D_int lo 42.92134754  C3rel hi 3.412396689  G1 lo 3.98554 G2 lo 1.99638  imp True True
+recomputed n=3 r=2 c=6  D_int lo 77996.98048  C3rel hi 117.5865194  G1 lo 189.926 G2 lo 13.7813  imp True True
+recomputed n=3 r=3 c=18  D_int lo 6.052456008e13  C3rel hi 5.443775218e7  G1 lo 1.79839e9 G2 lo 42407.4  imp True True
+recomputed n=4 r=1 c=2  D_int lo 143.3993513  C3rel hi 3.714773359  G1 lo 3.98554 G2 lo 1.99638  imp True True
+recomputed n=4 r=2 c=6  D_int lo 2.945051903e6  C3rel hi 153.5923602  G1 lo 189.926 G2 lo 13.7813  imp True True
+recomputed n=4 r=3 c=18  D_int lo 2.387889803e19  C3rel hi 8.891470072e8  G1 lo 1.79839e9 G2 lo 42407.4  imp True True
+recomputed n=4 r=4 c=54  D_int lo 3.256633159e54  C3rel hi 1.072749780e33  G1 lo 3.71114e37 G2 lo 6.09191e18  imp True True
+recomputed n=5 r=1 c=2  D_int lo 449.0127300  C3rel hi 3.848017680  G1 lo 3.98554 G2 lo 1.99638  imp True True
+recomputed n=5 r=2 c=6  D_int lo 9.051487290e7  C3rel hi 170.9135186  G1 lo 189.926 G2 lo 13.7813  imp True True
+recomputed n=5 r=3 c=18  D_int lo 7.246608678e23  C3rel hi 1.280659057e9  G1 lo 1.79839e9 G2 lo 42407.4  imp True True
+recomputed n=5 r=4 c=54  D_int lo 1.736139652e71  C3rel hi 6.114099831e36  G1 lo 3.71114e37 G2 lo 6.09191e18  imp True True
+recomputed n=5 r=5 c=162  D_int lo 2.372653050e202  C3rel hi 1.738128865e133  G1 lo 8.57287e146 G2 lo 2.92794e73  imp True True
+P3 READONLY VERIFY: PASS (rows 15, prec 4000, containment 120/120, cert sha256 7520a93fb1df, verifier sha256 f3d2e1767603, 9.411416053771973s)
+NEGCTL 1 one route missing (route_dft.D deleted) :: REJECTED (correct) :: D_dft missing at (5, 5)
+NEGCTL 2 wrong discriminant exponent (D_dft scaled by sqrt(3)^2) :: REJECTED (correct) :: disc_exp mismatch at (5, 5): shipped 730, recomputed 729
+NEGCTL 3 weak (Schinzel) floor substituted, header string kept (numeric gate must fire) :: REJECTED (correct) :: Lrel_3n: shipped [8.334833302061794549917856461711648852295E-1,8.334833302061794549917856461711648852296E-1] does NOT CONTAIN recomputed [1.
+NEGCTL 4 comparison with MO2013 only, header string kept (numeric gate must fire) :: REJECTED (correct) :: MO16_G_f1: shipped [2.699999999999999999999999999999999999999E+1,2.700000000000000000000000000000000000001E+1] does NOT CONTAIN recomputed [
+NEGCTL 5 malformed JSON (truncated) :: REJECTED (correct) :: malformed JSON: Unterminated string starting at: line 1 column 1998 (char 1997)
+NEGCTL 6 shifted narrow intervals on the last row: every field MEETS the recomputed interval but does not CONTAIN it (overlap-era gate would accept) :: REJECTED (correct) :: Lrel_3n: shipped [1.218893768932933942351991619990653494357E+1,1.218893768932933942351991619990653494358E+1] does NOT CONTAIN recomputed [1.
+NEGCTL 7 shipped LOWER endpoints moved inward only (last row, all fields) :: REJECTED (correct) :: Lrel_3n: shipped [1.218893768932933942351991619990653494357E+1,1.218893768932933942351991619990653494358E+1] does NOT CONTAIN recomputed [1.
+NEGCTL 8 shipped UPPER endpoints moved inward only (last row, all fields) :: REJECTED (correct) :: Lrel_3n: shipped [1.218893768932933942351991619990653494357E+1,1.218893768932933942351991619990653494358E+1] does NOT CONTAIN recomputed [1.
+NEGCTL 9 Gram route alone under-covers (all rows; other fields untouched) :: REJECTED (correct) :: D_gram: shipped [1.471009014749850787066961312157283159666E+0,1.471009014749850787066961312157283159667E+0] does NOT CONTAIN recomputed [1.4
+NEGCTL 10 spectral (DFT) route alone under-covers (all rows; other fields untouched) :: REJECTED (correct) :: D_dft: shipped [1.471009014749850787066961312157283159666E+0,1.471009014749850787066961312157283159667E+0] does NOT CONTAIN recomputed [1.47
+NEGCTL 11 C alone under-covers (all rows; other fields untouched) :: REJECTED (correct) :: C3rel: shipped [1.391237825985132701080715927972233156877E+0,1.391237825985132701080715927972233156878E+0] does NOT CONTAIN recomputed [1.39
+NEGCTL 12 sqrt C alone under-covers (all rows; other fields untouched) :: REJECTED (correct) :: C3rel_sqrt: shipped [1.179507450584833186402801471094641761433E+0,1.179507450584833186402801471094641761434E+0] does NOT CONTAIN recomputed 
+P3 READONLY NEGCTL: PASS (12/12 rejected)

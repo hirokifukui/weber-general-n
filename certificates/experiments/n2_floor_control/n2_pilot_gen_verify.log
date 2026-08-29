@@ -1,0 +1,31 @@
+== gen n=2 l=17 13:37:22Z
+  comp   0 f=4,1  rho=0.27964  T=5.4  PASS_RHO  0s
+  comp   1 f=13,1  rho=0.27964  T=5.4  PASS_RHO  0s
+FAMILY GEN n=2 l=17 : EXCLUSION_CANDIDATE ; PASS 2 / 2 ; OPEN_NEAR 0 ; OPEN_FAR 0 ; 0s
+FAMILY GEN DONE n=2 l=17
+== verify n=2 l=17
+13,1 RHO mem=True nz=True ynz=True cond=True claim_agree=True upper=0.279635676356  CERT
+13,1 T   mem=True nz=True ynz=True cond=True claim_agree=True upper=5.37611686815  CERT
+FAMILY VERIFY n=2 l=17 : EXCLUDED (components certified 2 / 2 ; lines 4 ; failed lines 0)
+FAMILY VERIFY PASS
+== gen n=2 l=41 13:37:27Z
+  comp   0 f=9,1  rho=0.18006  T=4.6  PASS_RHO  0s
+  comp   1 f=32,1  rho=0.18006  T=4.6  PASS_RHO  0s
+FAMILY GEN n=2 l=41 : EXCLUSION_CANDIDATE ; PASS 2 / 2 ; OPEN_NEAR 0 ; OPEN_FAR 0 ; 0s
+FAMILY GEN DONE n=2 l=41
+== verify n=2 l=41
+32,1 RHO mem=True nz=True ynz=True cond=True claim_agree=True upper=0.180063260927  CERT
+32,1 T   mem=True nz=True ynz=True cond=True claim_agree=True upper=4.56449157823  CERT
+FAMILY VERIFY n=2 l=41 : EXCLUDED (components certified 2 / 2 ; lines 4 ; failed lines 0)
+FAMILY VERIFY PASS
+== gen n=2 l=97 13:37:30Z
+  comp   0 f=22,1  rho=0.11707  T=4.2  PASS_RHO  0s
+  comp   1 f=75,1  rho=0.11707  T=4.2  PASS_RHO  0s
+FAMILY GEN n=2 l=97 : EXCLUSION_CANDIDATE ; PASS 2 / 2 ; OPEN_NEAR 0 ; OPEN_FAR 0 ; 0s
+FAMILY GEN DONE n=2 l=97
+== verify n=2 l=97
+75,1 RHO mem=True nz=True ynz=True cond=True claim_agree=True upper=0.117066105889  CERT
+75,1 T   mem=True nz=True ynz=True cond=True claim_agree=True upper=4.23274458232  CERT
+FAMILY VERIFY n=2 l=97 : EXCLUDED (components certified 2 / 2 ; lines 4 ; failed lines 0)
+FAMILY VERIFY PASS
+N2PILOT DONE 13:37:34Z

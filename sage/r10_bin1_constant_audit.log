@@ -1,0 +1,13 @@
+ANTIPERIOD max|lam_{j+m}+lam_j| = 1.2857e-38
+EIGENVECTOR residual max = 1.44e-36
+lnD7 GRAM   = 177.783817017911485959589398831
+lnD7 CHARPROD (= -m/2 ln2 + sum_chi ln|sum_j chi(sigma^j) lam_j|) = 177.783817017911485959589398831
+lnD7 CERT   = 177.783817017911485959589398831214116568 (sage/r6_blichfeldt_cert.log PREC 512)
+L7 height form sqrt(2^7)log(2+sqrt5) = 16.332870944966409676
+lnC7 recomputed = 69.6241366950340814513293024675  CERT 69.62413669503408145132930246749633921005
+C7 = 1.727342163036352958e+30  CERT upper 1.7273421630363529579743e30
+Gamma(1+(m+2)/2) == 33! : True
+Cauchy-Schwarz: 2*2^{n-1}log(2+sqrt5)/sqrt(2^n) = 16.332870944966409676
+MIXUP if L_7 := 17*2^n (MO3 Prop 6.6 trace): C7 = 1.8332e-106
+MIXUP if L_7 := 33*2^n (KY Thm 2.3 trace): C7 = 6.7151e-125
+MIXUP if L_7 := 2^{n-1}log(2+sqrt5) (MO3 Thm 5.3 Mahler, no C-S): C7 = 1.1819e-18

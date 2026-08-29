@@ -1,0 +1,507 @@
+% main_1.0.0.tex — working copy of the manuscript (round history: archive/rounds/; statements frozen in theory/STATEMENT_FREEZE_1.0.0.md; this comment is not part of the submission text)
+% Trust labels: [F] Lean 4 kernel, std-3 axioms / [C] certificate + read-only checker / [L] published theorem used as an explicit hypothesis / [M] proved in the manuscript and Blueprint, not machine-checked / [E] experiment, used in no theorem.
+% Composite labels: "L-relative, F-core" = the discrete implication is [F], the inputs are [L]. "C+L, F-core" = certificate checked, inputs [L], propositional core [F].
+% Word freeze (in force until the novelty audit of Section 9 is closed): no "first", "new", "novel", "new principle", "effective complement", "tower-wide", "breakthrough".
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}\urlstyle{tt}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\R}{\mathbb{R}}\newcommand{\F}{\mathbb{F}}
+\newcommand{\RE}{RE^{+}_n}\newcommand{\ord}{\operatorname{ord}}\newcommand{\hgt}{\operatorname{ht}}
+\newcommand{\Nr}{\operatorname{N}_{n/n-1}}\newcommand{\covol}{\operatorname{covol}}
+\newcommand{\lbl}[1]{\textbf{[#1]}}\newcommand{\barT}{\bar T_n}
+\emergencystretch=3em % submission polish (hw 939): lets TeX stretch a line rather than overflow it
+\providecommand{\proofsdir}{../../proofs} % single-source proofs, shared with blueprint/src (r12 hw 185-186)
+\newcommand{\refConst}{Section~\ref{sec:const}}\newcommand{\refCert}{Section~\ref{sec:cert}}\newcommand{\refAppF}{Appendix~\ref{app:F}}\newcommand{\refDefH}{Definition~\ref{def:H}} % r21: medium-specific cross-references used inside the single-source statements proofs/statements/*.tex (the Blueprint defines the same four macros in blueprint/src/macros/common.tex)
+% artifact identifiers used in the shared proofs (hw 940-941): the body names artifacts by ID; the paths are in Appendix~\ref{app:F}
+\newcommand{\artPcert}{[P3-CERT]}\newcommand{\artPgen}{[P3-GEN]}\newcommand{\artPreplay}{[P3-REPLAY]}\newcommand{\artPcover}{[P3-COVER]}\newcommand{\artPcheck}{[P3-CHECK]}\newcommand{\artNovelty}{[NOVELTY]}
+\title[Componentwise saturation-height bounds]{Componentwise saturation-height bounds for relative class-number growth in the cyclotomic $\Z_2$- and $\Z_3$-towers}
+\author{Hiroki Fukui}
+\subjclass[2020]{Primary 11R18, 11R29; Secondary 11H06, 11Y40}
+\keywords{Weber's class number problem, cyclotomic $\Z_2$-extension, relative units, saturation, Blichfeldt's theorem, machine-checked certificates, Lean 4}
+\hypersetup{pdftitle={Componentwise saturation-height bounds for relative class-number growth in the cyclotomic Z2- and Z3-towers},pdfauthor={Hiroki Fukui},pdfsubject={Weber class number problem: componentwise saturation-height bounds; version in CITATION.cff; commit SHA and immutable tag in the GitHub Release metadata},pdfkeywords={Weber class number problem, cyclotomic Z2-extension, relative units, saturation, Blichfeldt, certificates, Lean 4; MSC 2020: 11R18, 11R29 (primary), 11H06, 11Y40 (secondary)}}
+\begin{document}
+\begin{abstract}
+Let $B_n=\Q(2\cos(2\pi/2^{n+2}))$ be the $n$-th layer of the cyclotomic $\Z_2$-extension of $\Q$, $h_n$ its class number and $k_n=h_n/h_{n-1}$. Combining the saturation description of $k_n$ by Kashio and Yoshizaki with the height floor of Morisawa and Okazaki and Blichfeldt's theorem, applied to the lattice of a single saturation component, we obtain for every layer $n\ge2$ and every odd prime $\ell$ the criterion $\ell^{\,\ord_{2^n}(\ell)}>C_n\Rightarrow\ell\nmid k_n$, with $C_n=2(4/\pi)^{2^{n-2}}\Gamma(2+2^{n-2})\prod_{\chi}|L(1,\chi)|/\log(2+\sqrt5)^{2^{n-1}}$, the product over the even characters of conductor $2^{n+2}$. At $n=7$: $\ell\nmid h_7/h_6$ for $\ell\equiv63,65,127\pmod{128}$, $\ell>1.32\times10^{15}$, and for $\ell\equiv1\pmod{128}$, $\ell>1.73\times10^{30}$. For the $1000$ primes $\ell\equiv65\pmod{128}$ with $10^9<\ell\le1001287361$, which Kashio and Yoshizaki excluded conditionally on their Conjecture~2.2, the exclusion holds unconditionally, through finite certificates checked by a read-only verifier. The criterion is an instance of an abstract saturation--height bound (Theorem~SH), which also gives, from an explicit bound for $|L(1,\chi)|$, a computation-free criterion at every layer, and, in the cyclotomic $\Z_3$-tower, a layer-fixed bound resting on the relative-norm-one Horie unit and on the exact covolume of its logarithmic lattice, computed by a character product and positive at every layer; at the layer of degree $81$ this bound lies below the uniform bound of Morisawa and Okazaki in both classes $\ell\equiv\pm1\pmod{81}$. Designated finite computations and discrete cores are kernel- or certificate-checked; every published input is isolated as an explicit hypothesis.
+\end{abstract}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+\subsection{Weber's problem and its known controls}
+Let $B_n=\Q(X_n)$, $X_n=2\cos(2\pi/2^{n+2})$, be the layer of degree $2^n$ in the cyclotomic $\Z_2$-extension of $\Q$, $h_n$ its class number and $k_n=h_n/h_{n-1}$. Weber showed that $h_n$ is odd; Weber's class number problem asks whether $h_n=1$ for all $n$. It is known that $h_n=1$ for $n\le6$ (van der Linden for $n\le5$; Miller \cite{Mi} Thm.~2.1 for $n=6$), and Miller \cite{Mi} Thm.~2.2 gives $h_7=1$ under the generalized Riemann hypothesis, using in its last step the unconditional exclusion of all $\ell<10^9$ by Fukuda and Komatsu \cite{FK3}.
+
+Three kinds of control on the odd primes dividing $h_n$ are in the literature, and they fix different variables.
+\begin{itemize}
+\item[(i)] \emph{Fix $\ell$, climb $n$.} Washington \cite{Wa75,Wa78}: the exact power of $\ell$ dividing $h_n$ is constant for large $n$ (the case $p=2$ is \cite{Wa75}); the argument is effective in the sense that a computable stabilization bound can be extracted from it (\cite{Wa78}); no numerical specialization of that bound is used here.
+\item[(ii)] \emph{Fix a congruence class of $\ell$, all $n$ above a threshold.} Horie \cite{Ho05,Ho07} ($\ell\not\equiv\pm1\pmod 8$), Horie--Horie \cite{HH09} (explicit thresholds $\Theta$ per decomposition field, with the finite-layer clause ``$\ell\nmid h_{n_0}$''), Fukuda--Komatsu \cite{FK3} ($\ell<10^9$ or $\ell\not\equiv\pm1\pmod{32}$), Morisawa--Okazaki \cite{MO16} ($\ell>G(2,s,f)$; $\ell\not\equiv\pm1\pmod{64}$).
+\item[(iii)] \emph{Fix the layer.} Kashio--Yoshizaki \cite{KY} describe $k_n$ through a saturation criterion on the irreducible factors of $x^{2^{n-1}}+1$ over $\F_\ell$, prove an unconditional trace floor $33\cdot2^n$ on the relative units for $n\ge3$, and exclude many primes at $n=7$ conditionally on their Conjecture~2.2.
+\end{itemize}
+The present paper works at a fixed layer with all odd $\ell$ at once. Its criterion (Theorem~\ref{thm:A}) is componentwise: it applies Blichfeldt's theorem \cite{Bl14} to the lattice of one saturation component and compares against the height floor of \cite{MO16}. Where the criterion does not apply, the same components are searched for finite witnesses; the result is a certificate family whose soundness is a theorem relative to the same literature inputs (Section~\ref{sec:cert}).
+
+The criterion is one instance of an abstract saturation--height bound (Theorem~\ref{thm:SH}) with three inputs: a \emph{carrier} (a saturation statement producing an $\ell$-th root of a Galois-module element), a \emph{floor} (a lower bound on the height of such roots) and a \emph{lattice} (Blichfeldt's theorem on the logarithmic image). The $\Z_2$-tower supplies the carrier through Kashio--Yoshizaki, the floor through \cite{MO16} and the lattice through Dirichlet's unit theorem; the cyclotomic $\Z_3$-tower supplies the same three inputs through Horie's saturation lemma, the relative-norm-one height floor of \cite{MO16} (the Horie unit has relative norm $1$) and the exact covolume of the Horie-unit lattice, which is computed by a character product and is positive at every layer (Section~\ref{sec:p3}). One theorem, two towers; the layer-fixed constants obtained in the second tower lie below the uniform-in-$n$ bound of \cite{MO16} in both congruence classes at the layer of degree $81$.
+
+\subsection{Statement of results}\label{sec:results}
+Throughout, $n\ge2$, $m=2^{n-1}$, $q=2^{n+2}$, $G_n=\operatorname{Gal}(B_n/\Q)$, $\sigma$ the generator $X_n\mapsto2\cos(3\cdot2\pi/q)$, $\tau=\sigma^{m}$ the generator of $\operatorname{Gal}(B_n/B_{n-1})$, $E_n$ the units of $B_n$, $\RE=\{\varepsilon\in E_n:\Nr\varepsilon=1\}$, $\varepsilon_n=(X_n+1)/(X_n-1)$, and $A_n=\langle\pm1,\varepsilon_n\rangle_{\Z[G_n]}$ (all as in \cite{KY} Def.~2.1). Heights are those of \cite{MO16} Def.~2.2: $\hgt(\varepsilon)=(\sum_{i=1}^{2^n}(\log|\varepsilon_i|)^2)^{1/2}$ over all real embeddings. $L_n=\sqrt{2^n}\log(2+\sqrt5)$.
+
+\begin{theorem}[SH; componentwise saturation--height bound]\label{thm:SH}
+\input{\proofsdir/statements/thm_SH}
+\end{theorem}
+\begin{corollary}[SH-mod; the module form]\label{cor:SHmod}
+\input{\proofsdir/statements/cor_SHmod}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_SHmod}
+\end{proof}
+Theorem~SH is Blichfeldt's theorem applied to the scaled pullback lattice $\ell^{-1}h(L)$ of one simple component, against a height floor; its role is to separate the four inputs (Rank), (Index), (Car), (Floor) from the notation of the $\Z_2$-tower. It is stated in exactly the form proved in Lean (\path{WeberSH.theoremSH}: $h$ additive, a carrier for every $a\in L$, a floor on $U$); no group action and no module structure on the units enter the theorem. Corollary~SH-mod is the form in which the $\Z_2$-tower supplies the carrier: the base branch $a\in\ell R$ from the $R$-module structure of $A/\{\pm1\}$ and the saturation branch from (Sat) (\path{WeberSH.base_branch}, \path{WeberSH.sat_root_log}). Theorem~A is the specialisation of Corollary~SH-mod to $K=B_n$, $R=R_n$, $U=\RE$, $A=A_n$, $L=L_{f_0}$ (Section~\ref{sec:proofA}); Theorem~\ref{thm:P3} applies Theorem~SH directly, with $U$ the relative-norm-one units of the layer (Lemma~\ref{lem:normone}).
+\begin{theorem}[A]\label{thm:A}
+\input{\proofsdir/statements/thm_A}
+\end{theorem}
+Theorem~A is proved relative to the published theorems of Table~\ref{tab:trust}, used as explicit hypotheses and never sharpened; no conjecture enters. Lean checks the discrete implication relative to the explicitly listed literature inputs (\path{TheoremAInputs.theoremA_of_inputs}, Section~\ref{sec:verif}).
+
+\begin{proposition}[D]\label{prop:D}
+\input{\proofsdir/statements/prop_D}
+\end{proposition}
+The ingredients of Proposition~D are classical: a group determinant and Washington's formula for $L(1,\chi)$. Its role here is to identify the exact normalization needed to turn the componentwise bound into an explicit and certifiable criterion, a product of $L$-values computable at every layer.
+\begin{corollary}[A$'$]\label{cor:Aprime}
+\input{\proofsdir/statements/cor_Aprime}
+\end{corollary}
+\begin{corollary}[T; order threshold]\label{cor:T}
+\input{\proofsdir/statements/cor_T}
+\end{corollary}
+\begin{corollary}[$\widehat{\mathrm A}$; computation-free criterion]\label{cor:Ahat}
+\input{\proofsdir/statements/cor_Ahat}
+\end{corollary}
+Corollary~$\widehat{\mathrm A}$ uses no computation of $L$-values: the only analytic input is the explicit bound $|L(1,\chi)|\le U(q)$ of \cite{Ram04} Cor.~1 for even primitive characters of even conductor. It is coarse ($\widehat C_7/C_7\approx4\times10^{22}$; Section~\ref{sec:const}) but applies at every layer without evaluating $C_n$.
+\begin{corollary}[explicit order threshold]\label{cor:order}
+\input{\proofsdir/statements/cor_order}
+\end{corollary}
+\begin{corollary}[$n=7$]\label{cor:7}
+\input{\proofsdir/statements/cor_7}
+\end{corollary}
+\begin{theorem}[S0; abstract scale law]\label{thm:S0}
+\input{\proofsdir/statements/thm_S0}
+\end{theorem}
+\begin{corollary}[S1]\label{cor:S1}
+\input{\proofsdir/statements/cor_S1}
+\end{corollary}
+\par\noindent{\small\emph{Note.} Hypothesis (i) at $n=7$ is a certificate input \lbl{C} (exact rank certificates).}\par
+Whether $J_t=2^{t-1}R_n$ for $t\ge5$ is not proved here; no claim is made about deeper depths.
+Write $\barT:=17\cdot2^n$ for $n=2$ and $\barT:=33\cdot2^n$ for $n\ge3$: the trace floors $\operatorname{Tr}(\varepsilon^2)\ge\barT$ on $\RE\setminus\{\pm1\}$ of \cite{MO3} Prop.~6.6 (every $n\ge2$) and \cite{KY} Thm.~2.3 (stated for $n\ge3$). The verifier recomputes $\barT$ from $n$ and accepts a T~line only if $T<\barT$ (Section~\ref{sec:cert}).
+\begin{theorem}[Certificate soundness]\label{thm:cert}
+\input{\proofsdir/statements/thm_cert}
+\end{theorem}
+\begin{theorem}[Family]\label{thm:family}
+\input{\proofsdir/statements/thm_family}
+\end{theorem}
+The proof of Theorem~\ref{thm:family} is one certificate per prime ($32$ components each) accepted by the verifier; Theorem~\ref{thm:cert} converts acceptance into exclusion. \cite{KY} \S4.2 excludes the same $1000$ primes conditionally on Conjecture~2.2; here no conjecture is used.
+
+\begin{remark}[numerical observation, not a theorem]\label{rem:Lprod}
+For $2\le n\le9$ the computed value of $\sum_\chi\log|L(1,\chi)|$ lies in $[-0.37,0.03]$ (Table~\ref{tab:Cn}); in this range the Gamma factor of Cor.~A$'$ dominates $C_n$ numerically. Nothing is claimed about the $L$-product for $n\ge10$.
+\end{remark}
+
+\section{Comparison with the literature}\label{sec:comp}
+\subsection{Shape of the criteria}
+Tables~\ref{tab:comp} and~\ref{tab:compb} record, for each control, which variable is fixed and which moves, whether the statement is uniform in $n$, effective, componentwise, certificate-separated, and whether GRH enters. All rows were resolved from the primary texts (the verbatim quotations are in the repository file \path{theory/PHASE_MINUS1_INTEGRATED_AUDIT_R10.md}, part (c)). What each result of Sections~\ref{sec:results} and~\ref{sec:p3} rests on, and which prior bound it is measured against, is tabulated in the repository (\artNovelty{}, Appendix~\ref{app:F}).
+\begin{table}[h]\footnotesize
+\begin{tabular}{@{}p{3.0cm}p{1.7cm}p{1.5cm}p{3.6cm}p{1.1cm}@{}}\toprule
+work & fixed & moving & uniformity in $n$ & GRH\\ \midrule
+Washington \cite{Wa75,Wa78} & prime $\ell$ & layer $n$ & $e_n$ eventually constant & no\\
+Horie \cite{Ho05,Ho07}, Horie--Horie \cite{HH09} & class of $\ell$ & all $n$ & above explicit $\Theta$; finite-layer clause below & no\\
+Fukuda--Komatsu \cite{FK3} & none & all $n$ & $\ell<10^9$ or $\ell\not\equiv\pm1\ (32)$ & no\\
+Morisawa--Okazaki \cite{MO16} & class $D(2,s,f)$ & all $n$ & $\ell>G(2,s,f)$; $\ell\not\equiv\pm1\ (64)$ & no\\
+Kashio--Yoshizaki \cite{KY} & layer $n$ & prime $\ell$ & layer-fixed; floor $33\cdot2^n$ ($n\ge3$); $n=7$ exclusions under Conj.~2.2 & no\\
+Miller \cite{Mi} & layer $n$ & -- & $h_6=1$; $h_7=1$ under GRH & $n=7$\\
+present work & layer $n$, explicit $C_n$ & prime $\ell$ & formula at every $n$ & no\\
+\bottomrule\end{tabular}
+\caption{Controls on the odd primes dividing $h_n$, part 1: what is fixed, what moves, uniformity in the layer, use of GRH.}\label{tab:comp}
+\end{table}
+\begin{table}[h]\footnotesize
+\begin{tabular}{@{}p{3.0cm}p{3.4cm}p{2.2cm}p{2.6cm}@{}}\toprule
+work & effective & componentwise & certificate\\ \midrule
+Washington \cite{Wa75,Wa78} & in principle & no & no\\
+Horie \cite{Ho05,Ho07}, Horie--Horie \cite{HH09} & yes & no & no\\
+Fukuda--Komatsu \cite{FK3} & computational & no & no\\
+Morisawa--Okazaki \cite{MO16} & yes (analytic covolume bound) & no & no\\
+Kashio--Yoshizaki \cite{KY} & yes & yes & printed tables\\
+Miller \cite{Mi} & -- & -- & --\\
+present work & yes & yes & yes, read-only verifier\\
+\bottomrule\end{tabular}
+\caption{Controls on the odd primes dividing $h_n$, part 2: effectivity, componentwise structure, certificates.}\label{tab:compb}
+\end{table}
+
+The criterion of Theorem~A is closest in shape to \cite{KY} (layer-fixed, componentwise) and closest in engine to \cite{MO16} (Blichfeldt against the height floor), with two changes: the lattice is that of a saturation component $\ell^{-1}H_nL_f$ rather than Horie's ideal lattice, and its covolume is evaluated exactly (Prop.~D) rather than bounded analytically.
+
+\subsection{The four surviving classes at $n=7$}\label{sec:classes}
+By \cite{FK3} and \cite{MO16} Cor.~B, every odd prime $\ell$ with $\ell<10^9$ or $\ell\not\equiv\pm1\pmod{64}$ satisfies $\ell\nmid h_n$ for all $n$. Above $10^9$ the classes $\ell\equiv1,63,65,127\pmod{128}$ remain; these are exactly the classes with $\ord_{128}(\ell)\le2$. In the notation of \cite{MO16}, $f=\ord_4(\ell)$ and $2^s\,\|\,\ell^f-1$; Theorem~A of \cite{MO16} excludes $\ell\in D(2,s,f)$ for all $n$ whenever $\ell>G(2,s,f)$, with $G(2,s,f)=\big[2(\sqrt\pi/(\sqrt2\log(2+\sqrt5)))^{c}((c+2)/2)!\big]^{1/f}$, $c=2^{s-1}$. Its proof (\cite{MO16} \S3.3) first obtains, at a fixed layer $n$, the same bound with $c$ replaced by $d=2^{\min(n,s)-1}$, and then substitutes $d\to c$ to make the statement uniform in $n$. \cite{MO16} prints only the values $G(2,6,1)<7.8\times10^{12}$ and $G(2,6,2)<2.8\times10^6$; every other value of $G$ below was evaluated by us from the displayed formula (our evaluation reproduces the two printed bounds: $7.716\times10^{12}$ and $2.778\times10^6$).
+\begin{table}[h]\footnotesize
+\begin{tabular}{@{}p{1.5cm}p{1.4cm}p{0.9cm}p{2.2cm}p{2.2cm}p{2.4cm}@{}}\toprule
+class mod $128$ & $(f,s)$ & $d_7(\ell)$ & Cor.~\ref{cor:7} threshold & \cite{MO16} layer-$7$ value & \cite{MO16} published $G(2,s,f)$\\ \midrule
+$65$ & $(1,6)$ & $2$ & $1.315\times10^{15}$ & $7.716\times10^{12}$ & $7.716\times10^{12}$\\
+$63$ & $(2,7)$ & $2$ & $1.315\times10^{15}$ & $4.520\times10^{16}$ & $4.520\times10^{16}$\\
+$127$ & $(2,s\ge8)$ & $2$ & $1.315\times10^{15}$ & $4.520\times10^{16}$ & $\ge4.778\times10^{41}$\\
+$1$ & $(1,s\ge7)$ & $1$ & $1.727\times10^{30}$ & $2.043\times10^{33}$ & $\ge2.043\times10^{33}$\\
+\bottomrule\end{tabular}
+\caption{The classes $\ell\equiv\pm1\pmod{64}$ at $n=7$. ``Layer-$7$ value'' is the bound of \cite{MO16} \S3.3 before the $d\to c$ substitution, evaluated with $d=2^{\min(7,s)-1}$.}\label{tab:classes}
+\end{table}
+The range not covered by the comparison theorems listed in Table~\ref{tab:classes} is: none in class $65$ (\cite{MO16} is $170\times$ sharper there); $(1.315\times10^{15},\,4.520\times10^{16}]$ in class $63$; $(1.315\times10^{15},\,G(2,s,2)]$ in class $127$; and $(1.727\times10^{30},\,G(2,s,1)]$ in class $1$. Three different mechanisms are visible in Table~\ref{tab:classes}. In class $65$ ($s<n$) the published theorem of \cite{MO16} is sharper than Cor.~\ref{cor:7} by a factor $170$. In class $63$ ($s=n$) the $d\to c$ substitution costs nothing, and Cor.~\ref{cor:7} is sharper than the published $G(2,7,2)$ by the constant alone (a factor $34$, coming from the exact covolume and the component lattice). In classes $127$ and $1$ ($s>n$) Cor.~\ref{cor:7} is sharper both by the constant ($34\times$ and $1183\times$ against the layer-$7$ values) and by not paying the $d\to c$ substitution, which for $s\ge8$ raises $G$ by many orders of magnitude. For general $n$ the same three regimes occur, with $s$ compared to $n$; the position of the range covered by Theorem~A and not by \cite{MO16} is determined by $C_n$, whose computed values for $2\le n\le9$ increase with $n$ (Table~\ref{tab:Cn}); nothing is claimed about $C_n$ for $n\ge10$.
+
+The window $10^9<\ell\le7.716\times10^{12}$ in class $65$ is reached by none of the uniform theorems compared in Table~\ref{tab:classes}; \cite{KY} \S4.2 covers its first $1000$ primes conditionally on Conjecture~2.2. Theorem~\ref{thm:family} covers the same $1000$ primes unconditionally. In the tested $1000$-prime interval, ordinary certificate generation required $8$--$20$ seconds per prime (one prime needed an escalation); no complexity or success-rate claim is made outside this interval. The window itself contains an estimated $4\times10^9$ primes (prime number theorem, equidistribution in the $64$ classes mod $128$); nothing here amounts to an exhaustive treatment of the window.
+
+\section{Old and new components of the class group}\label{sec:oldnew}
+\begin{lemma}\label{lem:oldnew}
+\input{\proofsdir/statements/lem_oldnew}
+\end{lemma}
+The proof is in Appendix~\ref{app:B}. Applied to $B_n/B_{n-1}$ ($p=2$) it shows that $k_n=h_n/h_{n-1}$, and not $h_n$, is the natural object at a fixed layer, and that the odd part of the ``new'' class group is $\ker(N)$. \cite{KY} Eq.~(17), $k_n=[\RE:A_n]$, is the description of this quotient by relative units that Theorem~A uses.
+
+\section{The componentwise criterion}\label{sec:crit}
+\subsection{The exponent ring, the log map and the components}
+\begin{definition}\label{def:H}
+$R_n=\Z[x]/(x^m+1)$, with $x$ acting on $A_n$ through $\sigma$: for $a=\sum_{i<m}a_ix^i$ put $u_a=\prod_{i<m}\sigma^i(\varepsilon_n)^{a_i}\in A_n$. Let $\lambda_j=\log|\sigma^j\varepsilon_n|$ ($j\bmod 2m$); $\lambda_{j+m}=-\lambda_j$ because $\Nr\varepsilon_n=1$. The log map is $H_n:\Z^m\to\R^{2m}$, $(H_na)_j=\sum_{i<m}a_i\lambda_{i+j}$, the log vector of $u_a$ over the $2m=2^n$ real embeddings. For an odd prime $\ell$ and an irreducible factor $f$ of $x^m+1$ over $\F_\ell$ put $w=(x^m+1)/f$, $M_f=w\cdot\F_\ell[x]/(x^m+1)$, and $L_f=\pi^{-1}(M_f)\subseteq R_n$ where $\pi:R_n\to R_n/\ell R_n=\F_\ell[x]/(x^m+1)$. The lattice of the component $f$ is $\Lambda_f=\ell^{-1}H_n(L_f)$.
+\end{definition}
+By \cite{KY} \S4, $A_n/\{\pm1\}$ is free abelian on the classes of $\sigma^i(\varepsilon_n)$, $0\le i<m$, so $a\mapsto u_a$ identifies $R_n$ with $A_n/\{\pm1\}$ as $\Z[G_n]$-modules. \cite{KY} define $A_n^{1/\ell}=\{x\in\R: x^\ell\in A_n\}$ (real $\ell$-th roots) and identify
+\begin{equation}\label{eq:ident}
+R_n/\ell R_n=\F_\ell[x]/(x^m+1)\xrightarrow{\ \sim\ }A_n^{1/\ell}/A_n,\quad \bar a\mapsto r_a A_n,\quad r_a:=\textstyle\prod_{i<m}\sigma^i(\varepsilon_n)^{a_i/\ell}
+\end{equation}
+where $r_a$ is the real $\ell$-th root of $u_a$; this is well defined on classes mod $\ell$ because changing $a$ by an element of $\ell R_n$ multiplies $r_a$ by an element of $A_n$. The map $M_f\to A_n^{1/\ell}/A_n$ is the restriction of \eqref{eq:ident} to the subspace $M_f$.
+
+\subsection{Saturation}\label{sec:sat}
+\begin{lemma}[E; saturation chain]\label{lem:E}
+\input{\proofsdir/statements/lem_E}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_E}
+\end{proof}
+\begin{lemma}[E$'$; the base case $a\in\ell R_n$]\label{lem:Eprime}
+\input{\proofsdir/statements/lem_Eprime}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_Eprime}
+\end{proof}
+Lemma~E$'$ is the reason the certificate verifier of Section~\ref{sec:cert} demands $a\notin\ell R_n$ only as a bookkeeping condition: both branches lead to a relative unit, as in the proof of Theorem~A below.
+
+\subsection{The height floor}
+\begin{lemma}[A; bridge]\label{lem:A}
+\input{\proofsdir/statements/lem_A}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_A}
+\end{proof}
+\begin{lemma}[A$^+$; floor for relative units $\ne\pm1$]\label{lem:Aplus}
+\input{\proofsdir/statements/lem_Aplus}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_Aplus}
+\end{proof}
+Both hypotheses of \cite{MO16} Lemma~2.5(1) --- $u\notin E_{n-1}$ and relative norm exactly $1$ --- are load-bearing, and Lemma~A is what supplies them.
+
+\subsection{The lattice of a component}
+\begin{lemma}[B; equal degrees]\label{lem:B}
+\input{\proofsdir/statements/lem_B}
+\end{lemma}
+\begin{lemma}[C; index]\label{lem:C}
+\input{\proofsdir/statements/lem_C}
+\end{lemma}
+\begin{lemma}[D; rank and covolume]\label{lem:D}
+\input{\proofsdir/statements/lem_D}
+\end{lemma}
+Proofs: Appendix~\ref{app:A}. Lemma~D uses two inputs and needs both: injectivity comes from the freeness of $A_n/\{\pm1\}$, discreteness from Dirichlet's unit theorem; injectivity alone does not give real rank $m$.
+
+\subsection{Proof of Theorem A}\label{sec:proofA}
+\begin{proof}[Proof of Theorem~\ref{thm:SH}]
+\input{\proofsdir/thm_SH}
+\end{proof}
+\begin{proposition}[F; factorwise bound]\label{prop:F}
+\input{\proofsdir/statements/prop_F}
+\end{proposition}
+\begin{proof}
+\input{\proofsdir/prop_F}
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:A}]
+\input{\proofsdir/thm_A}
+\end{proof}
+
+The discrete core of this argument --- ``if some component is saturated, if every vector of its lattice satisfies the Blichfeldt bound in the power-$m/2$ form, and if saturation forces height $\ge L$, then $C<\ell^d$ is impossible'' --- is the Lean theorem \path{TheoremAInputs.theoremA_of_inputs}, with the three inputs as fields of a structure (Section~\ref{sec:verif}). Cor.~T is \path{theoremA_threshold}; the integer comparison of Cor.~\ref{cor:7} is \path{c7_deg2_instance} and \path{deg1/deg2_threshold_valid}.
+
+\begin{table}[h]\small
+\begin{tabular}{@{}p{3.4cm}p{5.0cm}p{3.3cm}@{}}\toprule
+input & statement used & where it enters\\ \midrule
+\cite{KY} Eq.~(17) & $k_n=[\RE:A_n]$, exact & Lemma~E, step 1\\
+\cite{KY} \S4 & $A_n/\{\pm1\}$ free on $\sigma^i\varepsilon_n$; identification \eqref{eq:ident} & Def.~\ref{def:H}, Lemmas D, E$'$\\
+\cite{KY} Prop.~4.1 with display (23) & $\ell\mid k_n\Rightarrow$ some $f_0$ with $[r_a]=[\varepsilon]$, $\varepsilon\in\RE\cap A_n^{1/\ell}$, for every $a\in L_{f_0}$ & Lemma~E\\
+\cite{KY} Def.~2.1 & $A_n\subseteq\RE$ & Lemmas E, E$'$\\
+\cite{MO16} Lemma~2.5(1) & $\hgt(u)\ge\sqrt{2^n}\log(2+\sqrt5)$ for $u\in E_n\setminus E_{n-1}$, $\Nr u=1$ & proof of Thm.~A\\
+\cite{MO16} Thm.~2.7 = \cite{Bl14} Thm.~II & $|v|^2\le\frac2\pi\Gamma(2+\frac d2)^{2/d}\covol^{2/d}$ & proof of Thm.~A\\
+Dirichlet's unit theorem & $\log$-image of $E_n$ is discrete & Lemma~D\\
+\cite{Wash} Chapter~4 ($L(1,\chi)$ formula; Gauss-sum modulus) & $L(1,\chi)$ formula, $|\tau(\chi)|=\sqrt q$ & Prop.~D(ii) only\\
+\cite{Ram04} Cor.~1 ($h=1$, $k=2$) & $|L(1,\chi)|\le\frac14(\log q+2\log2)+\frac{\log 4q}{\sqrt q}$, $\chi$ even primitive, $2\mid q\ge4$ & Cor.~$\widehat{\mathrm A}$ only\\
+\cite{Rob55} & $k!\le\sqrt{2\pi k}(k/e)^ke^{1/(12k)}$ & Cor.~\ref{cor:order} only\\
+\cite{MO13} Lemma~1.3 (\cite{Ho05b}, \cite{Ho02}) & $\ell\mid h_{3,n}/h_{3,n-1}\Rightarrow\exists\,\mathcal L\mid\ell$ of $\Q(\zeta_{3^r})$: $\eta_n^{\alpha_\sigma}\in E_{3,n}^{\ell}$ for all $\alpha\in\ell\mathcal L^{-1}$ & Thm.~\ref{thm:P3} only\\
+\cite{MO13} Thm.~2.2 (\cite{Sch73}) & $M(\varepsilon)\ge((1+\sqrt5)/2)^{\deg\varepsilon/2}$ for a totally real unit $\varepsilon\ne\pm1$ & Thm.~\ref{thm:P3} only\\
+\bottomrule\end{tabular}
+\caption{Trust table: every literature input of Theorem~A and Prop.~D. Not used: \cite{KY} Conj.~2.2, Horie's lemma, any lattice search.}\label{tab:trust}
+\end{table}
+
+\section{Evaluation of the constant}\label{sec:const}
+\subsection{Proof guide for Proposition D}
+The characters of $G_n$ with $\chi(\tau)=-1$ are the even characters of $(\Z/q)^\times$ of conductor exactly $q$, determined by $\chi(3)$, which runs over all primitive $2^n$-th roots of unity (Appendix~\ref{app:C}). Part (i) is the group determinant: the Gram matrix $H_n^{\mathsf T}H_n$ is negacirculant, its eigenvectors are $(\omega^i)_{i<m}$ for $\omega^m=-1$, with eigenvalues $|S(\chi)|^2/2$ where $\omega=\chi(3)$. Part (ii) writes $\varepsilon_n=(1-\zeta^3)^2(1-\zeta^2)/((1-\zeta)^2(1-\zeta^6))$ with $\zeta=e^{2\pi i/q}$, drops the terms with even exponent by orthogonality against a character of conductor $q$, and applies Washington's formula $\big|\sum_{a\in(\Z/q)^\times}\chi(a)\log|1-\zeta^a|\big|=\sqrt q\,|L(1,\chi)|$ (\cite{Wash} Chapter~4, the $L(1,\chi)$ formula together with $|\tau(\chi)|=\sqrt q$), obtaining $|S(\chi)|=|1-\chi(3)|\sqrt q\,|L(1,\chi)|$ and $\prod_\chi|1-\chi(3)|=\Phi_{2^n}(1)=2$. Full proofs: Appendix~\ref{app:D}. $D_n>0$ follows also from $L(1,\chi)\ne0$ (Dirichlet), independently of Lemma~D.
+
+\subsection{Numerical values}
+Table~\ref{tab:Cn} gives $C_n$ for $2\le n\le9$. Each $L(1,\chi)$ is enclosed in a rigorous ball through the digamma formula $L(1,\chi)=-q^{-1}\sum_{a=1}^{q}\chi(a)\psi(a/q)$, valid for every nontrivial $\chi$ mod $q$ (from $L(s,\chi)=q^{-s}\sum_a\chi(a)\zeta(s,a/q)$ at $s=1$), evaluated in ball arithmetic at $500$ bits; the products, the Gamma factor and the powers are ball operations, so each row is a rigorous enclosure (\lbl{C}). At $n=7$ three further routes are compared with the enclosure \emph{as intervals} (cross-CAS audit script and result, Appendix~\ref{app:F}): the interval determinant of $W_7$ at $256$, $512$ and $1024$ bits (rigorous; the four enclosures are nested consistently, the $1024$-bit determinant interval, of width $10^{-139}$, lying inside the digamma interval and the digamma interval inside the two coarser ones; the $256$-bit upper endpoint is the origin of the frozen integer $T_1$), Washington's Gauss-sum formula in PARI ($200$ bits; $\log D_7$ lies inside the $256$-bit determinant interval; numerical audit, not part of the certificate), and a Magma evaluation with $L$-values at $40$ digits (numerical audit: the printed Magma value agrees with the certified enclosure well beyond its working-precision-based conservative estimate $v(1\pm10^{-37})$, which intersects the enclosure; the length of that agreement is an observation and carries no accuracy claim---only the certified Sage/Arb enclosure carries a trust label). Agreement of leading digits and interval inclusion are reported separately; no tolerance is used. The digamma route is independent of Washington's formula and of the determinant, so the agreement is a check of Prop.~D(ii) itself.
+\begin{table}[h]\footnotesize
+\begin{tabular}{@{}rrllp{5.6cm}@{}}\toprule
+$n$ & $m$ & $\log_{10}C_n$ & $\sum_\chi\log|L(1,\chi)|$ & enclosure\\ \midrule
+2 & 2 & 0.2285 & $-0.3673$ & ball, radius $\le2.8\times10^{-149}$\\
+3 & 4 & 0.5475 & $-0.2388$ & ball, radius $\le3.1\times10^{-148}$\\
+4 & 8 & 1.4268 & $-0.2242$ & ball, radius $\le1.8\times10^{-146}$\\
+5 & 16 & 4.1589 & $+0.0233$ & ball, radius $\le4.8\times10^{-143}$\\
+6 & 32 & 11.2900 & $-0.3177$ & ball, radius $\le4.4\times10^{-135}$\\
+7 & 64 & 30.2374 & $-0.3550$ & ball, radius $\le2.2\times10^{-115}$; three further routes agree\\
+8 & 128 & 77.5244 & $+0.0077$ & ball, radius $\le2.8\times10^{-67}$\\
+9 & 256 & 190.5832 & $-0.0506$ & ball, radius $\le2.0\times10^{47}$\\
+\bottomrule\end{tabular}
+\caption{The constant of Theorem~A (Cor.~A$'$): digamma-route enclosures, every row generated from the interval certificate (Appendix~\ref{app:F}); the radius column is an upper bound on the ball radius, the two numeric columns are midpoints rounded to four decimals.}\label{tab:Cn}
+\end{table}
+\begin{remark}
+The $2^n$-powers cancel between $D_n$ and $L_n^m$ (Cor.~A$'$). Any improvement of the geometry-of-numbers constant in Blichfeldt's theorem would lower $C_n$ multiplicatively at every layer at once. The behaviour of $\prod_\chi|L(1,\chi)|$ for large $n$ is not studied here (Remark~\ref{rem:Lprod}).
+\end{remark}
+
+\section{Certified computations}\label{sec:cert}
+\subsection{Pipeline: untrusted generator, read-only verifier}
+A generator (untrusted; Appendix~\ref{app:F}) searches each component lattice $\Lambda_f$ for a vector $a\in L_f\setminus\ell R_n$ with either $\hgt(\ell^{-1}H_na)<L_n$ (RHO route) or $T(a)=\sum_{j<2m}\exp(2y_j)<\barT$ with $y=\ell^{-1}H_na$ (T route; $\barT=33\cdot2^n$ for $n\ge3$ by \cite{KY} Thm.~2.3 and $17\cdot2^n$ for $n=2$ by \cite{MO3} Prop.~6.6; the verifier recomputes $\barT$ from $n$ and rejects a header that claims any other threshold), using LLL/BKZ and, when needed, exact SVP. Nothing produced by the generator is trusted. A separate verifier (the family verifier of Appendix~\ref{app:F}, $80$ lines, no search, no dependence on the generator) reads a witness file and recomputes from the definitions, in ball arithmetic at $256$ bits: the factorisation of $x^m+1$ over $\F_\ell$ (rejecting the file unless it is squarefree with all factors of degree $\ord_{2^n}(\ell)$ and unless the header fields $n,\ell,m,\deg,\#\text{components},\barT,L_n$ agree with the recomputation), the identity of each named factor by its full coefficient list, the exact membership $f\cdot a\equiv0\bmod(\ell,x^m+1)$, $a\notin\ell R_n$, the certified nonvanishing of some log coordinate, the route inequality with the ball's upper endpoint, and agreement of the claimed value with the recomputed one to $10^{-6}$. It returns \textsc{excluded} only if every component carries at least one accepted line and no line fails. \lbl{C}
+\subsection{Soundness}
+\begin{proof}[Proof of Theorem~\ref{thm:cert}]
+\input{\proofsdir/thm_cert}
+\end{proof}
+The propositional core --- saturation exists, each witness kind refutes saturation, every component carries a witness, hence no divisibility --- is \path{WeberCert.exclusion_chain_direct}; the two refutation steps are \path{rho_witness_refutes_saturation} and \path{t_witness_refutes_saturation}, whose hypotheses are the two floors; and \path{exclusion_of_checker_spec} states the specification ``verifier accepts $\Rightarrow$ every component has a witness of one of the two kinds'' as an explicit hypothesis. The threshold $\barT$ itself is the definition \texttt{WeberCert.barT} (Appendix~\ref{app:F}: $\bar T_2=68$, $\bar T_7=4224$, $\barT\le33\cdot2^n$ for every $n$, strict at $n=2$ where $\barT=17\cdot2^n$, and \path{t_witness_refutes_saturation_barT}, the T-refutation instantiated at $\barT$). Lean does not verify the implementation of the verifier; it verifies the argument from what the verifier is specified to check. The trust label is therefore C+L with an F-core, not F.
+\subsection{The family}\label{sec:family}
+Theorem~\ref{thm:family}: $\mathcal P$ is defined as the first $1000$ primes $\ell>10^9$ with $\ell\equiv65\pmod{128}$; the list was regenerated independently and coincides element by element with the list produced by the generator, and its endpoints coincide with those printed in \cite{KY} \S4.2. Table~\ref{tab:family} summarises the certificates. Every component of every prime carries a T certificate; $31987$ of the $32000$ components also carry a RHO certificate, $13$ are T-only. One prime ($1000992193$) required an escalated search (BKZ-$60$ and exact SVP) for one component.
+\begin{lemma}[KY1000 certificates]\label{lem:ky1000}
+\input{\proofsdir/statements/lem_ky1000}
+\end{lemma}
+\begin{proof}[Proof of Theorem~\ref{thm:family}]
+\input{\proofsdir/thm_family}
+\end{proof}
+\begin{table}[h]\small
+\begin{tabular}{@{}p{4.2cm}p{8.0cm}@{}}\toprule
+primes / components & $1000$ / $32000$\\
+T certificates / RHO certificates / T-only components & $32000$ / $31987$ / $13$\\
+largest certified $T$ / floor / minimal margin & $4164.4897$ / $4224$ / $59.5103$\\
+median certified $T$ & $2352.0117$\\
+generation & $8$--$20$~s per prime; one escalation\\
+local full read-only verification & $1000/1000$ \textsc{excluded}, $10$~min $42$~s wall clock, $4$ lanes, $1$ BLAS thread each, Apple M4 (10 cores, 24~GB)\\
+negative controls & $9/9$ rejected (coefficient altered, factor identifier swapped, claimed value altered, one bit of $\ell$ flipped, duplicated line, header component count altered, header floor altered, header claiming the $n=2$ floor at $n=7$, header claiming $33\cdot2^2$ on an $n=2$ file); the untouched $n=2$ file (floor $68$) is accepted\\
+\bottomrule\end{tabular}
+\caption{The certificate family for $\mathcal P$ (verification ledger, Appendix~\ref{app:F}).}\label{tab:family}
+\end{table}
+\subsection{Failure classes} \lbl{E} For $\ell\equiv63,127\pmod{128}$ the component minima cluster just above the floor (exact SVP: $\hgt/L_7=1.009$--$1.011$ at $\ell=10000003199$); the T route closes some of these components and not others. These classes are reported as statistics, not as theorems.
+
+\section{Limits of the method}\label{sec:limits}
+\subsection{Scaling}\label{sec:scaling}
+Theorem~\ref{thm:S0} and Cor.~\ref{cor:S1} are proved in Appendix~\ref{app:E}. The lattice half is the group lemma: $[R_n:L_f]$ is a power of the odd prime $\ell$, so $L_f\cap2^{t-1}R_n=2^{t-1}L_f$ (\lbl{F}: \path{smul_mem_iff_of_coprime}); under hypothesis (i) the filtered lattice is the exact dilate $2^{t-1}\Lambda_f$, and every relative minimum scales by $2^{t-1}$. The floor half has two lemmas: the depth-$t$ height floor $\hgt(u)\ge L_{n,t}$ for $u\in\RE\setminus\{\pm1\}$, $u\equiv1\pmod{2^t\mathcal O_n}$ (Lemma~\ref{lem:depthfloor}, Schinzel's inequality), and the odd-power depth transfer $x^\ell\equiv1\iff x\equiv1\pmod{2^t\mathcal O_n}$ for units $x$ (Lemma~\ref{lem:oddtransfer}; $2$ is totally ramified in $B_n$ with residue field $\F_2$, so $(\mathcal O_n/2^t\mathcal O_n)^\times$ is a $2$-group and an odd power map on it is a bijection, \lbl{F}: \path{WeberOddTransfer.pow_odd_eq_one_iff_of_two_pow_card}). The transfer is what allows the floor to be applied to the unit carrying the short vector ($r_a$, or $u_b$ in the base branch) when only its $\ell$-th power $u_a$ is known to be $\equiv1\pmod{2^t}$. The analytic half, $(2+\sqrt5)^{2^{t-1}}>2^t+\sqrt{4^t+1}$ for every $t\ge2$, is \lbl{F}: \path{ineq_t_general}; it says $L_{n,t}/2^{t-1}<L_n$, so the depth-$t$ contradiction needs a shorter vector than the plain one. Hypothesis (i) is certified for $t=2,3,4$ (Cor.~\ref{cor:S1}); for $t\ge5$ it is open, and we make no claim there.
+\subsection{Class $1$} \lbl{E} For $\ell\equiv1\pmod{128}$ the components have degree $1$. For each scalar residue class of a component, the T route may use any lift $a+\ell z$, $z\in R_n$; the search performed used the centered representatives together with an explicit local $\pm\ell$-coordinate descent, and is not a full nonlinear closest-vector search. At $\ell=1000000513$ this search over all $64$ components found no witness under either floor (per-component minima $5.1\times10^4$--$2.3\times10^5$ against $4224$). This is a limitation of the implemented search, not of the T route: the class-$1$ case above $10^9$ and below the Cor.~\ref{cor:7} threshold is not settled by this method, and no statement about it is made.
+
+\section{The cyclotomic $\Z_3$-tower}\label{sec:p3}
+Theorem~SH is not tied to $p=2$. In the cyclotomic $\Z_3$-tower the saturation input is Horie's lemma in the form of \cite{MO13} Lemma~1.3 (the $\ell$-th-root statement on the ideal lattice $\ell\mathcal L^{-1}$ of $\Z[\zeta_{3^r}]$ acting on the Horie unit), the floor is the relative-norm-one height bound \cite{MO16} Lemma~2.5(2), applicable because the Horie unit has relative norm $1$ (Lemma~\ref{lem:normone}), and the covolume of the Horie-unit log lattice is positive at every layer and is computed exactly by a character product (Theorem~\ref{thm:rank3}). The result is a layer-fixed criterion of the same shape as Theorem~A which, at $n=4$, is sharper than the uniform-in-$n$ bound of Morisawa and Okazaki (\cite{MO16} Thm.~A) in both classes $\ell\equiv\pm1\pmod{81}$ with $81\,\|\,\ell\mp1$ (Corollary~\ref{cor:P3n4}).
+
+Throughout, $B_{3,n}$ denotes the $n$-th layer of the cyclotomic $\Z_3$-extension of $\Q$ (the real subfield of $\Q(\zeta_{3^{n+1}})$ of degree $3^n$), with $B_{3,0}=\Q$ and $h_{3,0}=1$, so that for $n=1$ the relative class number $h_{3,1}/h_{3,0}$ is $h_{3,1}$ itself; $E_{3,n}$ is the unit group of $B_{3,n}$, $h_{3,n}$ its class number; $N=3^n$, $q=3^{n+1}$, $\zeta=\zeta_q$, $\sigma$ the generator of $G=\operatorname{Gal}(B_{3,n}/\Q)$ induced by $\zeta\mapsto\zeta^4$, $\tau=\sigma^{3^{n-1}}$, $\eta_n=\sin(2(1+3^n)\pi/q)/\sin(2\pi/q)$ the Horie unit (\cite{MO13} \S1; one factor at $p=3$), and $H$ the log map to $\R^{N}$ over the real embeddings. Throughout the $\Z_3$-tower, ``$\ell\mid h_{3,n}/h_{3,n-1}$'' means $v_\ell(h_{3,n})>v_\ell(h_{3,n-1})$, and ``$\ell\nmid h_{3,n}/h_{3,n-1}$'' its negation; by Lemma~\ref{lem:oldnew} with $p=3$ and $\ell\ne3$ (the extension $B_{3,n}/B_{3,n-1}$ is cyclic of degree $3$) this is $\ker(N)_\ell\ne0$, and $v_\ell(h_{3,n})\ge v_\ell(h_{3,n-1})$ always holds, so the quotient is $\ell$-integral for every $\ell\ne3$.
+\begin{lemma}[relative norm of the Horie unit]\label{lem:normone}
+\input{\proofsdir/statements/lem_normone}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_normone}
+\end{proof}
+\begin{lemma}[discriminant of $\Q(\zeta_{p^r})$]\label{lem:disc}
+\input{\proofsdir/statements/lem_disc}
+\end{lemma}
+\begin{theorem}[spectral rank and exact covolume]\label{thm:rank3}
+\input{\proofsdir/statements/thm_rank3}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_rank3}
+\end{proof}
+\begin{lemma}[relative-norm-one height floor]\label{lem:mo25-z3}
+\input{\proofsdir/statements/lem_mo25-z3}
+\end{lemma}
+\begin{theorem}[P3]\label{thm:P3}
+\input{\proofsdir/statements/thm_P3}
+\end{theorem}
+\begin{proof}
+\input{\proofsdir/thm_P3}
+\end{proof}
+\begin{table}[h]\scriptsize\centering\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}rrrllllll@{}}\toprule
+$n$ & $r$ & $c$ & $C^{(3)}_{n,r}$ (up) & $\sqrt{C^{(3)}_{n,r}}$ (up) & $G(3,r,1)$ \cite{MO16} & $G(3,r,2)$ \cite{MO16} & gain $f{=}1$ & gain $f{=}2$\\ \midrule
+2 & 2 & 6 & $4.8939\times10^{1}$ & $6.9957\times10^{0}$ & $1.8992\times10^{2}$ & $1.3781\times10^{1}$ & $3.88\times10^{0}$ & $1.96\times10^{0}$\\
+3 & 3 & 18 & $5.4438\times10^{7}$ & $7.3782\times10^{3}$ & $1.7983\times10^{9}$ & $4.2407\times10^{4}$ & $3.30\times10^{1}$ & $5.74\times10^{0}$\\
+4 & 1 & 2 & $3.7148\times10^{0}$ & $1.9274\times10^{0}$ & $3.9855\times10^{0}$ & $1.9963\times10^{0}$ & $1.07\times10^{0}$ & $1.03\times10^{0}$\\
+4 & 2 & 6 & $1.5360\times10^{2}$ & $1.2394\times10^{1}$ & $1.8992\times10^{2}$ & $1.3781\times10^{1}$ & $1.23\times10^{0}$ & $1.11\times10^{0}$\\
+4 & 3 & 18 & $8.8915\times10^{8}$ & $2.9819\times10^{4}$ & $1.7983\times10^{9}$ & $4.2407\times10^{4}$ & $2.02\times10^{0}$ & $1.42\times10^{0}$\\
+4 & 4 & 54 & $1.0728\times10^{33}$ & $3.2753\times10^{16}$ & $3.7111\times10^{37}$ & $6.0919\times10^{18}$ & $3.45\times10^{4}$ & $1.85\times10^{2}$\\
+5 & 4 & 54 & $6.1141\times10^{36}$ & $2.4727\times10^{18}$ & $3.7111\times10^{37}$ & $6.0919\times10^{18}$ & $6.06\times10^{0}$ & $2.46\times10^{0}$\\
+5 & 5 & 162 & $1.7382\times10^{133}$ & $4.1691\times10^{66}$ & $8.5728\times10^{146}$ & $2.9279\times10^{73}$ & $4.93\times10^{13}$ & $7.02\times10^{6}$\\
+\bottomrule\end{tabular}
+\caption{The layer-fixed constant $C^{(3)}_{n,r}$ of Theorem~\ref{thm:P3} and its square root (thresholds for $f=1,2$; \lbl{C}: the $p=3$ certificate of Appendix~\ref{app:F}, ball arithmetic at $4000$ bits, every row an enclosure of radius $<10^{-800}$ by two independent linear-algebraic routes from the same log profile (Gram determinant; character product), stored as exact dyadic outward endpoints and replayed from the definitions by its read-only verifier; upper endpoints, rounded up) against the uniform-in-$n$ bound of Morisawa and Okazaki, \cite{MO16} Thm.~A, evaluated at $s=r$ (lower endpoints, rounded down), and the gains $G(3,r,1)/C^{(3)}_{n,r}$, $G(3,r,2)/\sqrt{C^{(3)}_{n,r}}$ (rounded down). The present constant is below $G$ in both classes in every row $1\le r\le n\le5$ (all fifteen rows are in the certificate). For $s>r=n$ the comparator is $G(3,s,f)$, which grows with $c=2\cdot3^{s-1}$, while $C^{(3)}_{n,n}$ is fixed. The comparison is between a layer-fixed constant and a uniform-in-$n$ bound: $G(3,s,f)$ holds at every layer $n\ge s$, while $C^{(3)}_{n,r}$ is a bound at the single layer $n$. For the historical record, \cite{MO13} Thm.~0.3 needs $\ell^f>2^{c/2}c!$ ($3.098\times10^{79}$ at $s=4$) and \cite{MO13} Thm.~A $\ell^f>G_1(3,s,f)^f$ ($7.63\times10^{101}$).}\label{tab:p3}
+\end{table}
+\begin{corollary}[$n=4$]\label{cor:P3n4}
+\input{\proofsdir/statements/cor_P3n4}
+\end{corollary}
+\begin{proof}
+\input{\proofsdir/cor_P3n4}
+\end{proof}
+The layer $n=4$ is the lowest whose class number is not known unconditionally ($h_{3,n}=1$ for $n\le3$ by \cite{MO13} \S0 and its references; $n=4$ under the generalized Riemann hypothesis, van der Linden). Nothing is claimed for $h_{3,4}$ itself, only for its relative part at primes in the two classes; for $\ell\equiv\pm1\pmod{243}$ the same thresholds apply at the layer $n=4$ (the theorem uses $r=\min(n,s)=4$), where the uniform comparator is $G(3,s,f)$ with $s\ge5$.
+
+\section{Verification architecture}\label{sec:verif}
+\begin{table}[h]\small
+\begin{tabular}{@{}p{1.1cm}p{4.9cm}p{5.8cm}@{}}\toprule
+label & meaning & what it does not cover\\ \midrule
+F & Lean~4 kernel, std-3 axioms, no \texttt{sorry}, no \path{native_decide} & the informal reading of the statement\\
+C & certificate accepted by a read-only checker; checker specification stated & the checker's implementation (not Lean-verified)\\
+L & published theorem used as an explicit hypothesis (verbatim location on record) & its proof\\
+M & proved in this manuscript and in the Blueprint (single-source \path{proofs/}); not machine-checked & kernel or certificate confirmation\\
+E & experiment; used in no theorem & anything\\
+\bottomrule\end{tabular}
+\caption{Trust labels. Composite labels (e.g.\ ``L-relative, F-core'', ``C+L, F-core'') name the label of the core and of the inputs separately; the correspondence table and the Blueprint map of the repository (Appendix~\ref{app:F}) assign them claim by claim.}\label{tab:legend}
+\end{table}
+Every claim carries one of the labels F (Lean~4, toolchain v4.31.0-rc1, Mathlib commit d568c8c0; for every declaration the axiom census returned by \texttt{\#print axioms} lies within the standard three, propext, Classical.choice and Quot.sound; no \texttt{sorry}, no \texttt{native\_decide}), C (certificate plus read-only checker), L (published theorem used as an explicit hypothesis), M (proved in the manuscript and in the Blueprint, not machine-checked), E (experiment, used in no theorem), or a composite of these. The correspondence between statements, Lean declarations and certificates is the file \texttt{CORRESPONDENCE.csv}; the Lean files, certificates, scripts and logs are indexed in Appendix~\ref{app:F}. All designated finite computations and selected discrete cores are kernel- or certificate-checked; the remaining arguments (Lemmas B, C (pullback bookkeeping), D, E$'$, Prop.~F, Prop.~D, the old/new decomposition, Lemma~\ref{lem:oddtransfer} outside its group core) are M; published inputs are isolated explicitly (Table~\ref{tab:trust}). The repository ships a portable replay script (manifest check, cross-CAS certificates for Prop.~D and $C_7$, the $1000$ family certificates, the negative controls, the Lean compilations with axiom census, blueprint and paper builds) and a Dockerfile with a CI workflow for Sage~10.8 and the pinned Lean workspace (not executed at the time of writing: no author machine has Docker; the workflow has therefore never run, and no clean-checkout replay is claimed --- the first run, if green, is to be attached to the release as an asset together with its run identifier and commit, never written back into the source tree); the release manifest lists every certificate by SHA-256.
+
+Generative AI systems (Claude, GPT) assisted with proof decomposition, drafting of prose and code, and adversarial review between rounds. All outputs were reviewed by the author, who is responsible for every statement. Designated finite and discrete claims (labels F and C) were additionally checked by the Lean kernel or by the certificate verifiers; the remaining mathematical arguments (label M) are supplied as human-reviewed manuscript and Blueprint proofs and are not machine-checked.
+
+\section{Outlook}
+(1) The class-$1$ components need a mechanism beyond the implemented T-route search. (2) A coupling between the coset minimum and the height of a deep representative would reopen the $n=7$ question. (3) Any improvement of the Blichfeldt constant improves $C_n$ at every layer (Section~\ref{sec:const}). (4) Whether $J_t=2^{t-1}R_n$ for $t\ge5$ (Theorem~\ref{thm:S0}(i)) is open.
+
+\appendix
+\section{The componentwise saturation lemmas}\label{app:A}
+\subsection*{Lemma B}
+\begin{proof}
+\input{\proofsdir/lem_B}
+\end{proof}
+\subsection*{Lemma C}
+\begin{proof}
+\input{\proofsdir/lem_C}
+\end{proof}
+\subsection*{Lemma D}
+\begin{proof}
+\input{\proofsdir/lem_D}
+\end{proof}
+\subsection*{Lemma E and Lemma E$'$}
+Proved in Section~\ref{sec:sat}.
+\subsection*{Proposition F (factorwise form)}
+Proved in Section~\ref{sec:proofA} (Prop.~\ref{prop:F}); Lemma~B then identifies $d_{f_0}$ with $d_n(\ell)$.
+
+\section{Old and new components in cyclic $p$-towers}\label{app:B}
+\begin{proof}[Proof of Lemma~\ref{lem:oldnew}]
+\input{\proofsdir/lem_oldnew}
+\end{proof}
+
+\section{Characters of $G_n$ and Frobenius orbits}\label{app:C}
+$(\Z/q)^\times=\{\pm1\}\times\langle3\rangle$ with $3$ of order $2^n$ (from $3^{2^k}\equiv1+2^{k+2}\pmod{2^{k+3}}$). Since $\sigma_{-a}=\sigma_a$ on $B_n$, $G_n=(\Z/q)^\times/\{\pm1\}$ is cyclic of order $2^n$, generated by the class of $3$, and $\tau=\sigma^{m}$ is the class of $1+q/2$. A character of $G_n$ is an even character of $(\Z/q)^\times$; it has conductor exactly $q$ iff it is nontrivial on $\{1,1+q/2\}$ iff $\chi(\tau)=-1$; then $\chi(3)^m=\chi(\tau)=-1$, so $\chi(3)$ is a primitive $2^n$-th root of unity, and the $m$ such characters give all $m$ primitive roots. Lemma~B is the orbit count of the same Frobenius on the roots of $\Phi_{2^n}$ over $\F_\ell$.
+
+\section{Determinant normalisation and constants}\label{app:D}
+\begin{lemma}[0; group determinant]\label{lem:D0}
+\input{\proofsdir/statements/lem_D0}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D0}
+\end{proof}
+\begin{lemma}[1; a cyclotomic-unit expression]\label{lem:D1}
+\input{\proofsdir/statements/lem_D1}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D1}
+\end{proof}
+\begin{lemma}[2; imprimitive terms vanish]\label{lem:D2}
+\input{\proofsdir/statements/lem_D2}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D2}
+\end{proof}
+\begin{lemma}[3; Washington's formula in the form used]\label{lem:D3}
+\input{\proofsdir/statements/lem_D3}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_D3}
+\end{proof}
+\begin{lemma}[4; $\prod|1-\chi(3)|=2$ for every $n$]\label{lem:prod13}
+\input{\proofsdir/statements/lem_prod13}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_prod13}
+\end{proof}
+\begin{proof}[Proof of Prop.~\ref{prop:D}]
+\input{\proofsdir/prop_D}
+\end{proof}
+\begin{proof}[Proof of Cor.~\ref{cor:Aprime}]
+\input{\proofsdir/cor_Aprime}
+\end{proof}
+\begin{proof}[Proof of Cor.~\ref{cor:T}]
+\input{\proofsdir/cor_T}
+\end{proof}
+\begin{proof}[Proof of Cor.~\ref{cor:Ahat}]
+\input{\proofsdir/cor_Ahat}
+\end{proof}
+\begin{proof}[Proof of Cor.~\ref{cor:order}]
+\input{\proofsdir/cor_order}
+\end{proof}
+\begin{lemma}[C7; rigorous enclosure]\label{lem:C7}
+\input{\proofsdir/statements/lem_C7}
+\end{lemma}
+\begin{lemma}[C7; integer comparison]\label{lem:C7int}
+\input{\proofsdir/statements/lem_C7int}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Lean: \path{c7_deg2_instance}, \path{deg1_threshold_valid}, \path{deg2_threshold_valid}.}\par
+\begin{proof}[Proof of Cor.~\ref{cor:7}]
+\input{\proofsdir/cor_7}
+\end{proof}
+\subsection*{Citation note}
+The edition used for \cite{Wash} is the second (GTM 83, 1997); the two inputs taken from it are the formula for $L(1,\chi)$ with $\chi$ even and primitive and the Gauss-sum modulus $|\tau(\chi)|=\sqrt f$, both from Chapter~4, and the discriminant and integral basis of $\Q(\zeta_{p^r})$ from Chapter~2; they are cited at chapter level. The $L(1,\chi)$ identity is standard and is also verified numerically (Table~\ref{tab:Cn}, three routes).
+
+\section{The scaling theorem}\label{app:E}
+\begin{lemma}[S1; group lemma]
+Let $R$ be an abelian group, $L\le R$ of finite index, and $k$ an integer coprime to $[R:L]$. Then $L\cap kR=kL$.
+ (Lean: \path{smul_mem_iff_of_coprime}, \path{coprime_smul_injective}.)
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_Sgroup}
+\end{proof}
+$R_n/L_f$ is an $\F_\ell$-vector space (Lemma~C), so $[R_n:L_f]$ is a power of the odd prime $\ell$, and Lemma~S1 applies with $k=2^{t-1}$: $L_f\cap2^{t-1}R_n=2^{t-1}L_f$; likewise $\ell R_n\cap2^{t-1}R_n=2^{t-1}\ell R_n$.
+\begin{lemma}[depth-$t$ height floor]\label{lem:depthfloor}
+\input{\proofsdir/statements/lem_depthfloor}
+\end{lemma}
+\begin{proof}
+\input{\proofsdir/lem_depthfloor}
+\end{proof}
+\begin{lemma}[odd-power depth transfer]\label{lem:oddtransfer}
+\input{\proofsdir/statements/lem_oddtransfer}
+\end{lemma}
+\par\noindent{\small\emph{Note.} Lean, group core: \path{WeberOddTransfer.pow_odd_eq_one_iff_of_two_pow_card}, \path{pow_odd_eq_iff_of_two_pow_card}, \path{isUnit_pow_odd_eq_one_iff}; the arithmetic of $B_n$ in the proof is \lbl{M}.}\par
+\begin{proof}
+\input{\proofsdir/lem_oddtransfer}
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:S0}]
+\input{\proofsdir/thm_S0}
+\end{proof}
+\begin{proof}[Proof of Cor.~\ref{cor:S1}]
+\input{\proofsdir/cor_S1}
+\end{proof}
+
+\section{Artifact index}\label{app:F}
+File paths are given here once; the body of the paper refers to them by name. Every path is relative to the repository root; the SHA-256 of every file is in \path{MANIFEST_SHA256.txt}; the round-by-round correspondence is \path{CORRESPONDENCE.csv} (generated from \path{docs/CLAIMS_1.0.0.yaml}) and \path{docs/BLUEPRINT_MAP_1.0.0.md}.
+
+\emph{Lean (kernel-checked, std-3).} \path{lean/WeberR7.lean} (Lemmas A, C, coset absorption); \path{lean/WeberExternalResults.lean} (Theorem~A core \path{TheoremAInputs.theoremA_of_inputs}, Cor.~T \path{theoremA_threshold}, $n=7$ comparison \path{c7_deg2_instance}); \path{lean/WeberCertChainDirect.lean} and \path{lean/WeberCertFloor.lean} (Theorem~\ref{thm:cert} core and the threshold $\barT$); \path{lean/WeberScalingNoGo.lean} and \path{lean/WeberScalingS0.lean} (Theorem~S0: group lemma, \path{ineq_t_general}); \path{lean/WeberOddTransfer.lean} (Lemma~\ref{lem:oddtransfer}, group core); \path{lean/WeberSH.lean} (Theorem~\ref{thm:SH}: the typed bridge \path{WeberSH.sat_root_log}, the base branch \path{WeberSH.base_branch}, \path{WeberSH.theoremSH}); \path{lean/WeberHatC.lean} (Cor.~\ref{cor:Ahat}: \path{WeberHatC.C_le_hatC}, \path{WeberHatC.theoremA_of_hat}); \path{lean/WeberLemmaB.lean} (Lemma~\ref{lem:B} in full: \path{WeberLemmaB.factor_degree}); \path{lean/WeberRoots.lean} (uniqueness of the real root and the representative change of Lemma~\ref{lem:E}); \path{lean/WeberP3.lean} (Theorem~\ref{thm:P3}: the discrete core with the $p=3$ names; its Cauchy--Schwarz lemma served an earlier floor and is no longer load-bearing); \path{lean/WeberP3Rel.lean} (Lemma~\ref{lem:normone}: order of $1+3^n$, action of $\tau$, telescoping, periodicity, odd-power transfer; Theorem~\ref{thm:rank3}: the coset-sum vanishing of the Fourier coefficients at $3\mid k$, the shift algebra of the twisted sums on $\Z/N$ that reduces $\hat\lambda_k\ne0$ to $\hat\Gamma_k\ne0$ for $3\nmid k$, the primitive-root polynomial step and $\varphi(3^r)=2\cdot3^{r-1}$). \emph{Coverage of Theorem~A:} kernel-checked are Lemmas A, B, C, the group core of Lemma~E (coset absorption, real roots, the bridge $u^\ell=u_a\Rightarrow\ell H(u)=H(u_a)$), the base branch, Theorem~SH's discrete core and its two-branch conclusion, Cor.~T and the $n=7$ comparison; the remaining manuscript steps are Lemma~D (covolume via Dirichlet's unit theorem), the instantiation of Theorem~SH with the Weber data, and Prop.~D. The label of Theorem~A stays ``L-relative, F-core''; ``kernel-only'' is not claimed. Compilation logs with axiom census: \path{lean/compile*.log}; \path{lean/README_lean.md}.
+
+\emph{Certificates.} $C_n$ enclosures: \path{certificates/constants/Cn_interval_r14.json} (both endpoints to $160$ digits, outward; produced by \path{sage/r14_cn_interval.sage}); cross-CAS routes: \path{certificates/constants/C7_cross_cas_r14.json} (\path{sage/r14_cross_cas_audit.sage}); $r6$ interval determinant: \path{certificates/blichfeldt/r6_blichfeldt_cert.log}; family: \path{certificates/family/KY1000/witness_n7_l*.txt} ($1000$ files), ledger \path{sage/family_ky1000_r11_clean/VERIFY_LEDGER.txt}; negative controls: \path{sage/negctl_r13/negctl_r13.log}, ledger \path{certificates/negctl/negctl_ledger_r14.json}; $2$-adic rank certificates (Cor.~S1): \path{certificates/twoadic_rank/}; flagship prime: \path{certificates/flagship/}. $p=3$ covolumes and constants (Table~\ref{tab:p3}, Cor.~\ref{cor:P3n4}): \textbf{[P3-CERT]} = \path{certificates/p3/D3_cert_r19.json} (format v3: every certified quantity as EXACT dyadic endpoints, the outward hull of the two independent enclosures widened to twice its half-width, with both enclosures and the bare hull kept per field; $4000$ bits); \textbf{[P3-GEN]} = \path{tools/gen_p3_cert_r19.py} from the producer balls \path{sage/r19_trackB/p3_covol_balls_r19.json} (\path{sage/r19_trackB/p3_covol_balls_r19.sage}) and the read-only recomputation \path{sage/r19_trackB/p3_readonly_recomputed_r19.json}; \textbf{[P3-REPLAY]} = \path{scripts/verify_p3_readonly.sage} (rebuilds everything from the definitions; requires containment of its recomputation in every certified interval, $120/120$; twelve planted certificates rejected, ledger \path{docs/P3_NEGCTL_LEDGER_R19.md}); \textbf{[P3-COVER]} = \path{tools/check_p3_containment.py}; \textbf{[P3-CHECK]} = \path{tools/check_p3_cert.py} (consistency and print strings).
+
+\emph{Checkers and scripts.} Family verifier \path{scripts/family_verify.sage} (frozen; SHA-256 \texttt{0f38bb0d}\ldots); target-list verifier \path{scripts/verify_ky1000_target.py}; $2$-adic rank replay \path{scripts/verify_twoadic_rank.py}; generator (untrusted) \path{scripts/family_gen.sage}; portable replay \path{scripts/verify_all_portable.sh} with the gates \path{tools/check_constant_sync.py}, \path{tools/negctl_tools_r14.py}, \path{tools/gen_cn_certs.py}, \path{tools/gen_negctl_ledger.py}, \path{tools/verifier_profile_tests.sh}, \path{tools/check_release_metadata.py} (current-facing pointers and forbidden notation), \path{tools/check_statement_sync.py} (the statement of Theorem~\ref{thm:P3} identical in this paper and in the Blueprint; the conditions of the claims ledger present in both); \artNovelty{} = \path{docs/NOVELTY_MATRIX.md} (generated by \path{tools/gen_novelty_matrix.py}); CI \path{.github/workflows/verify.yml}, \path{Dockerfile}.
+
+\emph{Documents.} The Blueprint (statements, dependency graph and the same single-source proofs as this paper) and the repository's records of frozen statements, trust legend, release status and errata accompany the code; the repository README lists them.
+
+\input{\proofsdir/bibliography}
+\end{document}

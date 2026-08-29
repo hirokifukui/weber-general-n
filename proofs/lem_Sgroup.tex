@@ -1,0 +1,7 @@
+Let $R$ be an abelian group (written additively), $L\le R$ a subgroup of finite index $N=[R:L]$, and $k\ge1$ an integer with $\gcd(k,N)=1$. We show $L\cap kR=kL$, where $kR=\{kr:r\in R\}$ and $kL=\{ky:y\in L\}$.
+
+\emph{$kL\subseteq L\cap kR$.} If $x=ky$ with $y\in L$, then $x\in kR$ by definition, and $x\in L$ because a subgroup is closed under integer multiples.
+
+\emph{$L\cap kR\subseteq kL$.} Let $x\in L\cap kR$, say $x=kr$ with $r\in R$, and let $\pi:R\to R/L$ be the projection. Since $\pi$ is a homomorphism, $\pi(x)=k\,\pi(r)$, and $\pi(x)=0$ because $x\in L$; hence $k\,\pi(r)=0$ in the finite group $R/L$ of order $N$. Multiplication by $k$ is injective on $R/L$: if $k\bar y=0$, choose integers $a,b$ with $ak+bN=1$ (possible since $\gcd(k,N)=1$); then $\bar y=(ak+bN)\bar y=a(k\bar y)+b(N\bar y)=0$, because $N\bar y=0$ by Lagrange's theorem ($\bar y$ has order dividing $|R/L|=N$). (This is \path{coprime_smul_injective}: on a finite abelian group whose cardinality is coprime to $k$, $y\mapsto ky$ is injective.) Applied to $\bar y=\pi(r)$ it gives $\pi(r)=0$, i.e.\ $r\in L$, and therefore $x=kr\in kL$.
+
+The two inclusions together are the equivalence $kr\in L\iff r\in L$ for every $r\in R$ (\path{smul_mem_iff_of_coprime}, whose hypotheses are exactly: $R$ an additive commutative group, $L$ a subgroup with $R/L$ finite, and $\gcd(k,|R/L|)=1$). In the application (Theorem~\ref{thm:S0}) $R=R_n$, $L=L_f$ (notation of the setting), $[R_n:L_f]$ is a power of the odd prime $\ell$ and $k=2^{t-1}$, so $\gcd(k,[R_n:L_f])=1$ and $L_f\cap2^{t-1}R_n=2^{t-1}L_f$.

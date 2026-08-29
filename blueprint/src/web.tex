@@ -1,0 +1,14 @@
+% web.tex — plasTeX/leanblueprint web version (optional; the pdf is print.tex). Build: cd blueprint/src && plastex -c plastex.cfg web.tex
+\documentclass{report}
+\usepackage{amssymb,amsthm,amsmath}
+\usepackage{hyperref}
+\usepackage[dep_graph]{blueprint}
+\input{macros/common}
+\input{macros/web}
+\title{weber_general_n blueprint (r12)}
+\author{Hiroki Fukui}
+\begin{document}
+\maketitle
+\input{content}
+\input{\proofsdir/bibliography}
+\end{document}

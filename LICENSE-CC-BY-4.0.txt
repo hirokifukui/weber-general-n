@@ -1,0 +1,22 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Original prose authored by Hiroki Fukui is licensed under the Creative
+Commons Attribution 4.0 International License. This covers exactly:
+
+- paper/draft/          (the paper source and its PDF)
+- proofs/               (single-source statements, proofs, bibliography)
+- blueprint/src/*.tex   (the Blueprint text)
+- docs/                 (documentation written by the author)
+- theory/               (literature-audit and freeze documents by the author)
+- README.md, TRUST.md, RELEASE_STATUS.md
+
+You are free to share and adapt this material for any purpose, provided you
+give appropriate credit (Hiroki Fukui, weber_general_n), link to the license,
+and indicate if changes were made.
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Software, Lean code, scripts, checkers and generated certificates are
+licensed under the MIT License (see LICENSE).
+
+Third-party literature is not redistributed and is not covered by either
+license; see literature/SOURCES.yaml.

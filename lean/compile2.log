@@ -1,0 +1,14 @@
+=== weber/WeberChain.lean ===
+'exclusion_chain' does not depend on any axioms
+'exclusion_at_component' does not depend on any axioms
+exit=0
+=== weber/WeberCongruence.lean ===
+weber/WeberCongruence.lean:17:15: warning: `Int.ediv_add_emod` has been deprecated: Use `Int.mul_ediv_add_emod` instead
+'sq_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'three_pow_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'three_pow_n7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'chk_n7' depends on axioms: [propext]
+exit=0
+=== weber/WeberAutocorr.lean ===
+'autocorr_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+exit=0

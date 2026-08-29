@@ -1,0 +1,7 @@
+'sqrt_four_pow_add_one_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'le_two_pow_pred' depends on axioms: [propext, Quot.sound]
+'ineq_t_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ineq_t2'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ineq_t3'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ineq_t4'' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0

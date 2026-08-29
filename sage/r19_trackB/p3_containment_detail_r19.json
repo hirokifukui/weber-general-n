@@ -1,0 +1,964 @@
+{
+ "detail": [
+  {
+   "row": "1,1",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.586E-1204",
+   "hi_gap": "7.586E-1204"
+  },
+  {
+   "row": "1,1",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.279E-1202",
+   "hi_gap": "4.279E-1202"
+  },
+  {
+   "row": "1,1",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.247E-1202",
+   "hi_gap": "3.247E-1202"
+  },
+  {
+   "row": "1,1",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.262E-1202",
+   "hi_gap": "3.262E-1202"
+  },
+  {
+   "row": "1,1",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.323E-1202",
+   "hi_gap": "3.323E-1202"
+  },
+  {
+   "row": "1,1",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.426E-1202",
+   "hi_gap": "1.426E-1202"
+  },
+  {
+   "row": "1,1",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "1,1",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.579E-1203",
+   "hi_gap": "2.579E-1203"
+  },
+  {
+   "row": "2,1",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.517E-1203",
+   "hi_gap": "1.517E-1203"
+  },
+  {
+   "row": "2,1",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.707E-1201",
+   "hi_gap": "7.707E-1201"
+  },
+  {
+   "row": "2,1",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.562E-1201",
+   "hi_gap": "7.562E-1201"
+  },
+  {
+   "row": "2,1",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.574E-1201",
+   "hi_gap": "7.574E-1201"
+  },
+  {
+   "row": "2,1",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.981E-1201",
+   "hi_gap": "1.981E-1201"
+  },
+  {
+   "row": "2,1",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.978E-1202",
+   "hi_gap": "5.978E-1202"
+  },
+  {
+   "row": "2,1",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "2,1",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.579E-1203",
+   "hi_gap": "2.579E-1203"
+  },
+  {
+   "row": "2,2",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.517E-1203",
+   "hi_gap": "1.517E-1203"
+  },
+  {
+   "row": "2,2",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "8.976E-1195",
+   "hi_gap": "8.975E-1195"
+  },
+  {
+   "row": "2,2",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.168E-1198",
+   "hi_gap": "2.168E-1198"
+  },
+  {
+   "row": "2,2",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.169E-1198",
+   "hi_gap": "2.169E-1198"
+  },
+  {
+   "row": "2,2",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.107E-1199",
+   "hi_gap": "1.107E-1199"
+  },
+  {
+   "row": "2,2",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.926E-1201",
+   "hi_gap": "7.926E-1201"
+  },
+  {
+   "row": "2,2",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.379E-1200",
+   "hi_gap": "1.379E-1200"
+  },
+  {
+   "row": "2,2",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.219E-1202",
+   "hi_gap": "5.219E-1202"
+  },
+  {
+   "row": "3,1",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.641E-1203",
+   "hi_gap": "3.641E-1203"
+  },
+  {
+   "row": "3,1",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.056E-1199",
+   "hi_gap": "1.056E-1199"
+  },
+  {
+   "row": "3,1",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.431E-1199",
+   "hi_gap": "1.431E-1199"
+  },
+  {
+   "row": "3,1",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.056E-1199",
+   "hi_gap": "1.056E-1199"
+  },
+  {
+   "row": "3,1",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "8.472E-1201",
+   "hi_gap": "8.472E-1201"
+  },
+  {
+   "row": "3,1",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.296E-1201",
+   "hi_gap": "2.296E-1201"
+  },
+  {
+   "row": "3,1",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "3,1",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.579E-1203",
+   "hi_gap": "2.579E-1203"
+  },
+  {
+   "row": "3,2",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.641E-1203",
+   "hi_gap": "3.641E-1203"
+  },
+  {
+   "row": "3,2",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.041E-1192",
+   "hi_gap": "1.041E-1192"
+  },
+  {
+   "row": "3,2",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.832E-1196",
+   "hi_gap": "7.832E-1196"
+  },
+  {
+   "row": "3,2",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.833E-1196",
+   "hi_gap": "7.833E-1196"
+  },
+  {
+   "row": "3,2",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.188E-1198",
+   "hi_gap": "1.188E-1198"
+  },
+  {
+   "row": "3,2",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.480E-1200",
+   "hi_gap": "5.480E-1200"
+  },
+  {
+   "row": "3,2",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.379E-1200",
+   "hi_gap": "1.379E-1200"
+  },
+  {
+   "row": "3,2",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.219E-1202",
+   "hi_gap": "5.219E-1202"
+  },
+  {
+   "row": "3,3",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.641E-1203",
+   "hi_gap": "3.641E-1203"
+  },
+  {
+   "row": "3,3",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.151E-1171",
+   "hi_gap": "2.151E-1171"
+  },
+  {
+   "row": "3,3",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.190E-1186",
+   "hi_gap": "2.190E-1186"
+  },
+  {
+   "row": "3,3",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.190E-1186",
+   "hi_gap": "2.190E-1186"
+  },
+  {
+   "row": "3,3",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.980E-1192",
+   "hi_gap": "1.980E-1192"
+  },
+  {
+   "row": "3,3",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.342E-1196",
+   "hi_gap": "1.342E-1196"
+  },
+  {
+   "row": "3,3",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.828E-1193",
+   "hi_gap": "3.828E-1193"
+  },
+  {
+   "row": "3,3",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.574E-1198",
+   "hi_gap": "4.574E-1198"
+  },
+  {
+   "row": "4,1",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.855E-1203",
+   "hi_gap": "4.855E-1203"
+  },
+  {
+   "row": "4,1",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.470E-1198",
+   "hi_gap": "1.470E-1198"
+  },
+  {
+   "row": "4,1",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.677E-1198",
+   "hi_gap": "2.677E-1198"
+  },
+  {
+   "row": "4,1",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.470E-1198",
+   "hi_gap": "1.470E-1198"
+  },
+  {
+   "row": "4,1",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.814E-1200",
+   "hi_gap": "3.814E-1200"
+  },
+  {
+   "row": "4,1",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.895E-1201",
+   "hi_gap": "9.895E-1201"
+  },
+  {
+   "row": "4,1",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "4,1",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.579E-1203",
+   "hi_gap": "2.579E-1203"
+  },
+  {
+   "row": "4,2",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.855E-1203",
+   "hi_gap": "4.855E-1203"
+  },
+  {
+   "row": "4,2",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.534E-1190",
+   "hi_gap": "1.534E-1190"
+  },
+  {
+   "row": "4,2",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.649E-1193",
+   "hi_gap": "1.649E-1193"
+  },
+  {
+   "row": "4,2",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.649E-1193",
+   "hi_gap": "1.649E-1193"
+  },
+  {
+   "row": "4,2",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "8.607E-1198",
+   "hi_gap": "8.607E-1198"
+  },
+  {
+   "row": "4,2",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.472E-1199",
+   "hi_gap": "3.472E-1199"
+  },
+  {
+   "row": "4,2",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.379E-1200",
+   "hi_gap": "1.379E-1200"
+  },
+  {
+   "row": "4,2",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.219E-1202",
+   "hi_gap": "5.219E-1202"
+  },
+  {
+   "row": "4,3",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.855E-1203",
+   "hi_gap": "4.855E-1203"
+  },
+  {
+   "row": "4,3",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.137E-1168",
+   "hi_gap": "7.137E-1168"
+  },
+  {
+   "row": "4,3",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.073E-1180",
+   "hi_gap": "4.073E-1180"
+  },
+  {
+   "row": "4,3",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.073E-1180",
+   "hi_gap": "4.073E-1180"
+  },
+  {
+   "row": "4,3",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.518E-1190",
+   "hi_gap": "1.518E-1190"
+  },
+  {
+   "row": "4,3",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.545E-1195",
+   "hi_gap": "2.545E-1195"
+  },
+  {
+   "row": "4,3",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.828E-1193",
+   "hi_gap": "3.828E-1193"
+  },
+  {
+   "row": "4,3",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.574E-1198",
+   "hi_gap": "4.574E-1198"
+  },
+  {
+   "row": "4,4",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.855E-1203",
+   "hi_gap": "4.855E-1203"
+  },
+  {
+   "row": "4,4",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.663E-1092",
+   "hi_gap": "5.663E-1092"
+  },
+  {
+   "row": "4,4",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.271E-1144",
+   "hi_gap": "2.271E-1144"
+  },
+  {
+   "row": "4,4",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.271E-1144",
+   "hi_gap": "2.271E-1144"
+  },
+  {
+   "row": "4,4",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.484E-1166",
+   "hi_gap": "7.484E-1166"
+  },
+  {
+   "row": "4,4",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.143E-1182",
+   "hi_gap": "1.143E-1182"
+  },
+  {
+   "row": "4,4",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.359E-1164",
+   "hi_gap": "2.359E-1164"
+  },
+  {
+   "row": "4,4",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.952E-1183",
+   "hi_gap": "1.952E-1183"
+  },
+  {
+   "row": "5,1",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "5,1",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.848E-1197",
+   "hi_gap": "1.848E-1197"
+  },
+  {
+   "row": "5,1",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.824E-1197",
+   "hi_gap": "4.824E-1197"
+  },
+  {
+   "row": "5,1",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.849E-1197",
+   "hi_gap": "1.849E-1197"
+  },
+  {
+   "row": "5,1",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.585E-1199",
+   "hi_gap": "1.585E-1199"
+  },
+  {
+   "row": "5,1",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.040E-1200",
+   "hi_gap": "4.040E-1200"
+  },
+  {
+   "row": "5,1",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "5,1",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.579E-1203",
+   "hi_gap": "2.579E-1203"
+  },
+  {
+   "row": "5,2",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "5,2",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.887E-1188",
+   "hi_gap": "1.887E-1188"
+  },
+  {
+   "row": "5,2",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.917E-1191",
+   "hi_gap": "2.917E-1191"
+  },
+  {
+   "row": "5,2",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.917E-1191",
+   "hi_gap": "2.917E-1191"
+  },
+  {
+   "row": "5,2",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.509E-1197",
+   "hi_gap": "5.509E-1197"
+  },
+  {
+   "row": "5,2",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.107E-1198",
+   "hi_gap": "2.107E-1198"
+  },
+  {
+   "row": "5,2",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.379E-1200",
+   "hi_gap": "1.379E-1200"
+  },
+  {
+   "row": "5,2",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.219E-1202",
+   "hi_gap": "5.219E-1202"
+  },
+  {
+   "row": "5,3",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "5,3",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.493E-1163",
+   "hi_gap": "7.493E-1163"
+  },
+  {
+   "row": "5,3",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.025E-1175",
+   "hi_gap": "7.025E-1175"
+  },
+  {
+   "row": "5,3",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "7.025E-1175",
+   "hi_gap": "7.025E-1175"
+  },
+  {
+   "row": "5,3",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.242E-1189",
+   "hi_gap": "1.242E-1189"
+  },
+  {
+   "row": "5,3",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.735E-1194",
+   "hi_gap": "1.735E-1194"
+  },
+  {
+   "row": "5,3",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.828E-1193",
+   "hi_gap": "3.828E-1193"
+  },
+  {
+   "row": "5,3",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.574E-1198",
+   "hi_gap": "4.574E-1198"
+  },
+  {
+   "row": "5,4",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "5,4",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.441E-1084",
+   "hi_gap": "2.441E-1084"
+  },
+  {
+   "row": "5,4",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.258E-1127",
+   "hi_gap": "5.258E-1127"
+  },
+  {
+   "row": "5,4",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "5.258E-1127",
+   "hi_gap": "5.258E-1127"
+  },
+  {
+   "row": "5,4",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.852E-1161",
+   "hi_gap": "1.852E-1161"
+  },
+  {
+   "row": "5,4",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "3.745E-1180",
+   "hi_gap": "3.745E-1180"
+  },
+  {
+   "row": "5,4",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.359E-1164",
+   "hi_gap": "2.359E-1164"
+  },
+  {
+   "row": "5,4",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.952E-1183",
+   "hi_gap": "1.952E-1183"
+  },
+  {
+   "row": "5,5",
+   "field": "Lrel_3n",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "9.710E-1203",
+   "hi_gap": "9.710E-1203"
+  },
+  {
+   "row": "5,5",
+   "field": "D_gram",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "4.443E-817",
+   "hi_gap": "4.443E-817"
+  },
+  {
+   "row": "5,5",
+   "field": "D_dft",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.986E-995",
+   "hi_gap": "2.986E-995"
+  },
+  {
+   "row": "5,5",
+   "field": "D_intersection",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.986E-995",
+   "hi_gap": "2.986E-995"
+  },
+  {
+   "row": "5,5",
+   "field": "C3rel",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.188E-1064",
+   "hi_gap": "2.188E-1064"
+  },
+  {
+   "row": "5,5",
+   "field": "C3rel_sqrt",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.624E-1131",
+   "hi_gap": "2.624E-1131"
+  },
+  {
+   "row": "5,5",
+   "field": "MO16_G_f1",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "1.632E-1054",
+   "hi_gap": "1.632E-1054"
+  },
+  {
+   "row": "5,5",
+   "field": "MO16_G_f2",
+   "contains": true,
+   "meets": true,
+   "lo_gap": "2.792E-1128",
+   "hi_gap": "2.792E-1128"
+  }
+ ]
+}

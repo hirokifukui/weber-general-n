@@ -1,0 +1,40 @@
+f1=16 f2=7 cond=(4,7) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=16 f2=7 cond=(16,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=16 f2=7 cond=(16,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=16 f2=7 cond=(16,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -2*zeta12^3 - 2*zeta12
+  CONTROL chi2 trivial: lhs==rhs False (expected False in general); naive1 = 42*zeta12^3 - 42
+f1=16 f2=11 cond=(4,11) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=16 f2=11 cond=(16,11) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -4*zeta20^5 - 2
+f1=16 f2=11 cond=(16,11) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=16 f2=11 cond=(4,11) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+  CONTROL chi2 trivial: lhs==rhs False (expected False in general); naive1 = -30*zeta20^5 - 30
+f1=64 f2=7 cond=(64,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=64 f2=7 cond=(32,7) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=64 f2=7 cond=(64,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=64 f2=7 cond=(64,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 2*zeta48^12 - 2*zeta48^11 - 2*zeta48^8 -
+  CONTROL chi2 trivial: lhs==rhs False (expected False in general); naive1 = 330*zeta48^15 - 330*zeta48^13 
+f1=8 f2=97 cond=(4,97) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 10*zeta96^16 - 6
+f1=8 f2=97 cond=(8,97) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -10*zeta96^16 + 8
+f1=8 f2=97 cond=(8,97) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 2*zeta96^24 + 10*zeta96^16 - 4*zeta96^8 
+f1=8 f2=97 cond=(4,97) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+  CONTROL chi2 trivial: lhs==rhs True (expected False in general); naive1 = 0
+f1=32 f2=13 cond=(32,13) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -6*zeta24^6 - 2*zeta24^4 + 2*zeta24^3 + 
+f1=32 f2=13 cond=(32,13) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 2*zeta24^6 + 4*zeta24^5 - 2*zeta24^4 + 2
+f1=32 f2=13 cond=(32,13) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -2*zeta24^6 - 2*zeta24^5 - 2*zeta24^4 + 
+f1=32 f2=13 cond=(16,13) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 4*zeta24^6 - 2*zeta24^4
+  CONTROL chi2 trivial: lhs==rhs False (expected False in general); naive1 = -60
+f1=9 f2=16 cond=(9,8) prim=(True,False): lhs==rhs True ; naive terms (True,True) ; B1 = -2*zeta12^2 - 2
+f1=9 f2=16 cond=(3,16) prim=(False,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=9 f2=16 cond=(9,16) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 4*zeta12^3 - 2*zeta12 - 2
+f1=9 f2=16 cond=(9,16) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+  CONTROL chi2 trivial: lhs==rhs False (expected False in general); naive1 = -32/3
+f1=5 f2=7 cond=(5,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+f1=5 f2=7 cond=(5,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -2
+f1=5 f2=7 cond=(5,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = -2
+f1=5 f2=7 cond=(5,7) prim=(True,True): lhs==rhs True ; naive terms (True,True) ; B1 = 0
+  CONTROL chi2 trivial: lhs==rhs False (expected False in general); naive1 = 18/5*zeta12^3 - 54/5
+f1=16 f2=7: product conductor 112 ; Sage B_{1,chi} == carry formula : True ; value 4*zeta12^3 - 2*zeta12
+f1=32 f2=13: product conductor 416 ; Sage B_{1,chi} == carry formula : True ; value -4*zeta48^14 + 2*zeta48^12 + 2*zeta48^8 
+f1=64 f2=7: product conductor 448 ; Sage B_{1,chi} == carry formula : True ; value 4*zeta96^26 + 2*zeta96^22 + 4*zeta96^20 
+ALL NONTRIVIAL CASES PASS: True
+R10 CRT CARRY CHECK DONE

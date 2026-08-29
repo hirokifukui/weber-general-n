@@ -1,0 +1,4 @@
+% proofs/statements/thm_rank3.tex -- the STATEMENT of thm:rank3: single source (r21, GPT r20 P1 = hw 1070-1083), \input by paper/draft/main_R*.tex and blueprint/src/content.tex;
+% the wrappers carry only \label, the Lean tags and the trust tag. Paper wording (ruling B, 2026-08-27). No \label / \lean / \uses / trust label / medium-specific \ref in this file.
+Let $\lambda_j=\log|\sigma^j\eta_n|$ ($j\in\Z/N$) and $\hat\lambda_k=\sum_j\lambda_j e^{-2\pi ijk/N}$. Then $\hat\lambda_k=0$ if $3\mid k$ and $\hat\lambda_k\ne0$ if $3\nmid k$. Consequently, for every $n\ge1$ and $1\le r\le n$, with $c=2\cdot3^{r-1}$, the vectors $H(\sigma^{3^{n-r}i}\eta_n)$, $0\le i<c$, are linearly independent, and their covolume $D_r^{(n)}$ satisfies
+\[ \big(D_r^{(n)}\big)^2=3^{3^{r-1}(2r-1)}\prod_{b\in(\Z/3^r)^\times}W_{n,r}(b),\qquad W_{n,r}(b)=\frac1N\sum_{k\equiv b\ (3^r)}|\hat\lambda_k|^2>0 . \]

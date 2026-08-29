@@ -1,0 +1,21 @@
+cls 65  l=1000000321             comps=32  RHO 30  T 2   OPEN 0    worst_rho=1.011428   T_min=1971.018   drift=3.59e-41  19s
+cls 65  l=10000002113            comps=32  RHO 30  T 2   OPEN 0    worst_rho=1.005516   T_min=1313.589   drift=0.11      19s
+cls 65  l=1000000000193          comps=32  RHO 32  T 0   OPEN 0    worst_rho=0.9603661  T_min=892.3665   drift=0.169     19s
+cls 65  l=10000000000004033      comps=32  RHO 32  T 0   OPEN 0    worst_rho=0.9117863  T_min=553.1993   drift=0.285     19s
+cls 63  l=1000000447             comps=32  RHO 0   T 3   OPEN 29   worst_rho=1.198459   T_min=3417.92    drift=0.0108    29s
+cls 63  l=10000000319            comps=32  RHO 1   T 1   OPEN 30   worst_rho=1.382486   T_min=2987.771   drift=0.193     29s
+cls 63  l=1000000000063          comps=32  RHO 1   T 1   OPEN 30   worst_rho=1.797572   T_min=2964.019   drift=0.135     31s
+cls 63  l=10000000000003903      comps=32  RHO 1   T 0   OPEN 31   worst_rho=1.522309   T_min=2360.092   drift=0.283     30s
+cls 127 l=1000001279             comps=32  RHO 1   T 3   OPEN 28   worst_rho=1.216726   T_min=2225.194   drift=4.43e-41  27s
+cls 127 l=10000003199            comps=32  RHO 1   T 4   OPEN 27   worst_rho=1.500036   T_min=3116.751   drift=0.0945    27s
+cls 127 l=1000000002431          comps=32  RHO 7   T 6   OPEN 19   worst_rho=4.967509   T_min=1386.167   drift=0.202     27s
+cls 127 l=10000000000000639      comps=32  RHO 9   T 9   OPEN 14   worst_rho=1.80452    T_min=1849.83    drift=0.191     26s
+cls 1   l=1000000513             comps=64  RHO 0   T 0   OPEN 64   worst_rho=1.757241   T_min=40704.37   drift=0.0114    32s
+cls 1   l=10000001153            comps=64  RHO 0   T 0   OPEN 64   worst_rho=1.869084   T_min=40001.74   drift=0.0933    33s
+cls 1   l=1000000003841          comps=64  RHO 0   T 0   OPEN 64   worst_rho=1.893243   T_min=39747.65   drift=0.283     33s
+cls 1   l=10000000000000897      comps=64  RHO 0   T 0   OPEN 64   worst_rho=3.229043   T_min=43389.81   drift=0.00694   34s
+cls 1   l=100000000000000000129  comps=64  RHO 0   T 0   OPEN 64   worst_rho=1.909582   T_min=35522.44   drift=0.0529    36s
+cls 1   l=1000000000000000000001153 comps=64  RHO 0   T 0   OPEN 64   worst_rho=4.052167   T_min=27941.54   drift=0.14      36s
+cls 1   l=10000000000000000000000001281 comps=64  RHO 0   T 0   OPEN 64   worst_rho=6.270667   T_min=33725.37   drift=0.168     37s
+cls 1   l=1000000000000000000000000000018049 comps=64  RHO 0   T 0   OPEN 64   worst_rho=1.873297   T_min=24684.57   drift=0.157     37s
+R5 STRESS DONE

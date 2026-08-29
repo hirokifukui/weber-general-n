@@ -1,0 +1,3 @@
+# r19 evidence (ERRATA_R19 E19-1): the r18 verifier (scripts/verify_p3_readonly.sage.bak_r18 == the r18 shipped verifier, sha256 644693f1356d40a4f525e175e26f76fc562658447202a0935166e5d67e85d8cd, with only its format_version string edited to read the v3 file) applied to the r19 planted certificate negctl_6 (shifted narrow intervals: every field MEETS the recomputed interval but does not CONTAIN it; sha256 4c5d1512a84f5314bf8980085e790e35fa4d2fef6fb513fb1ab580013d7faefb). The r18 overlap gate ACCEPTS it; the r19 containment gate rejects it (sage/r19_trackB/verify_p3_readonly_r19.log NEGCTL 6).
+P3 READONLY VERIFY: PASS (rows 15, prec 4000, cert sha256 4c5d1512a84f, verifier sha256 f3d2e1767603, 10.047393083572388s)
+DONE 2026-08-27T03:14:08Z

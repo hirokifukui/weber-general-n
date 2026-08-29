@@ -1,0 +1,10 @@
+nc1_coeff_altered.txt: REJECTED (correct) :: FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 64 ; failed lines 1) FAMILY VERIFY FAIL 
+nc2_factor_swapped.txt: REJECTED (correct) :: FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 64 ; failed lines 2) FAMILY VERIFY FAIL 
+nc3_claim_altered.txt: REJECTED (correct) :: FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 64 ; failed lines 1) FAMILY VERIFY FAIL 
+nc4_l_bitflip.txt: REJECTED (correct) :: FAMILY VERIFY FAIL 1 
+nc5_duplicate.txt: REJECTED (correct) :: FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 65 ; failed lines 1) FAMILY VERIFY FAIL 
+NEGATIVE CONTROLS ALL_REJECTED
+
+real	0m10.243s
+user	0m8.302s
+sys	0m1.097s

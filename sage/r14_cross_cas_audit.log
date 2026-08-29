@@ -1,0 +1,8 @@
+r6 PREC  256: C7 in [1.7273421630363528199687050362880000000000000, 1.7273421630363530959799422812160000000000000] ; widths r6 2.76E+14 / digamma 4.33E-115 (wider: r6) ; intersects: True ; narrower inside wider: True ; printed upper 1727342163036353095979941756928.00000000 ; T1 > upper: True ; PASS
+r6 PREC  512: C7 in [1.7273421630363529579743237623519834054033045, 1.7273421630363529579743237623519834054033045] ; widths r6 2.38E-63 / digamma 4.33E-115 (wider: r6) ; intersects: True ; narrower inside wider: True ; printed upper 1727342163036352957974323762351.98340540 ; T1 > upper: True ; PASS
+r6 PREC 1024: C7 in [1.7273421630363529579743237623519834054033045, 1.7273421630363529579743237623519834054033045] ; widths r6 1.00E-139 / digamma 4.33E-115 (wider: digamma) ; intersects: True ; narrower inside wider: True ; printed upper 1727342163036352957974323762351.98340540 ; T1 > upper: True ; PASS
+magma: printed 1727342163036352957974323762351.98340540 (60 digits) ; heuristic interval v(1-+1e-37) intersects certified enclosure: True ; leading digits agreeing with certified prefix: 57 ; PASS
+pari: lnD_7 (200 bits) inside r6 PREC-256 ln D7 interval: True ; 60-digit lnC_7 discrepancy vs r6 ln C7: 4.588E-17 (effective precision far below nominal; recorded, not a gate) ; PASS
+wrote certificates/constants/C7_cross_cas_r14.json
+CROSS-CAS AUDIT: PASS
+WRAPPER RC=0

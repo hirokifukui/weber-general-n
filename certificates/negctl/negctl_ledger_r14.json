@@ -1,0 +1,56 @@
+{
+ "format_version": 1,
+ "source_log": "sage/negctl_r13/negctl_r13.log",
+ "source_sha256": "a54354b9a269a283e78bac6978f7329e6c9026c6962017471a5d9e89e846af90",
+ "negative_controls": 9,
+ "rejected": 9,
+ "positive_controls": 1,
+ "excluded": 1,
+ "all_rejected_line": true,
+ "negative_files": [
+  {
+   "file": "nc1_coeff_altered.txt",
+   "verdict": "FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 64 ; failed lines 1) FAMILY VERIFY FAIL"
+  },
+  {
+   "file": "nc2_factor_swapped.txt",
+   "verdict": "FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 64 ; failed lines 2) FAMILY VERIFY FAIL"
+  },
+  {
+   "file": "nc3_claim_altered.txt",
+   "verdict": "FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 64 ; failed lines 1) FAMILY VERIFY FAIL"
+  },
+  {
+   "file": "nc4_l_bitflip.txt",
+   "verdict": "FAMILY VERIFY FAIL 1"
+  },
+  {
+   "file": "nc5_duplicate.txt",
+   "verdict": "FAMILY VERIFY n=7 l=1000000321 : NOT_EXCLUDED (components certified 32 / 32 ; lines 65 ; failed lines 1) FAMILY VERIFY FAIL"
+  },
+  {
+   "file": "nc6_header_ncomp.txt",
+   "verdict": "FAMILY VERIFY FAIL 1"
+  },
+  {
+   "file": "nc7_header_barT.txt",
+   "verdict": "FAMILY VERIFY FAIL 1"
+  },
+  {
+   "file": "nc8_header_17floor_n7.txt",
+   "verdict": "FAMILY VERIFY FAIL 1"
+  },
+  {
+   "file": "nc9_n2_header_uniform132.txt",
+   "verdict": "FAMILY VERIFY FAIL 1"
+  }
+ ],
+ "positive_files": [
+  {
+   "name": "n2 positive control (bar_T = 68)",
+   "verdict": "FAMILY VERIFY n=2 l=17 : EXCLUDED (components certified 2 / 2 ; lines 4 ; failed lines 0) FAMILY VERIFY PASS"
+  }
+ ],
+ "generator": "scripts/family_negctl.sh (nc1..nc9 + n2 positive)",
+ "verifier": "scripts/family_verify.sage (r11, sha256 0f38bb0d...)"
+}

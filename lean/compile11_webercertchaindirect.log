@@ -1,0 +1,5 @@
+'WeberCert.exclusion_chain_direct' does not depend on any axioms
+'WeberCert.rho_witness_refutes_saturation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberCert.t_witness_refutes_saturation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberCert.exclusion_of_checker_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0

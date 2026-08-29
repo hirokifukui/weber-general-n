@@ -1,0 +1,10 @@
+'bridge_fixed_norm_sq' depends on axioms: [propext]
+'torsion_pm_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'component_card_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'coset_absorb' depends on axioms: [propext, Quot.sound]
+'ker_mk_comp_subtype' depends on axioms: [propext, Classical.choice, Quot.sound]
+'index_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'odd_smul_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'odd_smul_bijective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'card_index_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0

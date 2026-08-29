@@ -1,0 +1,4 @@
+'WeberRoots.odd_pow_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberRoots.root_change_rep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberRoots.coset_eq_of_change_rep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberRoots.root_of_pow' depends on axioms: [propext, Classical.choice, Quot.sound]

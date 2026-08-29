@@ -1,0 +1,24 @@
+{
+ "format_version": "p3_readonly_summary_r19",
+ "verifier": "scripts/verify_p3_readonly.sage",
+ "verifier_version": "r19",
+ "verifier_sha256": "f3d2e1767603cffd7c576afaf7fe206f3469208a35ffa1e82a886451d0f3af36",
+ "cert": "certificates/p3/D3_cert_r19.json",
+ "cert_sha256": "7520a93fb1df0ed5d387a62bed9c8fc5f26f2fb0745def0a291c9bbb73a15751",
+ "schema_accepted": "p3_covol_cert_r19_v3",
+ "prec_bits": 4000,
+ "rows_checked": 15,
+ "coverage_relation": "I_rec subset I_ship (containment)",
+ "containment_checked": 120,
+ "containment_failed": 0,
+ "containment_expected": 120,
+ "status": "PASS",
+ "fails": [],
+ "seconds": 9.411416053771973,
+ "negctl": {
+  "planted": 12,
+  "rejected": 12,
+  "status": "PASS"
+ },
+ "timestamp_utc": "2026-08-27T03:13:19Z"
+}

@@ -1,0 +1,18 @@
+=== (B1) triple-angle identity ===
+  n=2  |eps - tan3θ/tanθ| = 9.18e-41
+  n=3  |eps - tan3θ/tanθ| = 0.0
+  n=5  |eps - tan3θ/tanθ| = 4.59e-41
+  n=7  |eps - tan3θ/tanθ| = 0.0
+=== (B2) sign law: alternating trace integral, plain trace not ===
+  n=2  Σ(-1)^j tan(3^j θ) = -4.0           (int? True)   Σ tan(3^j θ) = -5.656854249   (int? False)
+  n=3  Σ(-1)^j tan(3^j θ) = -8.0           (int? True)   Σ tan(3^j θ) = -11.3137085    (int? False)
+  n=4  Σ(-1)^j tan(3^j θ) = -16.0          (int? True)   Σ tan(3^j θ) = -22.627417     (int? False)
+  n=5  Σ(-1)^j tan(3^j θ) = -32.0          (int? True)   Σ tan(3^j θ) = -45.254834     (int? False)
+=== (B3) λ(eps) = (σ-1)λ(η) on the ⟨3⟩-orbit ===
+  n=3  max|λ(eps)_j - (λ_{j+1}-λ_j)| = 3.67e-40
+  n=5  max|λ(eps)_j - (λ_{j+1}-λ_j)| = 1.74e-39
+  n=7  max|λ(eps)_j - (λ_{j+1}-λ_j)| = 7.99e-39
+=== (B4) module equality (g3-1)Λ = (g5-1)Λ  via integer HNF comparison ===
+  n=3  rank 4 vs 4 ; HNF agree within rounding (±2 units of 1e-9)? False
+  n=4  rank 8 vs 8 ; HNF agree within rounding (±2 units of 1e-9)? False
+  n=5  rank 16 vs 16 ; HNF agree within rounding (±2 units of 1e-9)? False

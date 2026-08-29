@@ -1,0 +1,118 @@
+prime      orbit  minT        argmin    #T<4224  E[logT]  orbit-eq  E/main(j=0)
+257        A   104550424.019       255        0   21.864  False    0.0001
+257        B   179376638.902       159        0   19.547  False    0.0000
+641        A   1442945083.794        53        0   22.794  False    0.0001
+641        B   40509735.545       167        0   23.695  False    0.0061
+769        A    804292.992       369        0   20.384  False    0.0000
+769        B   17355122.514        84        0   20.987  False    0.0001
+1153       A   304876718.791        27        0   22.192  False    0.0002
+1153       B   468304387.006       111        0   22.919  False    0.0001
+1409       A   40504593.192       341        0   20.264  False    0.0000
+1409       B   130704102.378      1042        0   21.710  False    0.0000
+2689       A   9013150.855       798        0   21.250  False    0.0002
+2689       B   45515345.806       125        0   21.959  False    0.0001
+3329       A   8541623.402      2827        0   22.259  False    0.0056
+3329       B   28908706.812      1248        0   21.223  False    0.0001
+3457       A   3948259.582       721        0   22.262  False    0.0010
+3457       B   32713752.550       602        0   21.563  False    0.0001
+4481       A   9287929.686      2055        0   21.448  False    0.0001
+4481       B   3039478.637      1907        0   21.802  False    0.0008
+4993       A   15419415.898      1594        0   21.986  False    0.0003
+4993       B   48563850.185      1686        0   21.977  False    0.0037
+6529       A   17232294.837         7        0   22.000  False    0.0005
+6529       B   11558898.971      2590        0   22.711  False    0.0004
+7297       A   15213509.258      3562        0   21.720  False    0.0003
+7297       B   14531375.316      4065        0   21.942  False    0.0002
+7681       A   33148689.640       377        0   22.279  False    0.0011
+7681       B   4760303.392      1210        0   21.670  False    0.0007
+7937       A   3378840.968       456        0   22.010  False    0.0010
+7937       B   11520779.191      1731        0   21.392  False    0.0001
+9473       A   7639249.751      2396        0   22.025  False    0.0027
+9473       B   5370639.736      3808        0   21.751  False    0.0083
+9601       A   2592780.879      5680        0   21.749  False    0.0027
+9601       B   5295116.089      2546        0   21.717  False    0.0004
+9857       A   3931200.114      7765        0   21.673  False    0.0006
+9857       B   2733739.069      4461        0   21.500  False    0.0043
+10369      A   18196397.217       527        0   22.136  False    0.0043
+10369      B   10674847.581      4156        0   22.207  False    0.0396
+10753      A   13320205.111       348        0   21.957  False    0.0294
+10753      B   10848751.178      3314        0   22.169  False    0.0027
+11393      A   15576988.295     10377        0   22.418  False    0.0242
+11393      B   9131707.326      3436        0   21.670  False    0.0003
+11777      A   7473607.340      4609        0   21.644  False    0.0012
+11777      B   6193190.554      5446        0   21.244  False    0.0007
+12161      A   10519757.038      4012        0   21.617  False    0.0014
+12161      B   16385905.542      2774        0   21.629  False    0.0003
+12289      A   4886976.088      4350        0   21.903  False    0.0007
+12289      B   7681993.177     10735        0   22.342  False    0.0028
+13313      A   3507998.285      6449        0   21.592  False    0.0060
+13313      B   4659807.853      5106        0   22.085  False    0.0009
+13441      A   6764897.680       462        0   22.021  False    0.0011
+13441      B   16254120.649      1282        0   22.102  False    0.0006
+13697      A   8142463.210      6519        0   21.618  False    0.0037
+13697      B   12109290.873     10703        0   21.878  False    0.0053
+14081      A   10357057.161      4768        0   21.870  False    0.0060
+14081      B   3755816.187      1349        0   21.543  False    0.0029
+14593      A   2905497.079      5884        0   21.574  False    0.0054
+14593      B   4933443.389      1005        0   22.105  False    1.0422
+15233      A   2658057.919      3628        0   21.769  False    2.4246
+15233      B   7781341.183      4329        0   22.045  False    0.0022
+15361      A   10845506.782       646        0   21.684  False    0.0008
+15361      B   7778614.007       511        0   21.478  False    0.0021
+16001      A   2490970.239       764        0   22.028  False    0.0083
+16001      B   6575804.510      6670        0   21.698  False    0.0012
+17921      A   10868926.354      7712        0   21.948  False    0.0007
+17921      B   16754422.805     15218        0   21.564  False    0.0003
+18049      A   4780320.224       516        0   22.038  False    0.0103
+18049      B   7282231.843      6546        0   21.676  False    0.0016
+18433      A   7479680.862      3127        0   21.988  False    0.0027
+18433      B   14860161.966     17440        0   22.315  False    0.0047
+19073      A   6626073.482      2529        0   21.640  False    0.0033
+19073      B   5711397.130      1307        0   21.794  False    0.0026
+19457      A   9153227.456      6461        0   21.831  False    0.0039
+19457      B   4713292.150      1378        0   21.610  False    0.0017
+19841      A   3274968.946      4343        0   21.431  False    0.7774
+19841      B   3580861.710      1426        0   21.696  False    0.2992
+SUMMARY (hw 105-106): min-T level and 4224-margin across l:
+  l=257     minT=104550424.019  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=641     minT=1442945083.794  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=769     minT= 804292.992  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=1153    minT=304876718.791  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=1409    minT=40504593.192  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=2689    minT=9013150.855  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=3329    minT=8541623.402  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=3457    minT=3948259.582  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=4481    minT=9287929.686  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=4993    minT=15419415.898  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=6529    minT=17232294.837  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=7297    minT=15213509.258  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=7681    minT=33148689.640  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=7937    minT=3378840.968  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=9473    minT=7639249.751  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=9601    minT=2592780.879  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=9857    minT=3931200.114  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=10369   minT=18196397.217  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=10753   minT=13320205.111  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=11393   minT=15576988.295  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=11777   minT=7473607.340  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=12161   minT=10519757.038  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=12289   minT=4886976.088  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=13313   minT=3507998.285  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=13441   minT=6764897.680  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=13697   minT=8142463.210  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=14081   minT=10357057.161  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=14593   minT=2905497.079  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=15233   minT=2658057.919  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=15361   minT=10845506.782  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=16001   minT=2490970.239  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=17921   minT=10868926.354  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=18049   minT=4780320.224  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=18433   minT=7479680.862  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=19073   minT=6626073.482  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=19457   minT=9153227.456  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+  l=19841   minT=3274968.946  below-4224: False  frac<4224=0.000e+00  orbits-equal=False
+CHEBYSHEV KILL TEST (hw 97): E_b[e^{2y_0}]/main-term ratios above; E[log T]
+  vastly exceeds log 4224 = 8.35 -> mean/Chebyshev cannot certify T<4224; 
+  existence lives in the extreme lower tail (small-ball problem). VERDICT: KILLED as a standalone tool.
+R9 CLS1 TRACE MOMENTS DONE
+EXIT=0

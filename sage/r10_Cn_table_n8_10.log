@@ -1,0 +1,10 @@
+C_n = 2 (4/pi)^{m/2} Gamma(2+m/2) prod_{chi even, cond 2^{n+2}} |L(1,chi)| / log(2+sqrt5)^m ; m = 2^{n-1}
+n= 2 m=   2  sum ln|L| = -0.367287  log10 C_n = 0.228544197164   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^0.11427210)  [0s]
+n= 3 m=   4  sum ln|L| = -0.238800  log10 C_n = 0.547461614757   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^0.27373081)  [0s]
+n= 4 m=   8  sum ln|L| = -0.224162  log10 C_n = 1.42683888096   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^0.71341944)  [0s]
+n= 5 m=  16  sum ln|L| = +0.023323  log10 C_n = 4.15888214373   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^2.0794411)  [0s]
+n= 6 m=  32  sum ln|L| = -0.317747  log10 C_n = 11.2900232641   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^5.6450116)  [0s]
+n= 7 m=  64  sum ln|L| = -0.355008  log10 C_n = 30.2373783739   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^15.118689)  [2s]
+n= 8 m= 128  sum ln|L| = +0.007678  log10 C_n = 77.5243764881   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^38.762188)  [36s]
+n= 9 m= 256  sum ln|L| = -0.050568  log10 C_n = 190.583181784   (deg-1 threshold C_n ; deg-2 threshold sqrt(C_n) = 10^95.291591)  [678s]
+R10 CN TABLE DONE

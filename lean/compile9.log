@@ -1,0 +1,6 @@
+'coprime_smul_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'smul_mem_iff_of_coprime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ineq_t2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ineq_t3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ineq_t4' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0

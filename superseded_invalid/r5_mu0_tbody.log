@@ -1,0 +1,8 @@
+(a) max_{1<=k<=63}|C(k)| = 143.78812 -> pair floor = 551.62067
+(b) mu0 BKZ-40 upper bound / best found = 419.5984528257447  (vs c=0.98*L0^2 = 261.42741983882934 )
+PARI stack size set to 2000000000 bytes, maximum size set to 2000011264
+(b2) qfminim: count(Q<=270) = 0  min found = 270.0  time 0s
+(c) ln Vol(T-body) = 118.56903  vs ln Vol(Q-ball) = 111.0097
+    Q-ball: deg-2 l* = 2.07155e+19   deg-1 l* = 4.29131e+38
+    T-body: deg-2 l* = 4.72941e+17   deg-1 l* = 2.23673e+35
+MU0 TBODY DONE

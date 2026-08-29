@@ -1,0 +1,25 @@
+== MO fixed-layer re-derivation (formula as quoted) ==
+class 65     (d,f)=(32,1): l <= 7.71569554400293e12
+class 63/127 (d,f)=(64,2): l <= 4.51995814078494e16
+class 1      (d,f)=(64,1): l <= 2.04300215944480e33
+
+== comparison ratios vs R6 Blichfeldt thresholds ==
+C7^(1/2) (deg-2 threshold) = 1.314283897427170e15 (log claims 1.314283897427172e15)
+cls65 : R6/MO = 170.339  (GPT: R6 ~170x WORSE)
+cls63 : MO/R6 = 34.3910  (GPT: ~34.4x improvement)
+cls1  : MO/R6 = 1182.74  (GPT: ~1183x improvement)
+
+== improvement factors and target heights ==
+(C7/1e9)^(1/64)  = 2.1470099  (GPT: 2.147)
+(C7/1e18)^(1/64) = 1.5531344  (GPT: 1.553)
+L7 = sqrt(128)*log(2+sqrt5) = 16.332871  (GPT: 16.333)
+target ht cls1  = L7*f1 = 35.0668  (GPT: 35.1)
+target ht deg2  = L7*f2 = 25.3671  (GPT: 25.4)
+Blichfeldt coeff ratio 3.0137/f1 = 1.40367  (GPT: 1.404)
+
+== crude prime counts in open windows (x/log x, per residue class /64) ==
+class 65           window (1e9,7.800e12]: ~4.106e9 primes
+class 63o127 each  window (1e9,1.315e15]: ~5.902e11 primes
+class 1            window (1e9,1.727e30]: ~3.876e26 primes
+
+R7 REDERIVE DONE

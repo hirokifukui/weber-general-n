@@ -1,0 +1,5 @@
+MAGMA HW27: denominator inverse verified
+MAGMA HW27: closed form (eps-1) = 2 z inv PASS
+MAGMA RANKS: 64 64 64
+R8 MAGMA TWOADIC RANK DONE
+EXIT=0

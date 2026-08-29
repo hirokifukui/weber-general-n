@@ -1,0 +1,4 @@
+'WeberLemmaB.X_pow_add_one_eq_cyclotomic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberLemmaB.coprime_two_pow_of_odd_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberLemmaB.factor_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberLemmaB.factor_degree_eq' depends on axioms: [propext, Classical.choice, Quot.sound]

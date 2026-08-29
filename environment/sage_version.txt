@@ -1,0 +1,5 @@
+SageMath version 10.8, Release Date: 2025-12-18
+python : 3.13.7 (Clang 17.0.0 clang-1700.3.19.1)
+mpmath : 1.3.0
+sage binary: <LOCAL_APPS>/SageMath-10-8.app/.../Versions/10.8/local/bin/sage
+recorded 2026-08-24 on node <LOCAL_HOST> (r7)

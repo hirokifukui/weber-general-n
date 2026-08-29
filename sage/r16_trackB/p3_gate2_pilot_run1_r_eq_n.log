@@ -1,0 +1,12 @@
+n   N    c   D(covol)          L_3n      C3exact          log10C3   G1^f       Gcyclo^f   Thm0.3     C3/Thm0.3
+1    3    2  1.471009e+00  0.83348  2.696073e+00     0.43  2.700e+01  1.800e+01  4.000e+00  6.740e-01
+2    9    6  9.782993e+02  1.44364  6.692341e+02     2.83  1.771e+06  5.249e+05  5.760e+03  1.162e-01
+3   27   18  6.052456e+13  2.50045  2.583977e+11    11.41  9.536e+25  2.480e+24  3.278e+18  7.883e-08
+4   81   54  3.256633e+54  4.33091  2.120400e+44    44.33  7.627e+101  1.342e+97  3.098e+79  6.844e-36
+Traceback (most recent call last):
+  File "<LOCAL_PATH>", line 48, in <module>
+    print("%d %4d %4d  %.6e  %.5f  %.6e  %7.2f  %.3e  %.3e  %.3e  %.3e" % (n, N, c, D, L, C3, log(C3,_sage_const_10 ), G1, Gcy, T03, C3/T03), flush=True)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  File "sage/rings/complex_mpfr.pyx", line 1979, in sage.rings.complex_mpfr.ComplexNumber.__float__
+    raise TypeError("unable to convert {!r} to float; use abs() or real_part() as desired".format(self))
+TypeError: unable to convert 6.00780679229776545958402762511531119908386695008184901720351706547220753674856639696955631555075051156381503674191545599e217*I to float; use abs() or real_part() as desired

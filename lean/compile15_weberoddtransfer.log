@@ -1,0 +1,7 @@
+# lake env lean weber_r15/WeberOddTransfer.lean on <LOCAL_HOST> 2026-08-26T02:47:33Z ; toolchain leanprover/lean4:v4.31.0-rc1 ; mathlib pin d568c8c09630de097a046763c17b9ea99f95f950
+'WeberOddTransfer.coprime_two_pow_of_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberOddTransfer.pow_odd_eq_one_iff_of_two_pow_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberOddTransfer.pow_odd_injective_of_two_pow_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberOddTransfer.pow_odd_eq_iff_of_two_pow_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeberOddTransfer.isUnit_pow_odd_eq_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT=0
