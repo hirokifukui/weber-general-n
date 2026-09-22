@@ -59,6 +59,24 @@ the pre-seal r11 copy that was shipped is archived at docs/archive/HANDOFF_R11_p
     the zip SHA-256 is recorded in the vault HANDOFF (never inside the tree). Any change afterwards = a new staging tree, steps 1a-2 again.
 3-6. Unchanged (one push / CI / tag / release / Zenodo at the end, decision (b)).
 
+## 1.1.0 candidate (the MoC recast round; written BEFORE the final verifier run; not edited after it)
+- Opened 2026-09-21 on the JTNB editorial decision (submission #2493 declined without external review; zero mathematical
+  objections cited). Content: the paper is recast for Mathematics of Computation as paper/draft/main_1.1.0.tex --
+  computational-problem introduction absorbing the literature comparison; certificate soundness with the verifier
+  specification set as Algorithm 3.1; a NEW Algorithms-and-cost subsection (Algorithms 4.2 / 4.3; ball-operation counts,
+  worst-case Gram route O(27^n), peak memory Theta(4^n); no bit-complexity theorem claimed); a resource table (verification
+  ledger + public CI record, provenance pinned; generation costs marked [E], observational); a final Reproducibility-and-trust
+  section (trust labels, replay/CI, relation to prior computations, generative-AI declaration placed per the AMS policy);
+  AMS Handbook source compliance -- no author-defined macros in title/abstract/headings/references (bibliography_moc.tex
+  generated from proofs/bibliography.tex; static gate paper/draft/lint_ams_macros.py); title, abstract and MSC recast
+  (primary 11Y40, 11R18). Proof text: the cor_T Example paragraph replaced by the certified integer comparisons
+  (ERRATA_1.1.0 E1.1.0-1).
+- NO statement change (STATEMENT_FREEZE_1.1.0: the 38 single-source statement files byte-identical, md5 list digest
+  9c7b3f5775341416eb756c5dd4e6472f); no Lean file, no certificate, no evidence artifact touched. Two external GPT audits
+  of the recast (R1 and R2, 2026-09-22; R2 verdict: submit-ready after freeze).
+- Release plan: seal -> push -> CI -> tag v1.1.0 -> Release -> Zenodo new versions; the MoC cover letter cites the v1.1.0
+  paper DOI; the handling editor is selected in the AMS submission portal.
+
 ## 1.0.2 candidate (the pre-submission repair round; written BEFORE the final verifier run; not edited after it)
 - Opened 2026-08-29 on the GPT audit of the v1.0.1 submission package (conditional GO; six items). All non-mathematical:
   'published input' -> 'external literature input' throughout paper/abstract/resume/TRUST (the load-bearing Kashio-Yoshizaki
