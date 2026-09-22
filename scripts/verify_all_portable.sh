@@ -27,7 +27,7 @@
 #     verify_out/ and requires the fresh certificate == shipped (all fields); 04d cross_cas re-runs sage/r14_cross_cas_audit.sage
 #     (interval inclusion / intersection per route; the r11 "inside ball" line is no longer a gate).
 #   * 08 negctl: the fresh negative-control counts are compared with the shipped ledger (tools/gen_negctl_ledger.py --counts-only).
-#   * paper main_1.1.0, CLAIMS_1.1.0, STATEMENT_FREEZE_1.1.0, ERRATA_R16, BLUEPRINT_MAP_1.1.0.
+#   * paper main_1.1.1, CLAIMS_1.1.1, STATEMENT_FREEZE_1.1.1, ERRATA_R16, BLUEPRINT_MAP_1.1.1.
 # r13: 00b floor_sync, 08 negctl 9+1, 09 five Lean files. r12/r11 history in the previous headers (archive/rounds/).
 # Repository-relative paths only; all hashes via python3 hashlib.
 #
@@ -65,15 +65,15 @@
 #   09 lean            the twelve load-bearing files: exit 0, #print axioms within std-3 for EVERY declaration (3/5/4/6/6/5/3/7/4/4/3/13; WeberP3Rel added r18; WeberOddTransfer added r15, WeberHatC + WeberSH + WeberLemmaB + WeberRoots + WeberP3 added r16), no forbidden tokens
 #   10 blueprint       blueprint/check_graph.py: dangling / leanok-without-lean / EVIDENCE-PRESENCE + HUMAN-PROOF gate
 #   10b blueprint_pdf  pdflatex blueprint/src/print.tex twice; no errors, no undefined refs, >= 10 pages
-#   11 paper           pdflatex main_1.1.0.tex twice into verify_out/paper; no errors, no undefined refs
+#   11 paper           pdflatex main_1.1.1.tex twice into verify_out/paper; no errors, no undefined refs
 #   12 placeholders    stale-placeholder grep over the shipped prose
-#   13b blueprint_map  tools/gen_blueprint_map.py --check: docs/BLUEPRINT_MAP_1.1.0.md == regenerated
+#   13b blueprint_map  tools/gen_blueprint_map.py --check: docs/BLUEPRINT_MAP_1.1.1.md == regenerated
 #   13c statement_sync tools/check_statement_sync.py (r20: Theorem P3 statement byte-identical in paper and Blueprint; claims `conditions` phrases present in claims / paper / Blueprint) + --negctl (3 planted variants rejected)
 #   13d novelty_matrix tools/gen_novelty_matrix.py --check (docs/NOVELTY_MATRIX.md == regenerated)
 #   13e human_review   tools/gen_human_review.py --check (sign-off ledger + JSON == regenerated from the node list; r21)
 #   00f ci_round_sync  tools/check_ci_round_sync.py (r21: no literal round in the workflow aggregator / this script; sage round == lean round == package round) + --negctl (4 planted)
 #   00e release_metadata tools/check_release_metadata.py (r20: package round vs certificate round; forbidden notation a = 4^{N/3} etc.; current-facing pointers)
-#   13 claims          docs/CLAIMS_1.1.0.yaml loads; verifier sha256 matches; evidence paths exist; Lean decls present; CORRESPONDENCE.csv == regenerated
+#   13 claims          docs/CLAIMS_1.1.1.yaml loads; verifier sha256 matches; evidence paths exist; Lean decls present; CORRESPONDENCE.csv == regenerated
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; cd "$ROOT"
 ROUND=$(sed -n 's/^version: "\{0,1\}\([A-Za-z0-9.][A-Za-z0-9.]*\)"\{0,1\}$/\1/p' CITATION.cff)   # r21: the package round, single source = CITATION.cff (never a literal here)
@@ -327,7 +327,7 @@ d4=[k for k in A if A[k][:4]!=B[k][:4]]; d5=[k for k in A if A[k][4]!=B[k][4]]
 assert not d4, 'per-prime verdict/components/witness-sha differ for %d primes, e.g. %s'%(len(d4),d4[:3])
 print('per-prime rows (verdict, components, witness sha256): 1000/1000 equal')
 print('per-prime raw verifier-log sha256: %d/1000 equal (FORENSIC only from r13; not a gate — raw logs may differ across platforms)'%(1000-len(d5)))
-tex=open('paper/draft/main_1.1.0.tex').read()
+tex=open('paper/draft/main_1.1.1.tex').read()
 want=[f[1],f[2],f[3],'%.4f'%float(f[4]),'%.4f'%float(f[5]),'%.4f'%float(f[6]),'4224']
 for w in want:
     assert w in tex, 'paper does not contain %s'%w
@@ -410,26 +410,26 @@ fi
 
 # 11 paper build (two passes; inline bibliography, no bibtex)
 if [ $pdf_avail -eq 0 ]; then
-  skip paper "pdflatex absent or SKIP_PAPER=1; shipped PDF: paper/draft/main_1.1.0.pdf" pdf
+  skip paper "pdflatex absent or SKIP_PAPER=1; shipped PDF: paper/draft/main_1.1.1.pdf" pdf
 else
   mkdir -p "$OUT/paper"
-  step paper "$OUT/11_paper.log" bash -c "cd paper/draft && pdflatex -interaction=nonstopmode -halt-on-error -output-directory '$OUT/paper' main_1.1.0.tex >/dev/null && pdflatex -interaction=nonstopmode -halt-on-error -output-directory '$OUT/paper' main_1.1.0.tex >/dev/null && grep -c 'Output written' '$OUT/paper/main_1.1.0.log'"
-  if grep -q '^!' "$OUT/paper/main_1.1.0.log" 2>/dev/null; then say "== [paper] FAIL (LaTeX error line)"; FAIL=1; fi
-  if grep -qi 'undefined references\|undefined citations\|Citation .* undefined' "$OUT/paper/main_1.1.0.log" 2>/dev/null; then say "== [paper] FAIL (undefined refs/citations)"; FAIL=1; fi
+  step paper "$OUT/11_paper.log" bash -c "cd paper/draft && pdflatex -interaction=nonstopmode -halt-on-error -output-directory '$OUT/paper' main_1.1.1.tex >/dev/null && pdflatex -interaction=nonstopmode -halt-on-error -output-directory '$OUT/paper' main_1.1.1.tex >/dev/null && grep -c 'Output written' '$OUT/paper/main_1.1.1.log'"
+  if grep -q '^!' "$OUT/paper/main_1.1.1.log" 2>/dev/null; then say "== [paper] FAIL (LaTeX error line)"; FAIL=1; fi
+  if grep -qi 'undefined references\|undefined citations\|Citation .* undefined' "$OUT/paper/main_1.1.1.log" 2>/dev/null; then say "== [paper] FAIL (undefined refs/citations)"; FAIL=1; fi
 fi
 
 # 12 stale placeholders in the shipped prose
 step placeholders "$OUT/12_placeholders.log" bash -c '
 PAT="\[Table:\|PLACEHOLDER\|TODO\|TBD\|FIXME\|<FILL>\|\\\\todo\|XXX"
-FILES="paper/draft/main_1.1.0.tex blueprint/src/content.tex proofs/statements/*.tex README.md TRUST.md RELEASE_STATUS.md lean/README_lean.md theory/STATEMENT_FREEZE_1.1.0.md docs/ERRATA_R*.md CORRESPONDENCE.csv"
-hits=$(grep -n -- "$PAT" $FILES | grep -v "^paper/draft/main_1.1.0.tex:[0-9]*:%" || true)
+FILES="paper/draft/main_1.1.1.tex blueprint/src/content.tex proofs/statements/*.tex README.md TRUST.md RELEASE_STATUS.md lean/README_lean.md theory/STATEMENT_FREEZE_1.1.1.md docs/ERRATA_R*.md CORRESPONDENCE.csv"
+hits=$(grep -n -- "$PAT" $FILES | grep -v "^paper/draft/main_1.1.1.tex:[0-9]*:%" || true)
 if [ -n "$hits" ]; then echo "$hits"; echo "PLACEHOLDERS FOUND"; exit 1; fi
 echo "no placeholders in: $FILES"'
 
 # 13 claims ledger
 step claims "$OUT/13_claims.log" python3 - "$ROUND" <<'PY'
 import yaml,os,re,hashlib,csv,io,subprocess,sys
-d=yaml.safe_load(open('docs/CLAIMS_1.1.0.yaml'))
+d=yaml.safe_load(open('docs/CLAIMS_1.1.1.yaml'))
 assert d['round']==sys.argv[1], (d['round'], sys.argv[1])   # r21: the package round comes from CITATION.cff, not from a literal
 v=d['verifier']; h=hashlib.sha256(open(v['file'],'rb').read()).hexdigest()
 assert h==v['sha256'], 'verifier sha256 drift: %s != %s'%(h,v['sha256'])

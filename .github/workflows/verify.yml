@@ -31,7 +31,7 @@ name: verify
 on: [push, workflow_dispatch]
 jobs:
   sage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -61,7 +61,7 @@ jobs:
           name: verify_out_sage
           path: ${{ runner.temp }}/ci_out
   lean:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -110,7 +110,7 @@ jobs:
         with: { name: verify_out_lean, path: verify_out }
   full:
     # the ONLY place that may say FULL VERIFICATION: PASS — after one sage-profile PASS and one lean-profile PASS on the same commit
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [sage, lean]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1  (r21: the package round is read from CITATION.cff of THIS commit)

@@ -59,6 +59,20 @@ the pre-seal r11 copy that was shipped is archived at docs/archive/HANDOFF_R11_p
     the zip SHA-256 is recorded in the vault HANDOFF (never inside the tree). Any change afterwards = a new staging tree, steps 1a-2 again.
 3-6. Unchanged (one push / CI / tag / release / Zenodo at the end, decision (b)).
 
+## 1.1.1 candidate (the metadata repair round; written BEFORE the final verifier run; not edited after it)
+- Opened 2026-09-22 on the GPT public-state audit of the published v1.1.0 (GitHub/Zenodo; two blockers, both
+  documentation-sync, neither mathematical). Content, all metadata: Table 7 CI provenance refreshed to the
+  v1.1.0 release run (commit 9780ac69, run 35692588284: Sage-profile verifier step 1392 s, Lean step 75 s +
+  106 s workspace fetch); TRUST.md header and CI paragraph corrected (the 'not yet executed' text predated the
+  first push and had been stale since the v1.0.0 release); README trust-model L label aligned with the v1.0.2
+  'published or preprint' correction, and a current-article pointer with concept DOIs added; CITATION.cff
+  preferred-citation title set to the MoC article title; .zenodo.json description MSC and asset list
+  synchronized; CI runner pinned to ubuntu-24.04 (ubuntu-latest migrates to Ubuntu 26 on 2026-10-19).
+- NO statement change, no proof-text change, no Lean file, no certificate touched (STATEMENT_FREEZE_1.1.1;
+  proofs/ byte-identical to v1.1.0).
+- Release plan: seal -> push -> CI -> tag v1.1.1 -> Release (notes carry the version DOIs) -> Zenodo new
+  versions; the MoC cover letter cites the v1.1.1 paper DOI.
+
 ## 1.1.0 candidate (the MoC recast round; written BEFORE the final verifier run; not edited after it)
 - Opened 2026-09-21 on the JTNB editorial decision (submission #2493 declined without external review; zero mathematical
   objections cited). Content: the paper is recast for Mathematics of Computation as paper/draft/main_1.1.0.tex --

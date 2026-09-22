@@ -1,11 +1,11 @@
-# TRUST.md — what each label means and how to check it (weber_general_n, v1.0.1, 2026-08-29)
+# TRUST.md — what each label means and how to check it (weber_general_n, v1.1.1, 2026-09-22)
 
 One raw cross-CAS log (sage/r10_bin4_xcas.log) retains a non-sensitive local machine name because its
 byte-exact SHA-256 is part of the frozen evidence chain (certificates/constants/C7_cross_cas_r14.json);
 the public-tree sanitizer exempts that one file from the host-name rule only.
 
 Every claim of the paper carries exactly one label, or a composite of them; CORRESPONDENCE.csv
-(generated from docs/CLAIMS_1.1.0.yaml) maps claim ids to Lean declarations, certificates, logs and
+(generated from docs/CLAIMS_1.1.1.yaml) maps claim ids to Lean declarations, certificates, logs and
 literature inputs. Earlier round-specific ledgers are preserved outside the submission-facing public tree. The blueprint (blueprint/src/content.tex) carries the same labels per node.
 
 F  (Formal)      Proven in Lean 4 (toolchain v4.31.0-rc1, mathlib pin d568c8c0) with
@@ -32,7 +32,7 @@ C  (Certificate) A finite machine-checkable certificate plus a READ-ONLY checker
                  (3) tools/check_p3_containment.py = CERTIFICATE COVERAGE on a stored recomputation (step 04g).
                  Structured summaries (sage/r19_trackB/p3_readonly_summary_r19.json) carry the verifier version and
                  sha256; raw log hashes are forensic, never a mathematical gate. Family: scripts/family_verify.sage
-                 (sha256 recorded in docs/CLAIMS_1.1.0.yaml) on certificates/family/KY1000/*.txt; soundness
+                 (sha256 recorded in docs/CLAIMS_1.1.1.yaml) on certificates/family/KY1000/*.txt; soundness
                  spec theory/FAMILY_CERTIFICATE_SPEC_R10.md sect 4; n = 7 constants: rigorous digamma
                  interval certificate (certificates/constants/Cn_interval_r14.json, both endpoints to 160
                  digits) and the r6/r7 interval logs under certificates/blichfeldt/.
@@ -59,7 +59,7 @@ M  (Manuscript)  Proved in the paper and, verbatim (single-source proofs/*.tex),
                  Prop D, Cor A', the depth-t floor, the old/new decomposition; r15: Theorem S0 (relative to its
                  hypothesis (i)) and Lemma oddtransfer (its number-field part; the group core is F). r16: Lemma B moved M -> F (WeberLemmaB); Theorem SH, Cor A-hat,
                  Cor order, Theorem P3, Cor P3n4 are M relative to their L inputs with F cores (WeberSH, WeberHatC, WeberP3) and, for
-                 P3, a C covolume (certificates/p3/D3_cert_r16.json). r17: Theorem P3 is restated with (Rank) PROVED (Theorem rank3, F-core + L for Washington / Dirichlet) and the MO2016 relative-norm-one floor (Lemma mo25 [L], applicable by Lemma normone [F]); the certificate certificates/p3/D3_cert_r19.json (C; format v3, containment-gated read-only replay step 04f) enters only Cor P3n4 and the table; Theorem SH is stated in the carrier form proved in Lean and its module form is Cor SH-mod (M; F-core). r20: Theorem P3 is stated for ODD primes l != 3 only (the r19 wording admitted l = 2, ERRATA_R20 E20-1); the oddness is consumed at the M/F bridge -- Lemma normone (iv), where Nr(eps)^l = 1 with Nr(eps) real gives Nr(eps) = 1 through the F lemma WeberP3Rel.eq_one_of_odd_pow_eq_one (hypothesis Odd l), and in the hypothesis of Theorem SH; the Lean core WeberP3.theoremP3_core is the generic carrier (0 < l) and does NOT carry the odd-prime condition, which is therefore recorded here and in the claims (docs/CLAIMS_1.1.0.yaml THM_P3.conditions, checked against both statement texts by tools/check_statement_sync.py, step 13c). The shared proof of Theorem rank3 writes a == 4^{N/3} (mod q) as a congruence (E20-2; F: WeberP3Rel.four_pow_modEq). A reader checks M by reading;
+                 P3, a C covolume (certificates/p3/D3_cert_r16.json). r17: Theorem P3 is restated with (Rank) PROVED (Theorem rank3, F-core + L for Washington / Dirichlet) and the MO2016 relative-norm-one floor (Lemma mo25 [L], applicable by Lemma normone [F]); the certificate certificates/p3/D3_cert_r19.json (C; format v3, containment-gated read-only replay step 04f) enters only Cor P3n4 and the table; Theorem SH is stated in the carrier form proved in Lean and its module form is Cor SH-mod (M; F-core). r20: Theorem P3 is stated for ODD primes l != 3 only (the r19 wording admitted l = 2, ERRATA_R20 E20-1); the oddness is consumed at the M/F bridge -- Lemma normone (iv), where Nr(eps)^l = 1 with Nr(eps) real gives Nr(eps) = 1 through the F lemma WeberP3Rel.eq_one_of_odd_pow_eq_one (hypothesis Odd l), and in the hypothesis of Theorem SH; the Lean core WeberP3.theoremP3_core is the generic carrier (0 < l) and does NOT carry the odd-prime condition, which is therefore recorded here and in the claims (docs/CLAIMS_1.1.1.yaml THM_P3.conditions, checked against both statement texts by tools/check_statement_sync.py, step 13c). The shared proof of Theorem rank3 writes a == 4^{N/3} (mod q) as a congruence (E20-2; F: WeberP3Rel.four_pow_modEq). A reader checks M by reading;
                  the Blueprint's evidence-presence gate only checks that a proof body is PRESENT (check_graph.py --report flags short F/M proofs as warnings).
 E  (Experiment)  Computation whose OUTPUT is reported but on which no theorem depends (class-1 scans,
                  escalation statistics, SVP minima, failure-class tables, C_n for n >= 8 beyond the
@@ -85,9 +85,12 @@ fifth Lean file, and the Blueprint human-proof gate).
 Executed end-to-end on the author's node <LOCAL_HOST> with Sage 10.8 on 2026-08-25 (r11; r12 and r13 runs recorded in RELEASE_STATUS.md):
 verify_out/VERIFY_ALL_PORTABLE.log. Dockerfile (sagemath/sagemath pinned by digest sha256:e2e4747b..., + texlive) and
 .github/workflows/verify.yml (sage job + lean job with `lake exe cache get`; actions and elan pinned by
-SHA; Lean workspace outside the checkout) are written but have NOT been executed anywhere yet — the
-author's machines have no docker. The first GitHub Actions
-run after push is the clean-environment record; until it exists, no clean-container claim is made.
+SHA; Lean workspace outside the checkout) are executed by GitHub Actions on every push: each tagged
+release is replayed from a clean checkout, and the release-specific commit SHA, run identifier,
+normalized summaries and attestation are recorded as assets of the corresponding GitHub Release,
+never inside the source tree. (Historical note: this paragraph said 'not yet executed' from r15 until
+v1.1.0 — it was written before the first push and was stale from the v1.0.0 release on; the first
+clean-container run was the v1.0.0 release push, 2026-08-29.)
 
 Known limits of the self-audit (recorded, not excused). r12 was sealed with every medium passing its own gate
 while the prose and the Blueprint definition of the verifier stated the certificate T-threshold as the uniform

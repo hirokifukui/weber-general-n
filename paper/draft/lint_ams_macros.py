@@ -9,7 +9,7 @@ in the abstract. Run from papers/moc/. Exit 0 = clean.
 """
 import re, sys, os
 
-MAIN = "main_1.1.0.tex"
+MAIN = "main_1.1.1.tex"
 BIB_SRC = "../../proofs/bibliography.tex"
 BIB_OUT = "bibliography_moc.tex"
 MACROS = r"\\(?:Q|Z|R|F|RE|ord|hgt|Nr|covol|barT|refConst|refCert|refAppF|refDefH|artP[a-zA-Z]*|artNovelty|lbl)\b"

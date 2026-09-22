@@ -7,7 +7,7 @@ authors:
     given-names: Hiroki
     orcid: "https://orcid.org/0009-0008-7122-522X"
     affiliation: "Research Institute of Criminal Psychiatry / Sex Offender Medical Center, Tokyo, Japan; Department of Neuropsychiatry, Kyoto University, Kyoto, Japan"
-version: 1.1.0
+version: 1.1.1
 date-released: "2026-09-22"
 license: MIT
 repository-code: "https://github.com/hirokifukui/weber-general-n"
@@ -25,11 +25,11 @@ keywords:
 abstract: "Theorem A: for every layer n >= 2 and odd prime l, l^{ord_{2^n}(l)} > C_n implies l does not divide h_n/h_{n-1}, with C_n an explicit product of L-values; at n = 7 an unconditional certified family of 1000 primes l = 65 (mod 128). Lean 4 kernel-checked cores (std-3 axioms), read-only certificate verifier, single-source Blueprint proofs, portable replay script."
 preferred-citation:
   type: article
-  title: "Componentwise saturation-height bounds for relative class-number growth in the cyclotomic Z2- and Z3-towers"
+  title: "Certified computation of componentwise saturation-height bounds in the cyclotomic Z2- and Z3-towers"
   authors:
     - family-names: Fukui
       given-names: Hiroki
       orcid: "https://orcid.org/0009-0008-7122-522X"
   year: 2026
   status: in-preparation
-  notes: "paper/draft/main_1.1.0.pdf in this package; MSC primary 11Y40, 11R18; secondary 11R29, 11H06, 68V20; journal / DOI to be added on acceptance"
+  notes: "paper/draft/main_1.1.1.pdf in this package; MSC primary 11Y40, 11R18; secondary 11R29, 11H06, 68V20; journal / DOI to be added on acceptance"

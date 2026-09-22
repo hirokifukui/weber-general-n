@@ -1,6 +1,8 @@
 # Componentwise saturation-height bounds for relative class-number growth in the cyclotomic Z2- and Z3-towers
 
-Weber's class number problem asks whether every layer of the cyclotomic Z2-extension of Q has class number one. This package proves componentwise saturation-height bounds for the relative class-number growth h_n/h_{n-1} in the cyclotomic Z2- and Z3-towers (all layers n >= 2 at p = 2; every layer n >= 1 at p = 3, constants certified for n <= 5 and replayed read-only from the definitions), with an unconditional certified family of 1000 primes at layer 7 and a computation-free criterion at every layer. Version v1.1.0 (paper recast for Mathematics of Computation, Blueprint, Lean, certificates, read-only verifiers; no statement change).
+Weber's class number problem asks whether every layer of the cyclotomic Z2-extension of Q has class number one. This package proves componentwise saturation-height bounds for the relative class-number growth h_n/h_{n-1} in the cyclotomic Z2- and Z3-towers (all layers n >= 2 at p = 2; every layer n >= 1 at p = 3, constants certified for n <= 5 and replayed read-only from the definitions), with an unconditional certified family of 1000 primes at layer 7 and a computation-free criterion at every layer. Version v1.1.1 (metadata repair round; no statement change).
+
+**Current article (v1.1.1):** *Certified computation of componentwise saturation-height bounds in the cyclotomic Z2- and Z3-towers* — `paper/draft/main_1.1.1.pdf` (the repository/software title above is the stable project title). Concept DOIs — paper and Blueprint: 10.5281/zenodo.22152097; software and certificates: 10.5281/zenodo.22152066 (version-specific DOIs are listed in each GitHub Release's notes).
 
 ## Main results
 
@@ -11,8 +13,8 @@ Weber's class number problem asks whether every layer of the cyclotomic Z2-exten
 
 ## Artifact
 
-- Paper: `paper/draft/main_1.1.0.pdf` — source `main_1.1.0.tex` (the v1.0.2 paper is retained as history)
-- Blueprint: `blueprint/blueprint_1.1.0.pdf` — every F/M node with a complete human-readable proof; source `blueprint/src/`
+- Paper: `paper/draft/main_1.1.1.pdf` — source `main_1.1.1.tex` (the v1.0.2 paper is retained as history)
+- Blueprint: `blueprint/blueprint_1.1.1.pdf` — every F/M node with a complete human-readable proof; source `blueprint/src/`
 - Lean 4: `lean/` — 12 load-bearing files, 63 declarations, axiom footprint within `[propext, Classical.choice, Quot.sound]` (toolchain v4.31.0-rc1, mathlib pin d568c8c0)
 - Certificates: `certificates/` — C_n interval enclosures, the p = 3 covolume certificate (exact dyadic endpoints), KY1000 witnesses, two-adic rank certificates
 - Read-only verifiers: `scripts/` — recompute the designated certificate claims from first principles, using exact arithmetic and Arb/ball arithmetic as appropriate; 9 negative controls REJECTED plus the n = 2 positive control; the p = 3 replay rejects its twelve planted certificates
@@ -32,12 +34,12 @@ Partial profiles `VERIFY_PROFILE=sage` / `VERIFY_PROFILE=lean` need only their o
 
 ## Trust model
 
-Every claim carries a label (definitions and per-claim checking instructions: `TRUST.md`; claim map: `CORRESPONDENCE.csv`, generated from `docs/CLAIMS_1.1.0.yaml`):
+Every claim carries a label (definitions and per-claim checking instructions: `TRUST.md`; claim map: `CORRESPONDENCE.csv`, generated from `docs/CLAIMS_1.1.1.yaml`):
 
 - **F (Formal)** — proven in Lean 4, standard axioms only; covers the discrete reasoning
 - **C (Certificate)** — finite certificate + read-only checker recomputing from first principles
-- **L (Literature)** — a published, proven theorem used as an explicit hypothesis (tagged used / historical / unread)
-- **M (Manuscript)** — proved in the paper and, verbatim, in the Blueprint; not machine-checked; all 31 F/M nodes carry the author's signed review (`docs/BLUEPRINT_HUMAN_REVIEW_1.1.0.md`)
+- **L (Literature)** — an external literature result, published or preprint, used as an explicit hypothesis; its status and exact source location are recorded (tagged used / historical / unread)
+- **M (Manuscript)** — proved in the paper and, verbatim, in the Blueprint; not machine-checked; all 31 F/M nodes carry the author's signed review (`docs/BLUEPRINT_HUMAN_REVIEW_1.1.1.md`)
 - **E (Experiment)** — reported output on which no theorem depends
 
 ## Repository map
